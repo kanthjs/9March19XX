@@ -1,0 +1,4 @@
+---
+title: "about"
+subtitle: "~ a bit more about me outside of my job ~"
+---

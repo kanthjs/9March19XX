@@ -1,0 +1,46 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  # cookie-consent: 
+  #   type: express 
+  #   style: headline
+  #   palette: dark
+  google-analytics: 
+    tracking-id: "01234"
+    anonymize-ip: true
+  # title: "samantha csik"
+  navbar:
+    title: false
+    right:
+      - href: index.qmd
+        text: home
+      - about.qmd
+      - posts.qmd
+      - resources.qmd
+      - icon: github
+        href: https://github.com/
+      - icon: twitter
+        href: https://twitter.com/
+  page-footer: 
+    background: light
+    left: 
+      - "Copyright 2022, Kanth JS"
+    right: 
+      - icon: github
+        href: https://github.com/kanthjs
+      - icon: twitter
+        href: https://twitter.com/kanthjs
+  reader-mode: true
+  # repo-url: https://github.com/samanthacsik/samanthacsik-quarto-website
+  # repo-actions: [edit, issue]
+
+format:
+  html:
+    page-layout: full
+    theme: 
+      - green_theme.scss
+    # css: styles.css
+    mainfont: K2D
+    toc: true

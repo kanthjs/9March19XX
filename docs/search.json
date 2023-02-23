@@ -1,0 +1,79 @@
+[
+  {
+    "objectID": "blog.html",
+    "href": "blog.html",
+    "title": "ิblog",
+    "section": "",
+    "text": "No matching items"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Kanth Jg",
+    "section": "",
+    "text": "สวัสดีครับ Sawasdee Krub\n🙏 สวัสดีครับ ดีใจที่เข้ามาอ่าน blog ของผมนะครับ 😄 ผมทำงานเป็นนักวิจัยด้านข้าว 🌾 ที่ กรมการข้าว\n\nผมตั้งใจเขียน blog นี้ขั้นมาเพื่อถ่ายทอดความรู้ด้าน การระบาดของโรคข้าว และ โปรแกรม R ซึ่งเป็น เรื่องที่ผมเรียนจบมา 👨‍🎓\nผมจะพยายามเขียน ✍️ และ อัพ blog ทุกวันจันทร์ และ วันศุกร์ 🗓️ และถ้ามีคำถามสามารถสอบถามได้ที่ ✉️ Email\nขอให้ทุกคนรักษาสุขภาพ 😷 ถ้าชอบก็สามารถให้ 🌟 ที่ Github ผมได้\n\n\n\n\neducation\n\n\n\nexperience"
+  },
+  {
+    "objectID": "posts.html",
+    "href": "posts.html",
+    "title": "posts",
+    "section": "",
+    "text": "No matching items"
+  },
+  {
+    "objectID": "resources.html",
+    "href": "resources.html",
+    "title": "resources",
+    "section": "",
+    "text": "It’s finally time for an upgraded notebook! I’ve been Slacking myself (and subsequently burying) links to resources for far too long, so my favorites will now live here."
+  },
+  {
+    "objectID": "resources.html#r-tools",
+    "href": "resources.html#r-tools",
+    "title": "resources",
+    "section": "Screwdriver wrench r tools",
+    "text": "Screwdriver wrench r tools\n\nfree icons from fontawesome + the {fontawesome} R package for infusing your slides, website, RMarkdowns/Quarto Markdowns, and more with an extra splash of fun"
+  },
+  {
+    "objectID": "resources.html#data-viz",
+    "href": "resources.html#data-viz",
+    "title": "resources",
+    "section": "Bar Chart data viz",
+    "text": "Bar Chart data viz\n\nfrom Data to Viz, a choose-your-adventure-type experience for creating your best data visualizations\nThe Sessions College Color Calculator, for creating color palettes"
+  },
+  {
+    "objectID": "resources.html#reporting-presentations",
+    "href": "resources.html#reporting-presentations",
+    "title": "resources",
+    "section": "Desktop reporting & presentations",
+    "text": "Desktop reporting & presentations\n\nQuarto is all the rage these days (and by these days, I mean post-March 2022). Download and find some great tutorials here to get started\nMeet xaringan: Making slides in R Markdown, by Allison Hill\nSharing Your xaringan Slides, by Garrick Aden-Buie"
+  },
+  {
+    "objectID": "resources.html#learning-materials",
+    "href": "resources.html#learning-materials",
+    "title": "resources",
+    "section": "Book Open learning materials",
+    "text": "Book Open learning materials\n\nEver feel like you need a pick-me-up while learning stats or a new R tool? Look no further than Allison Horst’s Data Science Illustrations, featuring the cutest and most educational fuzzy monsters you’ll ever see!\nMastering Shiny, by Hadley Wickham\nHappy Git and GitHub for the useR, by Jenny Bryan\nR for Data Science, by Hadley Wickham\nW3Schools, particularly for their HTML & CSS tutorials"
+  },
+  {
+    "objectID": "resources.html#data-science-communities",
+    "href": "resources.html#data-science-communities",
+    "title": "resources",
+    "section": "Users data science communities",
+    "text": "Users data science communities\nWhile these groups are primarily based in SoCal/Santa Barbara, there are tons of awesome groups like these all over the world. Google around to see what’s near you!\n\nR-Ladies Santa Barbara and R-Ladies Global, which work to promote gender diversity in the R community\nEcoDataScience, an environmental data science study group at UCSB\n\nSouthern California R Users, an alliance of R user groups in Southern California\n\nSanta Barbara Women in STEM, while not specifically data science-focused, this group holds some really great career and networking events, panels, flash talks, and more"
+  },
+  {
+    "objectID": "resources.html#web-accessibility",
+    "href": "resources.html#web-accessibility",
+    "title": "resources",
+    "section": "Window Maximize web accessibility",
+    "text": "Window Maximize web accessibility\n\nThe A11Y Project is a community-driven effort to make digital content more accessible. I still have a long way to go in making my own website WCAG compliant – the A11Y Project not only has a ton of great blog posts, but also WCAG compliance checklist that I will definitely be returning to over and over again.\nCoblis, a color blindness simulator – just upload a file and view your color palettes as they would appear under different types of color deficiencies"
+  },
+  {
+    "objectID": "resources.html#misc.",
+    "href": "resources.html#misc.",
+    "title": "resources",
+    "section": "Face Smile misc.",
+    "text": "Face Smile misc.\n\nDiscover new music to jam out to while you hack at Every Noise at Once (HT: Jeanette Clark)"
+  }
+]
