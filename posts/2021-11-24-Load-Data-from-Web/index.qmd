@@ -1,0 +1,73 @@
+---
+title: "Load Data From web"
+author: "Sith Jaisong"
+date: '2021-11-23'
+categories: [R]
+---
+
+# เกริ่น
+
+ข้อมูลต่าง ๆ บางที เราสามารถดึงจากเวปต่าง ๆ ได้ ซึ่งอาจจะมีกา่รเผยแพร่สาธารณะให้สามารถนำดึงมาใช้ประโยชน์ได้ โดยเฉพาะ open data ของไทยด้านการเกษตร สามารถเข้าเวปของ [ศูนย์ข้อมูลเกษตรแห่งชาติ](https://www.nabc.go.th/) อยากเชิญชวนให้ลองเข้าไปใช้ หรือ ทดลองเล่นกับข้อมูล ซึ่งเราสามารถเอาข้อมูลมาเล่น
+
+```{r}
+library(tidyverse)
+library(knitr)
+library(patchwork)
+library(ggthemes)
+library(rmarkdown)
+theme_set(theme_few())
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+options(digits = 3)
+```
+
+# ตัวอย่างการดึงข้อมูลไฟล์ xlsx หรือ xls file จากเวป
+
+ลองดึงข้อมูล [ข้อมูลปริมาณการผลิตข้าว ปี 2564](http://dataset.nabc.go.th/dataset/oae11_04)
+
+```{r}
+library(rio)
+#Right now readxl reads only from xlsx and xls files
+
+xlsx_url <- "https://data.go.th/dataset/d2c00d96-e8ea-47d6-9eb1-8c5955b2f836/resource/8bd9f92d-3554-4814-9b56-15c244dbf947/download/technical.xlsx"
+
+rice_2564 <- rio::import(file = xlsx_url)
+glimpse(rice_2564)
+```
+
+จะเห็นว่าโครงสร้างของข้อมูลอาจจะยังไม่พร้อมที่จะนำไปใช้วิเคราะห์ได้ทันที เราจึงต้องมาทำการ Data Wrangling เสียก่อน
+
+# ตัวอย่างการดึงข้อมูลไฟล์ csv file
+
+ลองดึงข้อมูล [ราคาที่เกษตรกรขายได้ที่ไร่นา](http://dataset.nabc.go.th/dataset/oae0010/resource/9599c763-8188-4d1d-a736-31c8dd4962d7)
+
+```{r}
+library(readr)
+
+csv_url <- "https://data.go.th/dataset/9fba4c0b-2e78-4e87-897a-465f885d7e79/resource/7ea1669e-fb57-4b3f-aca1-0643ba9bb3f3/download/4cdzc1561119917.csv"
+
+land_use <- readr::read_csv(file = csv_url, col_types = "ccddd")
+glimpse(land_use)
+```
+
+# ตัวอย่างการดึงข้อมูลไฟล์ตารางจาก wiki
+
+ให้ดูตัวอย่างการดึงตารางจาก [List of districts of Thailand](https://en.wikipedia.org/wiki/List_of_districts_of_Thailand)
+
+```{r}
+### load table from wiki ####
+library(rvest)
+
+doc <- read_html("https://en.wikipedia.org/wiki/List_of_districts_of_Thailand")
+
+table <- html_node(doc, ".wikitable")
+
+my.table <- html_table(table, fill = TRUE)
+```
+
+# ตัวอย่างการดึงข้อมูลไฟล์ JSON จากเวป
+
+to be continue
+
+# ตัวอย่างการดึงข้อมูลไฟล์ api จากเวป
+
+to be continue
