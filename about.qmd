@@ -1,4 +1,15 @@
 ---
-title: "about"
-subtitle: "~ a bit more about me outside of my job ~"
+title: "9March19XX"
+#image: 
+about:
+  template: trestles
+  links:
+    - icon: twitter
+      text: Twitter
+      href: https://twitter.com/
+    - icon: github
+      text: Github
+      href: https://github.com/kanthjs/9March19XX
 ---
+
+บันทึกความคิดต่าง ๆ

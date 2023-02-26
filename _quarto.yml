@@ -3,44 +3,47 @@ project:
   output-dir: docs
 
 website:
+  title: "9March19XX"
+  favicon: images/favi.png
+  site-url: "https://kanthjs.github.io/9March19XX"
+  description: "บันทึกเรื่องราวต่าง ๆ "
   # cookie-consent: 
   #   type: express 
   #   style: headline
   #   palette: dark
   google-analytics: 
-    tracking-id: "01234"
+    tracking-id: "0123"
     anonymize-ip: true
   # title: "samantha csik"
   navbar:
-    title: false
     right:
-      - href: index.qmd
-        text: home
-      - about.qmd
+      - text: About
+        href: about.qmd
       - posts.qmd
       - resources.qmd
       - icon: github
-        href: https://github.com/
+        href: https://github.com/kanthjs/9Mrach19XX
+        aria-label: GitHub repo
       - icon: twitter
         href: https://twitter.com/
+        aria-label: Quarto Twitter
+
   page-footer: 
     background: light
-    left: 
-      - "Copyright 2022, Kanth JS"
-    right: 
-      - icon: github
-        href: https://github.com/kanthjs
-      - icon: twitter
-        href: https://twitter.com/kanthjs
-  reader-mode: true
-  # repo-url: https://github.com/samanthacsik/samanthacsik-quarto-website
-  # repo-actions: [edit, issue]
-
+    left: |
+      - This blog is built with ❤️ and [Quarto](https://quarto.org/)
+    right: |
+      Proudly supported by
+      [![](https://www.rstudio.com/wp-content/uploads/2018/10/RStudio-Logo-flat.svg){fig-alt="RStudio" width=65px}](https://www.rstudio.com)
+      
 format:
   html:
-    page-layout: full
-    theme: 
-      - green_theme.scss
-    # css: styles.css
-    mainfont: K2D
-    toc: true
+    theme:
+      light: [litera, styles.scss]
+      dark: [darkly, styles-dark.scss]
+    highlight-style: a11y-dark
+    mainfont: "Noto Sans Thai"
+    code-copy: true
+    code-overflow: wrap
+
+editor: visual

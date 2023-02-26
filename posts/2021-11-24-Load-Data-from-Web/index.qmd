@@ -3,6 +3,7 @@ title: "Load Data From web"
 author: "Sith Jaisong"
 date: '2021-11-23'
 categories: [R]
+draft: TRUE
 ---
 
 # เกริ่น

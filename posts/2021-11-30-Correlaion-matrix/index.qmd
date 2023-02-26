@@ -1,0 +1,88 @@
+---
+title: "Correlaion Matrix"
+author: "Kanthanawit Jaisong"
+date: "2021-11-30"
+categories: [R, Statistics]
+draft: TRUE
+---
+
+# เกริ่น
+
+correlation matrix คือตารางแสดง ค่าสัมประสิทธิ์สหสัมพันธ์ (correlation coefficients) ของความสัมพันธ์ ของ คู่ตัวแปร หรือ มากกว่า 2 ขึ้นไป บ่งบอกค่าความสัมพันธ์มากหรือน้อย เขียนแทน r มีค่าระหว่าง -1 ถึง 1
+
+-   r มีค่าเป็นบวกแสดงว่า ตัวแปรXและ Yมีความสัมพันธ์เชิงบวก หมายความว่า ถ้าตัวแปร X มีค่าเพิ่มขึ้นตัวแปร Y จะมีค่าเพิ่มขึ้นหรือถ้าตัวแปร X มีค่าลดลง ตัวแปร Y จะมีค่าลดลง
+
+-   r มีค่าเป็นลบ แสดงวา่ ตวัแปร Xและ Yมีความสัมพันธ์เชิงลบ หมายความวา่ ถา้ตวัแปร X มีค่าเพิ่มข้ึนตวแปร ั Y จะมีค่าลดลง หรือถา้ตวัแปร X มีค่าลดลง ตวัแปร Y จะมีค่าเพิ่มข้ึน
+
+-    r มีค่าเข้าใกล้ 1 หรือ -1 แสดงว่า ตัวแปร Xและ Yมีความสัมพันธ์เชิงบวกหรือลบ และมีความสัมพันธ์มาก
+
+-   r มีค่าเข้าใกล้ 0 แสดงวา่ ตัวแปรXและ Yมีความสัมพันธ์น้อย
+
+นอกจากนี้
+
+การทดสอบสมมติฐานเกี่ยวกับสัมประสิทธิ์สหสัมพันธ
+
+
+
+สมมติฐานเชิงสถิติ
+
+H0: X และ Y ไม่มีความสัมพนัธ์เชิงเส้นตรง
+
+H1: X และ Y มีความสัมพันธ์เชิงเส้นตรง
+
+Data example
+
+```{r}
+data("mtcars")
+head(mtcars)
+```
+
+# 1 the `corr()` function
+
+The simplest and most straight-forward to run a correlation in R is with the cor function:
+
+```{r}
+mcor <- cor(mtcars, method = "pearson") |> round(2)
+mcor
+```
+
+```{r}
+# Hide upper triangle
+upper <- mcor
+
+upper[upper.tri(mcor)] <- ""
+
+upper <- as.data.frame(upper)
+
+upper
+```
+
+```{r}
+
+```
+
+อันนี้ 0
+
+```{r}
+mcor <- cor(mtcars, method = "spearman") |> round(2)
+```
+
+# 2 `tab_corr()` function from `sjPlot` library
+
+```{r}
+library(sjPlot)
+tab_corr(mtcars, triangle = "lower")
+```
+
+# 3 `corstars()` function from `statxp` library
+
+```{r }
+#install.packages("remotes")
+#remotes::install_github("Cogitos/statxp")
+
+out <- statxp::corstars(mtcars[,1:7]) # return dataframe
+out
+
+# we can export dataframe to table in csv format
+# write.csv(out, file = "cormat.csv")
+```

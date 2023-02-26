@@ -35,17 +35,17 @@ $code-block-bg: $cream;
   
   h1, h2, h3, h4, h5, h6 {
     letter-spacing: 5px;
-    font-weight: 700;
-    color: $gray;
+    font-weight: 650;
+    color: $cream;
   }
 
 h3 {
-  font-size: 35px;
+  font-size: 25px;
 }
 
 body {
   line-height: 1.5; // min 1.5 suggested for assistive tech
-  font-size: 19.5px;
+  font-size: 15px;
 }
 
 /* CLASS SELECTORS (self-defined) */

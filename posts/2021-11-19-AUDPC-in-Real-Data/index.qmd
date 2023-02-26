@@ -2,13 +2,8 @@
 title: "AUDPC in Real Data"
 author: "Sith Jaisong"
 date: '2021-11-19'
-categories:
-- R
-- PDE
-tags:
-- Plant Disease
-- ggplot
-- PDE
+categories: [R, PDE]
+draft: TRUE
 ---
 # เกริ่น
 บทความนี้จะมาแสดงให้เห็นประโยชน์และการใช้ประโยชน์ที่ได้จากการพิจารณาการพัฒนาของโรคเมื่อเวลาผ่านไปว่ามีความแตต่างกันอย่างไร ถ้าพันธุ์พืชไม่เหมือนกัน หรือ วิธีการจัดการที่แตกต่างกัน

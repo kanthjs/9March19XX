@@ -2,13 +2,8 @@
 title: "Area Under Disease progress Curve"
 author: "Sith Jaisong"
 date: '2021-11-15'
-categories:
-- R
-- PDE
-tags:
-- Plant Disease
-- ggplot
-- PDE
+categories: [R, PDE]
+draft: TRUE
 ---
 
 # AUDPC คือ อะไร

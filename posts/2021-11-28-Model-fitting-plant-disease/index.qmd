@@ -2,12 +2,8 @@
 title: "Model fitting for Plant Disease"
 author: "Sith Jaisong"
 date: '2021-11-28'
-categories:
-- R
-- PDE
-tags:
-- R
-- PDE
+categories: [R, PDE]
+draft: TRUE
 ---
 # เกริ่น
 ได้เล่าไปหลาย function แล้วของ package epifitter ตังแต่ AUDPC() เพื่อวัดพื้นที่ใจ้กราฟการเพิ่มขึ้นของการระบาดเมื่อเวลาผ่านไป และ sim_() เพื่อไว้จำลองโมเดลต่าง ๆ เพื่อ ศึกษารูปแบบการเพิ่มขึ้นขึ้นของโรค

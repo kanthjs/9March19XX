@@ -3,6 +3,7 @@ title: "ANOVA in 4 steps"
 author: 
     -name: "Sith Jaisong"
 categories: [R, ANOVA]
+draft: true
 ---
 
 # เกริ่น

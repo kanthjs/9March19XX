@@ -2,12 +2,7 @@
 title: "ดึงข้อมูล xml จาก The Thai Astonomical society"
 author: "Sith Jaisong"
 date: "2021-12-03"
-categories:
-- R
-- Web scraping
-tags:
-- R
-- Web scraping
+categories: [R, Web scraping]
 ---
 
 # เกริ่น

@@ -2,12 +2,8 @@
 title: "epifitter for Plant Disease Curve Model"
 author: "Sith Jaisong"
 date: '2021-11-26'
-categories:
-- R
-- PDE
-tags:
-- R
-- PDE
+categories: [R, PDE]
+draft: TRUE
 ---
 
 # เกริ่น

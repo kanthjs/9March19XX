@@ -3,6 +3,7 @@ title: Plant disease over time
 author: 'Kantanawit Jaisong'
 date: '2021-11-10'
 categories: ["R", "PDE"]
+draft: TRUE
 ---
 
 บทความนี้เขียนขึ้นโดยอ้างอิงมาจาก [referance](https://www.apsnet.org/edcenter/disimpactmngmnt/topc/EcologyAndEpidemiologyInR/DiseaseProgress/Pages/default.aspx)

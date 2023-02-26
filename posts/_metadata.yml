@@ -1,0 +1,12 @@
+# Options specified here will apply to all posts in this folder
+# freeze computational output
+freeze: auto
+
+# Enable banner style title blocks
+title-block-banner: true
+
+# Author name of all blog posts
+author: 'Kanth JS'
+
+# Table of content settings
+toc: true

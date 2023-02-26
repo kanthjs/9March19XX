@@ -1,0 +1,19 @@
+/*-- scss:defaults --*/
+
+@import 'https://fonts.googleapis.com/css2?family=Noto+Sans+Thai&display=swap';
+
+$font-family: "Noto Sans Thai", sans-serif;
+$font-family-serif: "Noto Sans Thai", sans-serif;
+
+$primary: #2c2c2c;
+
+/*-- scss:rules --*/
+
+kbd, .kbd{
+  background-color: #222222 !important;
+}
+
+.navbar {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}

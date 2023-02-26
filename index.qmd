@@ -1,39 +1,14 @@
 ---
-title: "Kanth Jg"
-image: images/kanthjs.jpg
-about: 
-  template: trestles
-  image-shape: rounded
-  image-width: 16em
-  links:
-    - icon: linkedin 
-      text: LinkedIn
-      href: https://www.linkedin.com/in/samanthacsik/
-    - icon: twitter 
-      text: Twitter
-      href: https://twitter.com/SamanthaCsik
-    - icon: github 
-      text: GitHub
-      href: https://github.com/samanthacsik
-    - icon: envelope 
-      text: Email
-      href: mailto:sith.j@rice.mail.go.th
+listing:
+  contents: "posts/*/index.qmd"
+  feed: true
+  sort: "date desc"
+  type: grid
+  categories: true
+  sort-ui: true
+  filter-ui: true
+  image-placeholder: images/image-placeholder.png
+  fields: [image, date, title, description]
+page-layout: full
+title-block-banner: true
 ---
-
-### สวัสดีครับ Sawasdee Krub
-
-🙏 สวัสดีครับ ดีใจที่เข้ามาอ่าน blog ของผมนะครับ 😄 ผมทำงานเป็นนักวิจัยด้านข้าว 🌾 ที่ กรมการข้าว
-
--   ผมตั้งใจเขียน blog นี้ขั้นมาเพื่อถ่ายทอดความรู้ด้าน การระบาดของโรคข้าว และ โปรแกรม R ซึ่งเป็น เรื่องที่ผมเรียนจบมา 👨‍🎓
-
--   ผมจะพยายามเขียน ✍️ และ อัพ blog ทุกวันจันทร์ และ วันศุกร์ 🗓️ และถ้ามีคำถามสามารถสอบถามได้ที่ ✉️ [Email](sith.jaisong@gmail.com)
-
--   ขอให้ทุกคนรักษาสุขภาพ 😷 ถ้าชอบก็สามารถให้ 🌟 ที่ [Github](https://github.com/jaisong-sith) ผมได้
-
-------------------------------------------------------------------------
-
-### education
-
-------------------------------------------------------------------------
-
-### experience
