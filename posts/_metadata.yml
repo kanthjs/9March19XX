@@ -1,12 +1,21 @@
 # Options specified here will apply to all posts in this folder
 # freeze computational output
+# (see https://quarto.org/docs/projects/code-execution.html#freeze)
 freeze: auto
 
 # Enable banner style title blocks
-title-block-banner: true
+# title-block-banner: true
 
 # Author name of all blog posts
-author: 'Kanth JS'
+author:
+  - name: 'Kanth JS'
+#    url: https://twitter.com/c_gebhard
+#    orcid: 0000-0002-8792-565X
 
 # Table of content settings
 toc: true
+toc-title: สารบัญ
+toc-location: left
+
+# Enable CC licence appendix
+license: "CC BY"

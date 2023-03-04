@@ -1,48 +1,66 @@
 project:
   type: website
   output-dir: docs
+  resources:
+    - "assets/challenges_images/"
+    - "assets/images/"
+    - "assets/fonts/"
+    - "assets/scripts/"
+    - ".htaccess"
 
 website:
   title: "9March19XX"
+  description: "A personal blog on the exploration of open data and other adventures."
   favicon: images/favi.png
   site-url: "https://kanthjs.github.io/9March19XX"
-  description: "บันทึกเรื่องราวต่าง ๆ "
-  # cookie-consent: 
-  #   type: express 
+#  description: "บันทึกเรื่องราวต่าง ๆ "
+  # cookie-consent:
+  #   type: express
   #   style: headline
   #   palette: dark
-  google-analytics: 
-    tracking-id: "0123"
+  google-analytics:
+    tracking-id: "G-WY647CK1PJ"
     anonymize-ip: true
-  # title: "samantha csik"
+
   navbar:
+    left:
+      - text: "blog"
+        href: posts.html
+      - text: "dataviz"
+        href: challenges.html
+      - text: "projects"
+        href: projects.html
     right:
-      - text: About
-        href: about.qmd
-      - posts.qmd
-      - resources.qmd
+#      - text: About
+#        href: about.qmd
+      - text: Blog
+        href: posts.qmd
+      - text: Quarto
+      - href: quarto.qmd
+#      - text: R materials
+#        href: resources.qmd
       - icon: github
         href: https://github.com/kanthjs/9Mrach19XX
         aria-label: GitHub repo
-      - icon: twitter
-        href: https://twitter.com/
-        aria-label: Quarto Twitter
+#      - icon: twitter
+#        href: https://twitter.com/
+#        aria-label: Quarto Twitter
 
-  page-footer: 
-    background: light
+  page-footer:
     left: |
-      - This blog is built with ❤️ and [Quarto](https://quarto.org/)
+      - Kanthanawit JS {{< fa regular copyright >}} 2022<br>made with {{< fa heart >}}, {{< fa brands r-project >}}  and [quarto](https://quarto.org)
     right: |
       Proudly supported by
       [![](https://www.rstudio.com/wp-content/uploads/2018/10/RStudio-Logo-flat.svg){fig-alt="RStudio" width=65px}](https://www.rstudio.com)
-      
+
 format:
   html:
     theme:
-      light: [litera, styles.scss]
-      dark: [darkly, styles-dark.scss]
+      light: [litera, jollydata.scss]
+      dark: [superhero, jollydata.scss]
     highlight-style: a11y-dark
     mainfont: "Noto Sans Thai"
+    monofont: "Fira Code"
     code-copy: true
     code-overflow: wrap
 

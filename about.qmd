@@ -1,6 +1,6 @@
 ---
-title: "9March19XX"
-#image: 
+title: "Kanth S. JS"
+#image:
 about:
   template: trestles
   links:
@@ -10,6 +10,35 @@ about:
     - icon: github
       text: Github
       href: https://github.com/kanthjs/9March19XX
+#    - text: "{{< ai orcid >}}"
+#      url: https://orcid.org/0000-0002-8792-565X
+#    - icon: rss
+#      url: posts.xml
+comments: false
+page-layout: full
 ---
 
-บันทึกความคิดต่าง ๆ
+::: {.grid}
+
+::: {.g-col-12 .g-col-md-12}
+## {{< fa solid dna >}} About
+Kanth
+:::
+
+::: {.g-col-12 .g-col-md-6}
+## {{< fa solid heart >}} Interests
+
+- Plant Pathology โรคพืช
+- Data Analysis / Statistics / Data-Visualization
+
+:::
+
+::: {.g-col-12 .g-col-md-6}
+## {{< fa solid graduation-cap >}}  Education
+
+- **Plant Patholoy**, 2018
+- **PhD Degree**
+  *University of the Philippines Los Banos*
+:::
+
+:::

@@ -1,0 +1,106 @@
+---
+title: "projects"
+comments: false
+page-layout: full
+---
+
+::: {.grid}
+
+::: {.g-col-12 .g-col-md-6}
+
+<div class="card mb-3">
+<div class="card-body">
+<h3 class="card-title">{webpea}</h3>
+<h6 class="card-subtitle text-muted">R package, experimental</h6>
+</div>
+<img src="assets/images/webpea_hex.webp" class="contain" height="400"/>
+<div class="card-body">
+<p class="card-text">Enables R users to export / save plots in the WebP image file format.</p>
+<img src="https://github.com/nucleic-acid/webpea/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check" style="max-width: 100%;">
+<br><br>
+<h5>Key features:</h5>
+</div>
+<ul class="list-group list-group-flush">
+<li class="list-group-item">Output plots as WebP</li>
+<li class="list-group-item">Significant file size reduction</li>
+<li class="list-group-item">Use as drop-in replacement for {ggplot}'s ggsave()</li>
+</ul>
+<div class="card-body">
+<a href="https://nucleic-acid.github.io/webp/" class="card-link">Documentation</a>
+<a href="https://github.com/nucleic-acid/webp/" class="card-link">Source code</a>
+</div>
+</div>
+
+:::
+
+::: {.g-col-12 .g-col-md-6}
+
+<div class="card mb-3">
+<div class="card-body">
+<h3 class="card-title">{namedropR}</h3>
+<h6 class="card-subtitle text-muted">R package, available on CRAN</h6>
+</div>
+<img src="assets/images/namedropr_hex.webp" class="contain" height="400"/>
+<div class="card-body">
+<p class="card-text">Enables R users to convert a bibliography into a collection of legible, well formatted banners to cite scientific literature on conference slides and posters. </p>
+<img src="https://github.com/nucleic-acid/namedropR/workflows/R-CMD-check/badge.svg" alt="R-CMD-check" style="max-width: 100%;"> <img src="https://cranlogs.r-pkg.org/badges/namedropR" alt="Monthly Downloads">
+<br><br>
+<h5>Key features:</h5>
+</div>
+<ul class="list-group list-group-flush">
+<li class="list-group-item">Output as PNG or HTML object</li>
+<li class="list-group-item">QR code to make citation scannable</li>
+<li class="list-group-item">Predefined styles and individual adjustments</li>
+</ul>
+<div class="card-body">
+<a href="https://nucleic-acid.github.io/namedropR/" class="card-link">Documentation</a>
+<a href="https://cloud.r-project.org/package=namedropR" class="card-link">View on CRAN</a>
+<a href="https://github.com/nucleic-acid/namedropR/" class="card-link">Source code</a>
+</div>
+</div>
+
+:::
+
+::: {.g-col-12 .g-col-md-6}
+
+<div class="card mb-3">
+<div class="card-body">
+<h3 class="card-title">30 Day Chart Challenge</h3>
+<h6 class="card-subtitle text-muted">2022 edition</h6>
+</div>
+<img src="assets/images/chartchallenge2022.png" class="contain"/>
+<div class="card-body">
+<p class="card-text">A data visualization community-challenge. Each day in April has a new prompt for a visualization from five different categories: Comparisons, Distributions, Relationships, Timeseries, Uncertainties.<br>
+I contributed 20 visualizations, learned new technologies and enjoyed the great contributions of the many other participants.</p>
+</div>
+<div class="card-body">
+<a href="https://github.com/nucleic-acid/30DayChartChallenge_2022" class="card-link">My contributions' code</a>
+<a href="https://jollydata.blog/posts/2022-04-15-30daychartchallenge-interactive-plots/" class="card-link">Explore interactive plots</a>
+<a href="https://github.com/dominicroye/30DayChartChallenge_Edition2022" class="card-link">30DayChartChallenge on github</a>
+<a href="https://github.com/nucleic-acid/30DayChartChallenge_2022" class="card-link">and on Twitter</a>
+</div>
+</div>
+
+:::
+
+::: {.g-col-12 .g-col-md-6}
+
+<div class="card mb-3">
+<div class="card-body">
+<h3 class="card-title">Bundestag-Series</h3>
+<h6 class="card-subtitle text-muted">A collection of posts analysing open data of the German National Parliament</h6>
+</div>
+<img src="assets/images/bt_image.jpg" class="contain"/>
+<div class="card-body">
+<p class="card-text">The German National Parliament, the "Bundestag", provides open datasets, that contain information on elected representatives over time and data on public votes.<br>
+In this series I analyse several aspects of the Bundestag, ranging from age and gender distribution over the decades to a network analysis of parliamentarians according to their voting behavior.</p>
+</div>
+<div class="card-body">
+<a href="https://jollydata.blog/posts.html#category=bundestag" class="card-link">Show series</a>
+</div>
+</div>
+
+:::
+
+:::
+
