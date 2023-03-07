@@ -1,8 +1,10 @@
 ---
-title: "Kanth S. JS"
-#image:
+title: "กันต์ Kanth"
+image: images/ILR_.jpg
 about:
   template: trestles
+  image-width: 10em
+  image-shape: round
   links:
     - icon: twitter
       text: Twitter
@@ -15,30 +17,18 @@ about:
 #    - icon: rss
 #      url: posts.xml
 comments: false
-page-layout: full
 ---
 
-::: {.grid}
+## {{< fa solid dna >}} ฉัน
 
-::: {.g-col-12 .g-col-md-12}
-## {{< fa solid dna >}} About
-Kanth
-:::
+อยากเขียนเพื่อให้ความรู้เกี่ยวกับอาร์
 
-::: {.g-col-12 .g-col-md-6}
-## {{< fa solid heart >}} Interests
+## {{< fa solid heart >}} สนใจ
 
-- Plant Pathology โรคพืช
-- Data Analysis / Statistics / Data-Visualization
+-   Plant Pathology โรคพืช
+-   Data Analysis / Statistics / Data-Visualization
 
-:::
+## {{< fa solid graduation-cap >}} จบ
 
-::: {.g-col-12 .g-col-md-6}
-## {{< fa solid graduation-cap >}}  Education
-
-- **Plant Patholoy**, 2018
-- **PhD Degree**
-  *University of the Philippines Los Banos*
-:::
-
-:::
+-   **Plant Patholoy**, 2018
+-   **PhD Degree** *University of the Philippines Los Banos*

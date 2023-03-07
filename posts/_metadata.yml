@@ -15,7 +15,15 @@ author:
 # Table of content settings
 toc: true
 toc-title: สารบัญ
-toc-location: left
+toc-location: right
+anchor-sections: true	
+title-block-banner: false
+
+# Default knitr options
+execute:
+  echo: false
+  message: false
+  warning: false
 
 # Enable CC licence appendix
 license: "CC BY"

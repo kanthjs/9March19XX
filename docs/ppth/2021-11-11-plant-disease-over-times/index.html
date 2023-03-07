@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Kantanawit Jaisong">
+<meta name="dcterms.date" content="2021-11-10">
+
+<title>9March19XX - Plant disease over time</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../images/pi.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-WY647CK1PJ"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-WY647CK1PJ', { 'anonymize_ip': true});
+</script>
+
+
+<link rel="stylesheet" href="../../scss/styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../images/pi.png" alt="It's Pi" class="navbar-logo">
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../posts.html">
+ <span class="menu-text">บล๊อก</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../ppth.html">
+ <span class="menu-text">โรคพืช</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../resources.html">
+ <span class="menu-text">อาร์ เบสิก</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+ <span class="menu-text">ฉัน</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/kanthjs/9Mrach19XX"><i class="bi bi-github" role="img" aria-label="GitHub repo">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Plant disease over time</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">R</div>
+    <div class="quarto-category">PDE</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Kantanawit Jaisong </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">November 10, 2021</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<p>บทความนี้เขียนขึ้นโดยอ้างอิงมาจาก <a href="https://www.apsnet.org/edcenter/disimpactmngmnt/topc/EcologyAndEpidemiologyInR/DiseaseProgress/Pages/default.aspx">referance</a></p>
+<section id="เกรน" class="level1">
+<h1>เกริ่น</h1>
+<p>การทำความเข้าใจว่าระดับโรคเพิ่มขึ้นหรือลดลงเมื่อเวลาผ่านไปอย่างไรเป็นหนึ่งในองค์ประกอบพื้นฐานที่สุดของระบาดวิทยาและนิเวศวิทยาของโรคพืช แบบจำลองทางสถิติมักถูกนำมาใช้เพื่อสรุปและอธิบายความซับซ้อนนี้ เพื่อให้เข้าใจกระบวนการของโรคได้ง่ายขึ้น ตัวอย่างเช่น การเปรียบเทียบระหว่างรูปแบบของการพัฒนาของโรคสำหรับโรค พันธุ์ การจัดการ หรือสภาพแวดล้อมที่แตกต่างกัน สามารถช่วยในการพิจารณาว่าจะสามาระจัดการกับโรคพืชได้ดีที่สุดได้อย่างไร ซึ่งจะนำเสนอและอธิบายพื้นฐานทางคณิตศาสตร์และชีววิทยาของการพัฒนาของโรคพืชเมื่อเวลาผ่านไป ในการนี้ จะนำเสนอตัวอย่างการศึกษาด้านระบาดวิทยาของโรคพืช โดยใช้โปรแกรม R เพื่อแสดงให้เห็นวิธีต่างๆ ในการอธิบายการพัฒนาของโรคในช่วงเวลาต่างๆ</p>
+</section>
+<section id="การพฒนาของโรคพชเมอเวลาผานไป-disease-progress-over-time" class="level1">
+<h1>การพัฒนาของโรคพืชเมื่อเวลาผ่านไป (disease progress over time)</h1>
+<p>การทำความเข้าใจว่าประชากรของเชื้อโรคพืชชนิดต่าง ๆ เพิ่มขึ้นในระบบพยาธิวิทยาของพืช อย่างไรนั้น มีความสำคัญต่อการพัฒนาวิธีการจัดการโรคพืชที่เหมาะสม แบคทีเรียและไวรัสสามารถสร้างประชากรจำนวนมากได้ในเวลาอันสั้น เพียงวันหรือแค่ไม่กี่ชั่วโมงภายใต้สภาวะที่เหมาะสม เชื้อรายังสามารถแพร่พันธุ์ได้อย่างรวดเร็วภายในไม่กี่วันหรือสัปดาห์ ซึ่งเป็นสิ่งสำคัญสำหรับเชื้อรากลุ่ม polyclic ที่พัฒนาครบวงชีพได้หลายรอบในหนึ่งฤดูปลูก เช่น เชื้อราที่แพร่พันธุ์หลายครั้งต่อฤดูกาล ต่างจาก ไส้เดือนฝอยมักใช้เวลาหนึ่งปีหรือมากกว่ากว่าที่จะครบวงจรการสืบพันธุ์ ลักษณะที่แตกต่างกันเหล่านี้จะส่งผลต่อการพัฒนาของโรคอย่างมากเมื่อเวลาผ่านไป</p>
+<p>การวัดการพัฒนาของโรคพืชที่ดีและเหมาะสมนั้นจะต้องขึ้นอยู่กับโรคและพืชที่จะประเมินด้วย 1. การวัดค่า อุบัติการณ์ของโรค (Disease incidence) คือจำนวนพืชที่เป็นโรคที่แสดงเป็นสัดส่วนของจำนวนพืชทั้งหมดที่ประเมิน เป็นการวัดทั่วไปอย่างหนึ่ง อุบัติการณ์ของโรคมักเป็นมาตรการที่มีประโยชน์ในการหาจำนวนโรคสำหรับพืชยืนต้น เช่น ส้ม หรือการประมาณการสูญเสียพืชผลอันเนื่องมาจากโรค เช่น โรคโคนเน่าในข้าวโพด ซึ่งอาจทำให้พืชตายทั้งต้นจากการติดเชื้อเพียงครั้งเดียว 2. การวัดค่า ความรุนแรงของโรค (Disease severity) โดยปกติกำหนดเป็นเปอร์เซ็นต์ (พื้นที่) ของเนื้อเยื่อที่เป็นโรคในพืชที่ได้รับผลกระทบ เป็นอีกการวัดที่ใช้กันทั่วไป โดยเฉพาะอย่างยิ่งสำหรับการประเมินโรคทางใบ ซึ่งปริมาณของโรคอาจสัมพันธ์กับการประมาณการสูญเสียของผลผลิต</p>
+<p>แต่โดยทั่วไปแล้ว สำหรับไส้เดือนฝอยจะถูกหาปริมาณในแง่ของขนาดประชากร ซึ่งมักจะเป็นจำนวนไส้เดือนฝอยต่อปริมาตรของดิน ความเสียหายของไส้เดือนฝอยมีความสัมพันธ์กับระดับประชากรสำหรับพืชหลายชนิด แม้จะมีความแตกต่างในวิธีการวัดโรค แต่วิธีการที่คล้ายคลึงกันในการอธิบายและสรุปเส้นโค้งความก้าวหน้าของโรคก็สามารถนำมาใช้สำหรับช่วงของระบบโรคพืชได้</p>
+<p>อุบัติการณ์หรือความรุนแรงของโรคมักถูกพล็อตบนแกน Y (Y axis) ตามฟังก์ชันของเวลาซึ่งถูกพล็อตบนแกน X (X axis) กราฟแสดงการพัฒนาของโรคดังกล่าวเป็นแนวทางในการเปรียบเทียบโรคตามปีหรือสถานที่ต่าง ๆ ซึ่งเมื่อแสดงออกมาเป็นกราฟ ก็จะเห็นได้ว่ามีหลายรูปแบบ เส้นแสดงการพัฒนาของโรค เราเรียนว่า disease progress curve แล้ว เส้นการพัฒนาของโรคนั้น มันสำคัญอย่างไร ในสาขาระบาดวิทยา นั้น เส้นนี้มีความสำคัญ สามารถอธิบายลักษณะการเพิ่มหรือลดลงของโรค และสามารถใช้เพื่อเปรียบเทียบระหว่างโรคต่าง ๆ หรือ วิธีการต่างๆ ที่ใช้ประเมิน</p>
+<p>ผมมีตัวอย่างการศึกษาการระบาดโรคพืชที่สามารถเข้าใจได้ง่าย</p>
+</section>
+<section id="sting-nematode-belonolaimus-longicaudatus" class="level1">
+<h1>Sting nematode (<em>Belonolaimus longicaudatus</em>)</h1>
+<p>การศึกษาพลวัติประชากรใส้เดือนฝอย จากการศึกษา Population dynamics of the sting nematode in California turf grass (Bekal, S. and Becker, J.O. 2000. Population dynamics of the sting nematode in California turf grass. Plant Disease 84:1081-1084)</p>
+<p>ไส้เดือนฝอยเป็นหนอนหลายเซลล์จำนวนมากที่สุดในโลก แม้ว่าไส้เดือนฝอยส่วนใหญ่ไม่ใช่ปรสิต แต่บางชนิดก็เป็นปรสิตของแมลง พืช หรือสัตว์ ดังนั้นจึงทำให้เกิดโรคและการสูญเสียพืชผลที่สำคัญได้ ไส้เดือนฝอยที่ทำให้เกิดโรคในพืช เกิดความเสียหายทางกลโดยการเจาะและเคลื่อนผ่านเนื้อเยื่อพืช และทำให้เกิดการเปลี่ยนแปลงของเซลล์พืช ได้แก่ การเปลี่ยนแปลงในการเจริญเติบโตของเซลล์ และการเปลี่ยนแปลงทางสรีรวิทยาของเซลล์เจ้าบ้าน การเข้าทำลายนี้จะไปขัดขวางการดูดซึมและการไหลของน้ำและสารอาหารในพืช และสร้างแผลที่ทำให้จุลินทรีย์อื่น ๆ สามารถเข้ามาได้ ไส้เดือนฝอยอาจมีปฏิสัมพันธ์กับเชื้อโรคอื่น ๆ เช่น เป็นพาหะของเชื้อโรค และทำให้พืชไม่ทนทานต่อสิ่งแวดล้อมที่ไม่เหมาะสม</p>
+<p>โดยทั่วไป วงจรชีวิตของไส้เดือนฝอยประกอบด้วยหกระยะ ได้แก่ ระยะไข่ ระยะตัวอ่อนหรือระยะตัวอ่อน 4 ระยะ และระยะตัวเต็มวัย ระยะวัยหนุ่มสาวไม่มีอวัยวะสืบพันธ์ ในขณะที่ระยะโตเต็มวัยมีวุฒิภาวะทางเพศและมีระบบสืบพันธุ์ที่สมบูรณ์ ไส้เดือนฝอยเป็นสัตว์เลือดเย็น ดังนั้นอัตราการเผาผลาญจะแตกต่างกันไปตามอุณหภูมิของสภาพแวดล้อม</p>
+<p>การกำจัดไส้เดือนฝอยเป็นเรื่องยากมากเมื่อพบการระบาดในพื้นที่เกษตร การจัดการที่ดีที่สุดคือการทำให้พืชมีสุขภาพที่ดีโดยการจัดการความอุดมสมบูรณ์ของดิน ค่า pH และความชื้น การควบคุมศัตรูพืช โรค และวัชพืชอื่น ๆ ก็สามารถช่วยได้เช่นกัน การเฝ้าระวัง และ การปฏิบัติสุขอนามัยพืช ช่วยลดความเสี่ยงของการแพร่กระจายของไส้เดือนฝอยไปยังพื้นที่ใหม่ที่ไม่ติดเชื้อ การแพร่กระจายของไส้เดือนฝอยโดยหลักแล้วผ่านน้ำ (ฝนหรือการชลประทาน) และติดไปกับมนุษย์ อุปกรณ์การเกษตร เศษดิน และวัสดุจากพืชที่ปนเปื้อนด้วยไส้เดือนฝอย ซีสต์หรือไข่ การปลูกพืชพันธุ์ต้านทาน(ถ้ามี) ก็สามารถช่วยลดการเพิ่มจำนวนประชากรได้ และในทำนองเดียวกันการสลับพืชปลูกก็สามารถลด พืชอาหารหรือตัดวงจรการให้อาหารและการสืบพันธุ์ได้เช่นเดียวกัน ยานีมาไทด์มักใช้ในพืชผลที่มีมูลค่าสูง เช่น สตรอเบอร์รี่ แต่มักใช้ในการผลิตมันฝรั่ง ฝ้าย และหัวบีทน้ำตาล</p>
+<p>Sting nematode (<em>Belonolaimus longicaudatus</em>) เป็นไส้เดือนฝอยในสกุล Belonolaimus ที่ก่อโรคและสร้างความเสียหายแก่หญ้า ซึ่งแสดงอาการใบเหลืองและการตาย Bekal และ Becker (2000) ติดตามความหนาแน่นของประชากรของ B. <em>longicaudatus</em> ทุกเดือนที่สนามกอล์ฟ 3 แห่ง การระบาดเกี่ยวข้องกับสภาพแวดล้อมที่เอื้ออำนวย เช่น ดินร่วนปนทราย และการให้น้ำ (irrigation) บ่อยครั้ง ข้อมูลเกี่ยวกับพลวัตของประชากรใส้เดือนฝอยนี้สามารถช่วยในเรื่องการจัดการไส้เดือนฝอยได้</p>
+<section id="ขอมล-nematode-population" class="level2">
+<h2 class="anchored" data-anchor-id="ขอมล-nematode-population">ข้อมูล Nematode population</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#load library</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.0     ✔ readr     2.1.4
+✔ forcats   1.0.0     ✔ stringr   1.5.0
+✔ ggplot2   3.4.1     ✔ tibble    3.1.8
+✔ lubridate 1.9.2     ✔ tidyr     1.3.0
+✔ purrr     1.0.1     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the ]8;;http://conflicted.r-lib.org/conflicted package]8;; to force all conflicts to become errors</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rmarkdown)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>npop_data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">month =</span> <span class="fu">c</span>(<span class="st">"Jan"</span>, <span class="st">"Feb"</span>, <span class="st">"Mar"</span>, <span class="st">"Apr"</span>,<span class="st">"May"</span>,<span class="st">"Jun"</span>,<span class="st">"Jul"</span>,<span class="st">"Aug"</span>,<span class="st">"Sep"</span>, <span class="st">"Oct"</span>, <span class="st">"Nov"</span>, <span class="st">"Dec"</span>),</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">npop =</span> <span class="fu">c</span>(<span class="dv">220</span>,<span class="dv">180</span>,<span class="dv">150</span>,<span class="dv">250</span>,<span class="dv">270</span>,<span class="dv">300</span>,<span class="dv">500</span>,<span class="dv">580</span>,<span class="dv">580</span>,<span class="dv">1000</span>,<span class="dv">380</span>,<span class="dv">100</span>),</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">avg_tempC =</span> <span class="fu">c</span>(<span class="dv">15</span>,<span class="dv">17</span>,<span class="dv">20</span>,<span class="dv">24</span>,<span class="dv">26</span>,<span class="dv">28</span>,<span class="dv">30</span>,<span class="dv">31</span>,<span class="dv">30</span>,<span class="dv">28</span>,<span class="dv">19</span>,<span class="dv">16</span>))</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">paged_table</span>(npop_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="kable-table">
+<table class="table table-sm table-striped">
+<thead>
+<tr class="header">
+<th style="text-align: left;">month</th>
+<th style="text-align: right;">npop</th>
+<th style="text-align: right;">avg_tempC</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Jan</td>
+<td style="text-align: right;">220</td>
+<td style="text-align: right;">15</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Feb</td>
+<td style="text-align: right;">180</td>
+<td style="text-align: right;">17</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Mar</td>
+<td style="text-align: right;">150</td>
+<td style="text-align: right;">20</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Apr</td>
+<td style="text-align: right;">250</td>
+<td style="text-align: right;">24</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">May</td>
+<td style="text-align: right;">270</td>
+<td style="text-align: right;">26</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Jun</td>
+<td style="text-align: right;">300</td>
+<td style="text-align: right;">28</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Jul</td>
+<td style="text-align: right;">500</td>
+<td style="text-align: right;">30</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Aug</td>
+<td style="text-align: right;">580</td>
+<td style="text-align: right;">31</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Sep</td>
+<td style="text-align: right;">580</td>
+<td style="text-align: right;">30</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Oct</td>
+<td style="text-align: right;">1000</td>
+<td style="text-align: right;">28</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Nov</td>
+<td style="text-align: right;">380</td>
+<td style="text-align: right;">19</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Dec</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">16</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="พลวตประชากรใสเดอนไสเดอนฝอย" class="level2">
+<h2 class="anchored" data-anchor-id="พลวตประชากรใสเดอนไสเดอนฝอย">พลวัติประชากรใส้เดือนไส้เดือนฝอย</h2>
+<p>ตอนนี้ จะแสดงแนวโน้มประชากรของใส้เดือนฝอยกับอุณหภูมิของดิน ในลักษณะ climatograph การทำใน R นั้น อาจจะมีความซับซ้อน นิดหน่อย อาจจะศึกษาเพิ่มจาก <a href="https://www.r-graph-gallery.com/line-chart-dual-Y-axis-ggplot2.html">ref:line-chart-dual-Y-axis-ggplot2</a> ได้</p>
+<p>โดยทำขอให้ลองวาด โดยเฉพาะแกน ว่า scale เท่าไหร่ ที่จะสร้าง</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>ylim.pop <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1200</span>)   <span class="co"># กำหนด แกน  Y ด้านซ้าย (หลัก)</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>ylim.temp <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">40</span>)    <span class="co"># กำหนด แกน  Y ด้านขวา (รอง)</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># อยากจะให้ 1200 ของ Y หลัก ตรงกับ 40 ของ Y รอง สัมประสิทธิ์การแปลงคือ 30</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Value used to transform the data</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>coeff <span class="ot">&lt;-</span> <span class="dv">30</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># ค่าของตัวแปรอุณหภูมิ(รอง) ต้อง คูณ 30 เพราะว่ายึดค่าจากแกน Y หลัก</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># ค่าของแกนอุณหภูมิ ต้อง หาร 30 เพราะว่ายึดค่าจากแกน Y หลัก</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(npop_data, <span class="fu">aes</span>(<span class="at">x =</span> month, <span class="at">group =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">y =</span> npop)) <span class="sc">+</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> avg_tempC<span class="sc">*</span>coeff), <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">name =</span> <span class="st">"Nematodes per 100 cc soil"</span>,<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1200</span>), <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1200</span>, <span class="at">by =</span> <span class="dv">400</span>),</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>                     <span class="at">sec.axis =</span> <span class="fu">sec_axis</span>(<span class="sc">~</span>.<span class="sc">/</span>coeff, <span class="at">name =</span> <span class="st">"Soil Temperature (C)"</span>)) <span class="sc">+</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Nematode population"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

@@ -1,91 +1,20 @@
 ---
-page-layout: full
+subtitle: "The journey of Pi"
+page-layout: custom
+title-block-banner: false
 comments: false
 ---
 
-```{=html}
-<script src="/assets/scripts/node_modules/typeit/dist/index.umd.js"></script>
-```
-<link rel="me" href="https://vis.social/@basepair" /> <link rel="me" href="https://genomic.social/@basepair" />
+![](images/pi-01.png){fig-align="center" width="350"}
 
-::: grid
-::: {.g-col-12 .g-col-md-10 .g-start-md-2}
-![](assets/images/logo_dynamic_hero.webp)
+::: {style="text-align:center;"}
+อย่าไปรอสิ่งที่อยู่ไกลเกินไป
+
+อย่าไปรอสิ่งที่ยิ่งใหญ่เกินไป
+
+ค่อย ๆ ใช้ชีวิตให้มีความสุขแล้ว สิ่งดี ๆ จะเข้ามา
+
+โดยที่เราไม่ต้องร้องขอหรือเฝ้ารอเลย
+
+*จากหนังสือ "เราต่างมีเพลงที่ฟังแล้วคิดถึงใครบางคน"*
 :::
-
-::: {.g-col-12 .g-col-md-10 .g-start-md-2}
-::: {#welcome-message-title .h1}
-Hello and welcome to jolly data!
-:::
-
-::: {#welcome-message-title2 .h3}
-<p class="multipleStrings">
-
-</p>
-:::
-:::
-
-::: {.g-col-12 .g-col-md-4}
-::: {.card .mb-2}
-::: card-body
-<h5 class="card-title">
-
-blog
-
-</h5>
-
-<p class="card-text">
-
-I enjoy exploring open datasets and pick up new {{< fa brands r-project >}} and {{< fa brands python >}} tricks on my way.<br>I share what I discover and learn.
-
-</p>
-
-<a href="posts.html" class="btn btn-info stretched-link">Start reading</a>
-:::
-:::
-:::
-
-::: {.g-col-12 .g-col-md-4}
-::: {.card .mb-2}
-::: card-body
-<h5 class="card-title">
-
-data visualization
-
-</h5>
-
-<p class="card-text">
-
-A gallery of contributions to dataviz challenges, such as #TidyTuesday or #30DayChartChallenge
-
-</p>
-
-<a href="challenges.html" class="btn btn-warning stretched-link">Browse</a>
-:::
-:::
-:::
-
-::: {.g-col-12 .g-col-md-4}
-::: {.card .mb-2}
-::: card-body
-<h5 class="card-title">
-
-projects
-
-</h5>
-
-<p class="card-text">
-
-A collection of ongoing personal data-endeavors and programming projects.
-
-</p>
-
-<br> <a href="projects.html" class="btn btn-danger stretched-link">Take me there</a>
-:::
-:::
-:::
-:::
-
-```{=html}
-<script type="text/plain" cookie-consent="functionality" src="/assets/scripts/welcome.js"></script>
-```

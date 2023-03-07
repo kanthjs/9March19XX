@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Sith Jaisong">
+<meta name="author" content="Kanth JS">
 <meta name="dcterms.date" content="2021-10-01">
 
 <title>9March19XX - Homogeneity test in R</title>
@@ -95,19 +95,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../images/favi.png" rel="icon" type="image/png">
+<link href="../../images/pi.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -138,47 +135,40 @@ gtag('config', 'G-WY647CK1PJ', { 'anonymize_ip': true});
 </script>
 
 
+<link rel="stylesheet" href="../../scss/styles.css">
 </head>
 
-<body class="floating nav-fixed">
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
-    <a class="navbar-brand" href="../../index.html">
-    <span class="navbar-title">9March19XX</span>
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../images/pi.png" alt="It's Pi" class="navbar-logo">
     </a>
   </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="../../posts.html">
- <span class="menu-text">blog</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../challenges.html">
- <span class="menu-text">dataviz</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../projects.html">
- <span class="menu-text">projects</span></a>
-  </li>  
-</ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
     <a class="nav-link" href="../../posts.html">
- <span class="menu-text">Blog</span></a>
+ <span class="menu-text">บล๊อก</span></a>
   </li>  
-  <li class="dropdown-header">
- <span class="menu-text">Quarto</span></li>
-  <li class="nav-item compact">
-    <a class="nav-link" href="../../quarto.qmd">
- <span class="menu-text"></span></a>
+  <li class="nav-item">
+    <a class="nav-link" href="../../ppth.html">
+ <span class="menu-text">โรคพืช</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../resources.html">
+ <span class="menu-text">อาร์ เบสิก</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+ <span class="menu-text">ฉัน</span></a>
   </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/kanthjs/9Mrach19XX"><i class="bi bi-github" role="img" aria-label="GitHub repo">
@@ -186,9 +176,6 @@ gtag('config', 'G-WY647CK1PJ', { 'anonymize_ip': true});
  <span class="menu-text"></span></a>
   </li>  
 </ul>
-              <div class="quarto-toggle-container">
-                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
-              </div>
               <div id="quarto-search" class="" title="Search"></div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
@@ -197,8 +184,9 @@ gtag('config', 'G-WY647CK1PJ', { 'anonymize_ip': true});
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
-    <nav id="TOC" role="doc-toc" class="toc-active">
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">สารบัญ</h2>
    
   <ul>
@@ -211,9 +199,6 @@ gtag('config', 'G-WY647CK1PJ', { 'anonymize_ip': true});
   </ul></li>
   </ul>
 </nav>
-</nav>
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -234,7 +219,7 @@ gtag('config', 'G-WY647CK1PJ', { 'anonymize_ip': true});
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Sith Jaisong </p>
+             <p>Kanth JS </p>
           </div>
   </div>
     
@@ -263,8 +248,7 @@ gtag('config', 'G-WY647CK1PJ', { 'anonymize_ip': true});
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rmarkdown)</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rmarkdown)</span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_few</span>())</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning =</span> <span class="cn">FALSE</span>, <span class="at">message =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">digits =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">digits =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>F10 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">605</span>, <span class="dv">583</span>, <span class="dv">592</span>, <span class="dv">602</span>, <span class="dv">587</span>, <span class="dv">595</span>, <span class="dv">615</span>, <span class="dv">612</span>, <span class="dv">606</span>)</span>
@@ -273,45 +257,147 @@ gtag('config', 'G-WY647CK1PJ', { 'anonymize_ip': true});
 </div>
 <p>แล้วจะได้รูปแบบของข้อมูลแบบนี้มา</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>test_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>  F10 F50
-1 605 779
-2 583 780
-3 592 797
-4 602 779
-5 587 778
-6 595 801
-7 615 785
-8 612 779
-9 606 771</code></pre>
+<div class="cell-output-display">
+<div class="kable-table">
+<table class="table table-sm table-striped">
+<thead>
+<tr class="header">
+<th style="text-align: right;">F10</th>
+<th style="text-align: right;">F50</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">605</td>
+<td style="text-align: right;">779</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">583</td>
+<td style="text-align: right;">780</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">592</td>
+<td style="text-align: right;">797</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">602</td>
+<td style="text-align: right;">779</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">587</td>
+<td style="text-align: right;">778</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">595</td>
+<td style="text-align: right;">801</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">615</td>
+<td style="text-align: right;">785</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">612</td>
+<td style="text-align: right;">779</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">606</td>
+<td style="text-align: right;">771</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 </div>
 <p>บอกเลยว่า มันไม่ใช่โครงสร้างที่เราจะเหมาะจะมาวิเคราะห์ เลย หรือเอามาทำอะไรต่อ วิธีการ โดยการขอใช้ <code>gather()</code> จาก <code>tidyverse</code> package</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>tidy_data <span class="ot">&lt;-</span> test_data <span class="sc">%&gt;%</span> <span class="fu">gather</span>(<span class="at">key =</span> <span class="st">"trt"</span>, <span class="at">value =</span> <span class="st">"yield"</span>)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>tidy_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>   trt yield
-1  F10   605
-2  F10   583
-3  F10   592
-4  F10   602
-5  F10   587
-6  F10   595
-7  F10   615
-8  F10   612
-9  F10   606
-10 F50   779
-11 F50   780
-12 F50   797
-13 F50   779
-14 F50   778
-15 F50   801
-16 F50   785
-17 F50   779
-18 F50   771</code></pre>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>tidy_data <span class="ot">&lt;-</span> test_data <span class="sc">%&gt;%</span> <span class="fu">gather</span>(<span class="at">key =</span> <span class="st">"trt"</span>, <span class="at">value =</span> <span class="st">"yield"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>tidy_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="kable-table">
+<table class="table table-sm table-striped">
+<thead>
+<tr class="header">
+<th style="text-align: left;">trt</th>
+<th style="text-align: right;">yield</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">F10</td>
+<td style="text-align: right;">605</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">F10</td>
+<td style="text-align: right;">583</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">F10</td>
+<td style="text-align: right;">592</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">F10</td>
+<td style="text-align: right;">602</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">F10</td>
+<td style="text-align: right;">587</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">F10</td>
+<td style="text-align: right;">595</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">F10</td>
+<td style="text-align: right;">615</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">F10</td>
+<td style="text-align: right;">612</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">F10</td>
+<td style="text-align: right;">606</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">F50</td>
+<td style="text-align: right;">779</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">F50</td>
+<td style="text-align: right;">780</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">F50</td>
+<td style="text-align: right;">797</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">F50</td>
+<td style="text-align: right;">779</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">F50</td>
+<td style="text-align: right;">778</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">F50</td>
+<td style="text-align: right;">801</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">F50</td>
+<td style="text-align: right;">785</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">F50</td>
+<td style="text-align: right;">779</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">F50</td>
+<td style="text-align: right;">771</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 </div>
 <p>แบบนี้มันถึงจะไปต่อแล้วรู้เรื่องการเชคความแปรปรวนนั้นมีหลายวิธี</p>
@@ -319,7 +405,7 @@ gtag('config', 'G-WY647CK1PJ', { 'anonymize_ip': true});
 <h3 class="anchored" data-anchor-id="f-test">F-test</h3>
 <p>ทดสอบได้แค่ 2 กลุ่ม เท่านั้น</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var.test</span>(yield <span class="sc">~</span> trt, <span class="at">data =</span> tidy_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var.test</span>(yield <span class="sc">~</span> trt, <span class="at">data =</span> tidy_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     F test to compare two variances
@@ -339,7 +425,7 @@ ratio of variances
 <h3 class="anchored" data-anchor-id="bartletts-test">Bartlett’s test</h3>
 <p>อันนี้ แนะนำ ถ้านึกอะไรไม่ออก ให้นึกถึงอันนี้เลย โดยทั่วไปก็ใช้อันนี้กัน</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bartlett.test</span>(yield <span class="sc">~</span> trt, <span class="at">data =</span> tidy_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bartlett.test</span>(yield <span class="sc">~</span> trt, <span class="at">data =</span> tidy_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Bartlett test of homogeneity of variances
@@ -354,13 +440,35 @@ Bartlett's K-squared = 0.1, df = 1, p-value = 0.7</code></pre>
 <h3 class="anchored" data-anchor-id="levenes-test">Levene’s test</h3>
 <p>อันนี้ใช้ใน SPSS ใน R ก็จะมีใน <code>car</code> package</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">leveneTest</span>(yield <span class="sc">~</span> trt, <span class="at">data =</span> tidy_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Levene's Test for Homogeneity of Variance (center = median)
-      Df F value Pr(&gt;F)
-group  1    0.64   0.43
-      16               </code></pre>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">leveneTest</span>(yield <span class="sc">~</span> trt, <span class="at">data =</span> tidy_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="kable-table">
+<table class="table table-sm table-striped">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Df</th>
+<th style="text-align: right;">F value</th>
+<th style="text-align: right;">Pr(&gt;F)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">group</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.645</td>
+<td style="text-align: right;">0.434</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 </div>
 <p><em>p</em> มันจะต่างออก แต่ก็ไม่ต่างกันซะทีเดียว</p>
@@ -369,7 +477,7 @@ group  1    0.64   0.43
 <h3 class="anchored" data-anchor-id="fligner-killeens-test">Fligner-Killeen’s test</h3>
 <p>วิธีนี้ ค่อนข้างจะ robust กว่าวิธีอื่นๆ ถึงแม้ว่าจะมีการกระจายไม่ค่อยจะ normal เท่าไหร่</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fligner.test</span>(yield <span class="sc">~</span> trt, <span class="at">data =</span> tidy_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fligner.test</span>(yield <span class="sc">~</span> trt, <span class="at">data =</span> tidy_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Fligner-Killeen test of homogeneity of variances
@@ -405,121 +513,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
-  const disableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'prefetch';
-    }
-  }
-  const enableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'stylesheet';
-    }
-  }
-  const manageTransitions = (selector, allowTransitions) => {
-    const els = window.document.querySelectorAll(selector);
-    for (let i=0; i < els.length; i++) {
-      const el = els[i];
-      if (allowTransitions) {
-        el.classList.remove('notransition');
-      } else {
-        el.classList.add('notransition');
-      }
-    }
-  }
-  const toggleColorMode = (alternate) => {
-    // Switch the stylesheets
-    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
-    manageTransitions('#quarto-margin-sidebar .nav-link', false);
-    if (alternate) {
-      enableStylesheet(alternateStylesheets);
-      for (const sheetNode of alternateStylesheets) {
-        if (sheetNode.id === "quarto-bootstrap") {
-          toggleBodyColorMode(sheetNode);
-        }
-      }
-    } else {
-      disableStylesheet(alternateStylesheets);
-      toggleBodyColorPrimary();
-    }
-    manageTransitions('#quarto-margin-sidebar .nav-link', true);
-    // Switch the toggles
-    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
-    for (let i=0; i < toggles.length; i++) {
-      const toggle = toggles[i];
-      if (toggle) {
-        if (alternate) {
-          toggle.classList.add("alternate");     
-        } else {
-          toggle.classList.remove("alternate");
-        }
-      }
-    }
-    // Hack to workaround the fact that safari doesn't
-    // properly recolor the scrollbar when toggling (#1455)
-    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
-      manageTransitions("body", false);
-      window.scrollTo(0, 1);
-      setTimeout(() => {
-        window.scrollTo(0, 0);
-        manageTransitions("body", true);
-      }, 40);  
-    }
-  }
-  const isFileUrl = () => { 
-    return window.location.protocol === 'file:';
-  }
-  const hasAlternateSentinel = () => {  
-    let styleSentinel = getColorSchemeSentinel();
-    if (styleSentinel !== null) {
-      return styleSentinel === "alternate";
-    } else {
-      return false;
-    }
-  }
-  const setStyleSentinel = (alternate) => {
-    const value = alternate ? "alternate" : "default";
-    if (!isFileUrl()) {
-      window.localStorage.setItem("quarto-color-scheme", value);
-    } else {
-      localAlternateSentinel = value;
-    }
-  }
-  const getColorSchemeSentinel = () => {
-    if (!isFileUrl()) {
-      const storageValue = window.localStorage.getItem("quarto-color-scheme");
-      return storageValue != null ? storageValue : localAlternateSentinel;
-    } else {
-      return localAlternateSentinel;
-    }
-  }
-  let localAlternateSentinel = 'default';
-  // Dark / light mode switch
-  window.quartoToggleColorScheme = () => {
-    // Read the current dark / light value 
-    let toAlternate = !hasAlternateSentinel();
-    toggleColorMode(toAlternate);
-    setStyleSentinel(toAlternate);
-  };
-  // Ensure there is a toggle, if there isn't float one in the top right
-  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-    const a = window.document.createElement('a');
-    a.classList.add('top-right');
-    a.classList.add('quarto-color-scheme-toggle');
-    a.href = "";
-    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
-    const i = window.document.createElement("i");
-    i.classList.add('bi');
-    a.appendChild(i);
-    window.document.body.appendChild(a);
-  }
-  // Switch to dark mode if need be
-  if (hasAlternateSentinel()) {
-    toggleColorMode(true);
-  } else {
-    toggleColorMode(false);
-  }
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {
@@ -634,12 +627,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
-    <div class="nav-footer-left">- Kanthanawit JS <i class="fa-regular fa-copyright"></i> 2022<br>made with <i class="fa-solid fa-heart"></i>, <i class="fa-brands fa-r-project"></i> and <a href="https://quarto.org">quarto</a></div>   
-    <div class="nav-footer-right">Proudly supported by <a href="https://www.rstudio.com"><img src="https://www.rstudio.com/wp-content/uploads/2018/10/RStudio-Logo-flat.svg" class="img-fluid" alt="RStudio" width="65"></a></div>
-  </div>
-</footer>
 
 
 

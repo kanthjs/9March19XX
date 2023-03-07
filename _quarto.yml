@@ -1,17 +1,17 @@
 project:
   type: website
   output-dir: docs
-  resources:
-    - "assets/challenges_images/"
-    - "assets/images/"
-    - "assets/fonts/"
-    - "assets/scripts/"
-    - ".htaccess"
+ # resources:
+ #   - "assets/challenges_images/"
+  #  - "assets/images/"
+ #   - "assets/fonts/"
+  #  - "assets/scripts/"
+  #  - ".htaccess"
 
 website:
   title: "9March19XX"
   description: "A personal blog on the exploration of open data and other adventures."
-  favicon: images/favi.png
+  favicon: images/pi.png
   site-url: "https://kanthjs.github.io/9March19XX"
 #  description: "บันทึกเรื่องราวต่าง ๆ "
   # cookie-consent:
@@ -23,22 +23,27 @@ website:
     anonymize-ip: true
 
   navbar:
-    left:
-      - text: "blog"
-        href: posts.html
-      - text: "dataviz"
-        href: challenges.html
-      - text: "projects"
-        href: projects.html
+    logo: images/pi.png
+    logo-alt: "It's Pi"
+    title: false
+    subtitle: "The journey of Pi"
+ #   left:
+ #     - text: Blog
+ #       href: posts.html
+ #     - text: "dataviz"
+ #       href: challenges.html
+ #     - text: "projects"
+ #       href: projects.html
+
     right:
-#      - text: About
-#        href: about.qmd
-      - text: Blog
+      - text: "บล๊อก"
         href: posts.qmd
-      - text: Quarto
-      - href: quarto.qmd
-#      - text: R materials
-#        href: resources.qmd
+      - text: "โรคพืช"
+        href: ppth.qmd
+      - text: "อาร์ เบสิก"
+        href: resources.qmd
+      - text: "ฉัน"
+        href: about.qmd
       - icon: github
         href: https://github.com/kanthjs/9Mrach19XX
         aria-label: GitHub repo
@@ -46,21 +51,19 @@ website:
 #        href: https://twitter.com/
 #        aria-label: Quarto Twitter
 
-  page-footer:
-    left: |
-      - Kanthanawit JS {{< fa regular copyright >}} 2022<br>made with {{< fa heart >}}, {{< fa brands r-project >}}  and [quarto](https://quarto.org)
-    right: |
-      Proudly supported by
-      [![](https://www.rstudio.com/wp-content/uploads/2018/10/RStudio-Logo-flat.svg){fig-alt="RStudio" width=65px}](https://www.rstudio.com)
+# page-footer:
+ # left: Kanthanawit JS {{< fa regular copyright >}} 2022 <br>made with {{< fa heart >}}, {{< fa brands r-project >}}  and [quarto](https://quarto.org)
+ # right: Proudly supported by [![](https://www.rstudio.com/wp-content/uploads/2018/10/RStudio-Logo-flat.svg){fig-alt="RStudio" width=65px}](https://www.rstudio.com)
 
 format:
   html:
     theme:
-      light: [litera, jollydata.scss]
-      dark: [superhero, jollydata.scss]
-    highlight-style: a11y-dark
-    mainfont: "Noto Sans Thai"
+      light: [flatly, scss/light.scss]
+    css: scss/styles.css
+    highlight-style: gruvbox
+    mainfont: "Krub"
     monofont: "Fira Code"
+    df-print: kable
     code-copy: true
     code-overflow: wrap
 
