@@ -1,59 +1,26 @@
 project:
   type: website
   output-dir: docs
- # resources:
- #   - "assets/challenges_images/"
-  #  - "assets/images/"
- #   - "assets/fonts/"
-  #  - "assets/scripts/"
-  #  - ".htaccess"
 
 website:
-  title: "9March19XX"
+  title: "Kanthanawit Js"
   description: "A personal blog on the exploration of open data and other adventures."
   favicon: images/pi.png
   site-url: "https://kanthjs.github.io/9March19XX"
-#  description: "บันทึกเรื่องราวต่าง ๆ "
-  # cookie-consent:
-  #   type: express
-  #   style: headline
-  #   palette: dark
-  google-analytics:
-    tracking-id: "G-WY647CK1PJ"
-    anonymize-ip: true
+  google-analytics: "G-WY647CK1PJ"
+
 
   navbar:
     logo: images/pi.png
     logo-alt: "It's Pi"
-    title: false
+    title: อาร์ ไร ไม่ รู้
     subtitle: "The journey of Pi"
- #   left:
- #     - text: Blog
- #       href: posts.html
- #     - text: "dataviz"
- #       href: challenges.html
- #     - text: "projects"
- #       href: projects.html
 
     right:
       - text: "บล๊อก"
         href: posts.qmd
-      - text: "โรคพืช"
-        href: ppth.qmd
-      - text: "อาร์ เบสิก"
-        href: resources.qmd
-      - text: "ฉัน"
-        href: about.qmd
-      - icon: github
-        href: https://github.com/kanthjs/9Mrach19XX
-        aria-label: GitHub repo
-#      - icon: twitter
-#        href: https://twitter.com/
-#        aria-label: Quarto Twitter
-
-# page-footer:
- # left: Kanthanawit JS {{< fa regular copyright >}} 2022 <br>made with {{< fa heart >}}, {{< fa brands r-project >}}  and [quarto](https://quarto.org)
- # right: Proudly supported by [![](https://www.rstudio.com/wp-content/uploads/2018/10/RStudio-Logo-flat.svg){fig-alt="RStudio" width=65px}](https://www.rstudio.com)
+      - text: "โปรเจกท์"
+        href: resources.qmd 
 
 format:
   html:
@@ -61,10 +28,21 @@ format:
       light: [flatly, scss/light.scss]
     css: scss/styles.css
     highlight-style: gruvbox
-    mainfont: "Krub"
+    mainfont: "K2D"
     monofont: "Fira Code"
     df-print: kable
     code-copy: true
     code-overflow: wrap
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    toc_smooth_scroll: true
+    toc_highlight: true
+    fig-align: center
+
+
+
 
 editor: visual
+freeze: auto
+

@@ -1,18 +1,19 @@
 ---
 title: "บล๊อก"
-subtitle: "บทบันทึกสั้น ๆ เรื่องทั่ว ๆ ไป ทั้งเดี่ยวกับและไม่เกี่ยวกับอาร์"
+subtitle: "บทบันทึกสั้น ๆ เรื่องทั่ว ๆ ไป ทั้งเกี่ยวกับและไม่เกี่ยวกับอาร์"
 listing:
   contents: posts
   sort: "date desc"
-  type: table
+  type: grid
   date-format: medium
   categories: true
   sort-ui: false
   filter-ui: false
   image-height: 170px
-  fields: [title]
+  fields: [image, title]
+  page-size: 100
 page-layout: full
-title-block-banner: false
+title-block-banner: true
 comments: false
 code-tools: false
 ---

@@ -1,20 +1,34 @@
 ---
-subtitle: "The journey of Pi"
-page-layout: custom
-title-block-banner: false
+title: "กันต์ Kanth"
+image: images/ILR_.jpg
+about:
+  template: trestles
+  image-width: 10em
+  image-shape: round
+  links:
+    - icon: twitter
+      text: Twitter
+      href: https://twitter.com/kanthanawitjs
+    - icon: github
+      text: Github
+      href: https://github.com/kanthjs/9March19XX
+#    - text: "{{< ai orcid >}}"
+#      url: https://orcid.org/0000-0002-8792-565X
+#    - icon: rss
+#      url: posts.xml
 comments: false
 ---
 
-![](images/pi-01.png){fig-align="center" width="350"}
+## {{< fa solid dna >}} ฉัน
 
-::: {style="text-align:center;"}
-อย่าไปรอสิ่งที่อยู่ไกลเกินไป
+อยากเขียนเพื่อให้ความรู้เกี่ยวกับอาร์
 
-อย่าไปรอสิ่งที่ยิ่งใหญ่เกินไป
+## {{< fa solid heart >}} สนใจ
 
-ค่อย ๆ ใช้ชีวิตให้มีความสุขแล้ว สิ่งดี ๆ จะเข้ามา
+-   Plant Pathology โรคพืช
+-   Data Analysis / Statistics / Data-Visualization
 
-โดยที่เราไม่ต้องร้องขอหรือเฝ้ารอเลย
+## {{< fa solid graduation-cap >}} จบ
 
-*จากหนังสือ "เราต่างมีเพลงที่ฟังแล้วคิดถึงใครบางคน"*
-:::
+-   **Plant Patholoy**, 2018
+-   **PhD Degree** *University of the Philippines Los Banos*
