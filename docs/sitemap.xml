@@ -2,74 +2,70 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://kanthjs.github.io/9March19XX/ilts.html</loc>
-    <lastmod>2023-11-19T03:39:12.435Z</lastmod>
+    <lastmod>2023-11-19T04:10:43.476Z</lastmod>
   </url>
   <url>
     <loc>https://kanthjs.github.io/9March19XX/posts.html</loc>
-    <lastmod>2023-11-19T03:39:11.385Z</lastmod>
+    <lastmod>2023-11-19T04:10:42.328Z</lastmod>
   </url>
   <url>
     <loc>https://kanthjs.github.io/9March19XX/tsl-book.html</loc>
-    <lastmod>2023-11-19T04:05:14.137Z</lastmod>
-  </url>
-  <url>
-    <loc>https://kanthjs.github.io/9March19XX/Q_resourse.html</loc>
-    <lastmod>2023-11-19T03:39:06.148Z</lastmod>
-  </url>
-  <url>
-    <loc>https://kanthjs.github.io/9March19XX/posts/2021-11-15-Area-under-disease-progress-curve/index.html</loc>
-    <lastmod>2023-11-19T03:39:05.049Z</lastmod>
-  </url>
-  <url>
-    <loc>https://kanthjs.github.io/9March19XX/posts/2021-11-28-Model-fitting-plant-disease/index.html</loc>
-    <lastmod>2023-11-19T03:39:01.708Z</lastmod>
-  </url>
-  <url>
-    <loc>https://kanthjs.github.io/9March19XX/posts/2021-10-01-Homogeneity-test-in-R/index.html</loc>
-    <lastmod>2023-11-19T03:38:58.896Z</lastmod>
-  </url>
-  <url>
-    <loc>https://kanthjs.github.io/9March19XX/posts/2021-12-01-Github-RStudio-R/index.html</loc>
-    <lastmod>2023-11-19T03:38:56.949Z</lastmod>
-  </url>
-  <url>
-    <loc>https://kanthjs.github.io/9March19XX/posts/2021-12-07-Package-Access-Web-Service/index.html</loc>
-    <lastmod>2023-11-19T03:38:05.601Z</lastmod>
-  </url>
-  <url>
-    <loc>https://kanthjs.github.io/9March19XX/posts/2021-11-30-Correlaion-matrix/index.html</loc>
-    <lastmod>2023-11-19T03:38:04.958Z</lastmod>
-  </url>
-  <url>
-    <loc>https://kanthjs.github.io/9March19XX/posts/2021-11-26-Disease-Curve-Model/index.html</loc>
-    <lastmod>2023-11-19T03:38:07.033Z</lastmod>
-  </url>
-  <url>
-    <loc>https://kanthjs.github.io/9March19XX/posts/2021-12-03-Harvest-Data-from-Web-Sources/index.html</loc>
-    <lastmod>2023-11-19T03:38:56.316Z</lastmod>
-  </url>
-  <url>
-    <loc>https://kanthjs.github.io/9March19XX/posts/2021-11-11-plant-disease-over-times/index.html</loc>
-    <lastmod>2023-11-19T03:38:57.595Z</lastmod>
-  </url>
-  <url>
-    <loc>https://kanthjs.github.io/9March19XX/posts/2021-11-22-Linear-Regression-in-plant-disease/index.html</loc>
-    <lastmod>2023-11-19T03:38:59.791Z</lastmod>
+    <lastmod>2023-11-19T04:10:41.057Z</lastmod>
   </url>
   <url>
     <loc>https://kanthjs.github.io/9March19XX/posts/2021-11-19-AUDPC-in-Real-Data/index.html</loc>
-    <lastmod>2023-11-19T03:39:02.992Z</lastmod>
+    <lastmod>2023-11-19T04:10:37.409Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kanthjs.github.io/9March19XX/posts/2021-11-22-Linear-Regression-in-plant-disease/index.html</loc>
+    <lastmod>2023-11-19T04:10:34.661Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kanthjs.github.io/9March19XX/posts/2021-11-11-plant-disease-over-times/index.html</loc>
+    <lastmod>2023-11-19T04:10:32.722Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kanthjs.github.io/9March19XX/posts/2021-12-03-Harvest-Data-from-Web-Sources/index.html</loc>
+    <lastmod>2023-11-19T04:10:31.505Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kanthjs.github.io/9March19XX/posts/2021-11-26-Disease-Curve-Model/index.html</loc>
+    <lastmod>2023-11-19T04:09:44.592Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kanthjs.github.io/9March19XX/posts/2021-11-30-Correlaion-matrix/index.html</loc>
+    <lastmod>2023-11-19T04:09:42.455Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kanthjs.github.io/9March19XX/posts/2021-12-07-Package-Access-Web-Service/index.html</loc>
+    <lastmod>2023-11-19T04:09:43.186Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kanthjs.github.io/9March19XX/posts/2021-12-01-Github-RStudio-R/index.html</loc>
+    <lastmod>2023-11-19T04:10:32.068Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kanthjs.github.io/9March19XX/posts/2021-10-01-Homogeneity-test-in-R/index.html</loc>
+    <lastmod>2023-11-19T04:10:33.754Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kanthjs.github.io/9March19XX/posts/2021-11-28-Model-fitting-plant-disease/index.html</loc>
+    <lastmod>2023-11-19T04:10:36.312Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kanthjs.github.io/9March19XX/posts/2021-11-15-Area-under-disease-progress-curve/index.html</loc>
+    <lastmod>2023-11-19T04:10:39.077Z</lastmod>
   </url>
   <url>
     <loc>https://kanthjs.github.io/9March19XX/ilts/2022-10-01-Homogeneity-test-in-R/index.html</loc>
-    <lastmod>2023-11-19T03:39:09.855Z</lastmod>
+    <lastmod>2023-11-19T04:10:40.669Z</lastmod>
   </url>
   <url>
     <loc>https://kanthjs.github.io/9March19XX/index.html</loc>
-    <lastmod>2023-11-19T03:54:12.287Z</lastmod>
+    <lastmod>2023-11-19T04:10:41.484Z</lastmod>
   </url>
   <url>
     <loc>https://kanthjs.github.io/9March19XX/resources.html</loc>
-    <lastmod>2023-11-19T03:54:40.849Z</lastmod>
+    <lastmod>2023-11-19T04:10:42.886Z</lastmod>
   </url>
 </urlset>
