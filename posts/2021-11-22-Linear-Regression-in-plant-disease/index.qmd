@@ -1,6 +1,5 @@
 ---
 title: "Linear Regression in plant disease"
-author: "Sith Jaisong"
 date: '2021-11-22'
 categories: [R, PDE]
 draft: false

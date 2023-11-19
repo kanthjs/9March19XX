@@ -12,10 +12,6 @@ about:
     - icon: github
       text: Github
       href: https://github.com/kanthjs/9March19XX
-#    - text: "{{< ai orcid >}}"
-#      url: https://orcid.org/0000-0002-8792-565X
-#    - icon: rss
-#      url: posts.xml
 comments: false
 ---
 
@@ -30,5 +26,5 @@ comments: false
 
 ## {{< fa solid graduation-cap >}} จบ
 
--   **Plant Patholoy**, 2018
+-   **Plant Pathology**, 2018
 -   **PhD Degree** *University of the Philippines Los Banos*

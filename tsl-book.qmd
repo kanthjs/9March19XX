@@ -1,0 +1,13 @@
+---
+title: "หนังสือเกี่ยวกับอาร์ที่สนใจแล้วนำมาแปล"
+subtitle: "หนังสือเกี่ยวกับอาร์ที่สนใจแล้วนำมาแปล"
+---
+
+## Books
+ระบาดวิทยาโรคพืช (กำลังแปล)
+
+<a href="https://OTexts.org/fpp3/"><img src="https://r4pde.netlify.app/cover.png" height="270" align="center"/></a>
+
+อาร์สำหรับวิทยาศาสตร์ข้อมูล (กำลังแปล)
+
+<a href="https://OTexts.org/fpp3/"><img src="https://r4ds.hadley.nz/cover.jpg" height="270" align="center"/></a>

@@ -19,8 +19,12 @@ website:
     right:
       - text: "บล๊อก"
         href: posts.qmd
-      - text: "โปรเจกท์"
-        href: resources.qmd 
+      - text: "อาร์อยู่นี่"
+        href: resources.qmd
+      - text: "หนังสือ"
+        href: tsl-book.qmd       
+      - text: "วันนี้รู้อะไร"
+        href: ilts.qmd 
 
 format:
   html:
@@ -28,7 +32,7 @@ format:
       light: [flatly, scss/light.scss]
     css: scss/styles.css
     highlight-style: gruvbox
-    mainfont: "K2D"
+    mainfont: "Krub"
     monofont: "Fira Code"
     df-print: kable
     code-copy: true
@@ -39,9 +43,6 @@ format:
     toc_smooth_scroll: true
     toc_highlight: true
     fig-align: center
-
-
-
 
 editor: visual
 freeze: auto

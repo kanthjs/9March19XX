@@ -84,6 +84,9 @@ gtag('config', 'G-WY647CK1PJ', { 'anonymize_ip': true});
     <a href="./index.html" class="navbar-brand navbar-brand-logo">
     <img src="./images/pi.png" alt="It's Pi" class="navbar-logo">
     </a>
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">อาร์ ไร ไม่ รู้</span>
+    </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
@@ -97,7 +100,15 @@ gtag('config', 'G-WY647CK1PJ', { 'anonymize_ip': true});
   </li>  
   <li class="nav-item">
     <a class="nav-link active" href="./resources.html" rel="" target="" aria-current="page">
- <span class="menu-text">โปรเจกท์</span></a>
+ <span class="menu-text">อาร์อยู่นี่</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./tsl-book.html" rel="" target="">
+ <span class="menu-text">หนังสือ</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./ilts.html" rel="" target="">
+ <span class="menu-text">วันนี้รู้อะไร</span></a>
   </li>  
 </ul>
             <div class="quarto-navbar-tools">
@@ -115,13 +126,13 @@ gtag('config', 'G-WY647CK1PJ', { 'anonymize_ip': true});
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#r-fontawesomefatools-fill-64605f-a11y-sem-r-tools" id="toc-r-fontawesomefatools-fill-64605f-a11y-sem-r-tools" class="nav-link active" data-scroll-target="#r-fontawesomefatools-fill-64605f-a11y-sem-r-tools"><code>r fontawesome::fa("tools", fill = "#64605F", a11y = "sem")</code> r tools</a></li>
-  <li><a href="#r-fontawesomefachart-bar-fill-64605f-a11y-sem-data-viz" id="toc-r-fontawesomefachart-bar-fill-64605f-a11y-sem-data-viz" class="nav-link" data-scroll-target="#r-fontawesomefachart-bar-fill-64605f-a11y-sem-data-viz"><code>r fontawesome::fa("chart-bar", fill = "#64605F", a11y = "sem")</code> data viz</a></li>
-  <li><a href="#r-fontawesomefadesktop-fill-64605f-a11y-sem-reporting-presentations" id="toc-r-fontawesomefadesktop-fill-64605f-a11y-sem-reporting-presentations" class="nav-link" data-scroll-target="#r-fontawesomefadesktop-fill-64605f-a11y-sem-reporting-presentations"><code>r fontawesome::fa("desktop", fill = "#64605F", a11y = "sem")</code> reporting &amp; presentations</a></li>
-  <li><a href="#r-fontawesomefabook-open-fill-64605f-a11y-sem-learning-materials" id="toc-r-fontawesomefabook-open-fill-64605f-a11y-sem-learning-materials" class="nav-link" data-scroll-target="#r-fontawesomefabook-open-fill-64605f-a11y-sem-learning-materials"><code>r fontawesome::fa("book-open", fill = "#64605F", a11y = "sem")</code> learning materials</a></li>
-  <li><a href="#r-fontawesomefausers-fill-64605f-a11y-sem-data-science-communities" id="toc-r-fontawesomefausers-fill-64605f-a11y-sem-data-science-communities" class="nav-link" data-scroll-target="#r-fontawesomefausers-fill-64605f-a11y-sem-data-science-communities"><code>r fontawesome::fa("users", fill = "#64605F", a11y = "sem")</code> data science communities</a></li>
-  <li><a href="#r-fontawesomefawindow-maximize-fill-64605f-a11y-sem-web-accessibility" id="toc-r-fontawesomefawindow-maximize-fill-64605f-a11y-sem-web-accessibility" class="nav-link" data-scroll-target="#r-fontawesomefawindow-maximize-fill-64605f-a11y-sem-web-accessibility"><code>r fontawesome::fa("window-maximize", fill = "#64605F", a11y = "sem")</code> web accessibility</a></li>
-  <li><a href="#r-fontawesomefasmile-fill-64605f-a11y-sem-misc." id="toc-r-fontawesomefasmile-fill-64605f-a11y-sem-misc." class="nav-link" data-scroll-target="#r-fontawesomefasmile-fill-64605f-a11y-sem-misc."><code>r fontawesome::fa("smile", fill = "#64605F", a11y = "sem")</code> misc.</a></li>
+  <li><a href="#r-tools" id="toc-r-tools" class="nav-link active" data-scroll-target="#r-tools">r tools</a></li>
+  <li><a href="#data-viz" id="toc-data-viz" class="nav-link" data-scroll-target="#data-viz">data viz</a></li>
+  <li><a href="#reporting-presentations" id="toc-reporting-presentations" class="nav-link" data-scroll-target="#reporting-presentations">reporting &amp; presentations</a></li>
+  <li><a href="#learning-materials" id="toc-learning-materials" class="nav-link" data-scroll-target="#learning-materials">learning materials</a></li>
+  <li><a href="#data-science-communities" id="toc-data-science-communities" class="nav-link" data-scroll-target="#data-science-communities">data science communities</a></li>
+  <li><a href="#web-accessibility" id="toc-web-accessibility" class="nav-link" data-scroll-target="#web-accessibility">web accessibility</a></li>
+  <li><a href="#misc" id="toc-misc" class="nav-link" data-scroll-target="#misc">misc</a></li>
   </ul>
 </nav>
     </div>
@@ -147,29 +158,29 @@ gtag('config', 'G-WY647CK1PJ', { 'anonymize_ip': true});
 </header>
 
 <p>It’s finally time for an upgraded notebook! I’ve been Slacking myself (and subsequently burying) links to resources for far too long, so my favorites will now live here.</p>
-<section id="r-fontawesomefatools-fill-64605f-a11y-sem-r-tools" class="level2">
-<h2 class="anchored" data-anchor-id="r-fontawesomefatools-fill-64605f-a11y-sem-r-tools"><code>r fontawesome::fa("tools", fill = "#64605F", a11y = "sem")</code> r tools</h2>
+<section id="r-tools" class="level2">
+<h2 class="anchored" data-anchor-id="r-tools">r tools</h2>
 <ul>
 <li><a href="https://fontawesome.com/v5/search?m=free">free icons from fontawesome</a> + the <a href="https://github.com/rstudio/fontawesome"><code>{fontawesome}</code></a> R package for infusing your slides, website, RMarkdowns/Quarto Markdowns, and more with an extra splash of fun</li>
 </ul>
 </section>
-<section id="r-fontawesomefachart-bar-fill-64605f-a11y-sem-data-viz" class="level2">
-<h2 class="anchored" data-anchor-id="r-fontawesomefachart-bar-fill-64605f-a11y-sem-data-viz"><code>r fontawesome::fa("chart-bar", fill = "#64605F", a11y = "sem")</code> data viz</h2>
+<section id="data-viz" class="level2">
+<h2 class="anchored" data-anchor-id="data-viz">data viz</h2>
 <ul>
 <li><p><a href="https://www.data-to-viz.com/">from Data to Viz</a>, a choose-your-adventure-type experience for creating your best data visualizations</p></li>
 <li><p><a href="https://www.sessions.edu/color-calculator/">The Sessions College Color Calculator</a>, for creating color palettes</p></li>
 </ul>
 </section>
-<section id="r-fontawesomefadesktop-fill-64605f-a11y-sem-reporting-presentations" class="level2">
-<h2 class="anchored" data-anchor-id="r-fontawesomefadesktop-fill-64605f-a11y-sem-reporting-presentations"><code>r fontawesome::fa("desktop", fill = "#64605F", a11y = "sem")</code> reporting &amp; presentations</h2>
+<section id="reporting-presentations" class="level2">
+<h2 class="anchored" data-anchor-id="reporting-presentations">reporting &amp; presentations</h2>
 <ul>
 <li><p>Quarto is all the rage these days (and by these days, I mean post-March 2022). Download and find some great tutorials <a href="https://quarto.org/">here</a> to get started</p></li>
 <li><p><a href="https://arm.rbind.io/slides/xaringan.html#1">Meet xaringan: Making slides in R Markdown</a>, by Allison Hill</p></li>
 <li><p><a href="https://www.garrickadenbuie.com/blog/sharing-xaringan-slides/">Sharing Your <code>xaringan</code> Slides</a>, by Garrick Aden-Buie</p></li>
 </ul>
 </section>
-<section id="r-fontawesomefabook-open-fill-64605f-a11y-sem-learning-materials" class="level2">
-<h2 class="anchored" data-anchor-id="r-fontawesomefabook-open-fill-64605f-a11y-sem-learning-materials"><code>r fontawesome::fa("book-open", fill = "#64605F", a11y = "sem")</code> learning materials</h2>
+<section id="learning-materials" class="level2">
+<h2 class="anchored" data-anchor-id="learning-materials">learning materials</h2>
 <ul>
 <li><p>Ever feel like you need a pick-me-up while learning stats or a new R tool? Look no further than <a href="https://twitter.com/allison_horst">Allison Horst’s</a> <a href="https://allisonhorst.com/">Data Science Illustrations</a>, featuring the cutest and most educational fuzzy monsters you’ll ever see!</p></li>
 <li><p><a href="https://mastering-shiny.org/index.html">Mastering Shiny</a>, by Hadley Wickham</p></li>
@@ -178,8 +189,8 @@ gtag('config', 'G-WY647CK1PJ', { 'anonymize_ip': true});
 <li><p><a href="https://www.w3schools.com/default.asp">W3Schools</a>, particularly for their HTML &amp; CSS tutorials</p></li>
 </ul>
 </section>
-<section id="r-fontawesomefausers-fill-64605f-a11y-sem-data-science-communities" class="level2">
-<h2 class="anchored" data-anchor-id="r-fontawesomefausers-fill-64605f-a11y-sem-data-science-communities"><code>r fontawesome::fa("users", fill = "#64605F", a11y = "sem")</code> data science communities</h2>
+<section id="data-science-communities" class="level2">
+<h2 class="anchored" data-anchor-id="data-science-communities">data science communities</h2>
 <p><em>While these groups are primarily based in SoCal/Santa Barbara, there are tons of awesome groups like these all over the world. Google around to see what’s near you!</em></p>
 <ul>
 <li><p><a href="https://www.meetup.com/rladies-santa-barbara/">R-Ladies Santa Barbara</a> and <a href="https://rladies.org/">R-Ladies Global</a>, which work to promote gender diversity in the R community</p></li>
@@ -190,15 +201,15 @@ gtag('config', 'G-WY647CK1PJ', { 'anonymize_ip': true});
 <li><p><a href="https://www.sbwomeninstem.org/">Santa Barbara Women in STEM</a>, while not specifically data science-focused, this group holds some really great career and networking events, panels, flash talks, and more</p></li>
 </ul>
 </section>
-<section id="r-fontawesomefawindow-maximize-fill-64605f-a11y-sem-web-accessibility" class="level2">
-<h2 class="anchored" data-anchor-id="r-fontawesomefawindow-maximize-fill-64605f-a11y-sem-web-accessibility"><code>r fontawesome::fa("window-maximize", fill = "#64605F", a11y = "sem")</code> web accessibility</h2>
+<section id="web-accessibility" class="level2">
+<h2 class="anchored" data-anchor-id="web-accessibility">web accessibility</h2>
 <ul>
 <li><p><a href="https://www.a11yproject.com/">The A11Y Project</a> is a community-driven effort to make digital content more accessible. I still have a long way to go in making my own website <a href="https://www.w3.org/WAI/standards-guidelines/wcag/">WCAG</a> compliant – the A11Y Project not only has a ton of great blog posts, but also WCAG compliance checklist that I will definitely be returning to over and over again.</p></li>
 <li><p><a href="https://www.color-blindness.com/coblis-color-blindness-simulator/">Coblis</a>, a color blindness simulator – just upload a file and view your color palettes as they would appear under different types of color deficiencies</p></li>
 </ul>
 </section>
-<section id="r-fontawesomefasmile-fill-64605f-a11y-sem-misc." class="level2">
-<h2 class="anchored" data-anchor-id="r-fontawesomefasmile-fill-64605f-a11y-sem-misc."><code>r fontawesome::fa("smile", fill = "#64605F", a11y = "sem")</code> misc.</h2>
+<section id="misc" class="level2">
+<h2 class="anchored" data-anchor-id="misc">misc</h2>
 <ul>
 <li>Discover new music to jam out to while you hack at <a href="https://everynoise.com/engenremap.html">Every Noise at Once</a> (HT: Jeanette Clark)</li>
 </ul>

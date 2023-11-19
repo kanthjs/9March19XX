@@ -1,7 +1,7 @@
 ---
 title: "ANOVA in 4 steps"
 author: 
-    -name: "Sith Jaisong"
+    -name: "Kanthanawit Js"
 categories: [R, ANOVA]
 draft: true
 ---

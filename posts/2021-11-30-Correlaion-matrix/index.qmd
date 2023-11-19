@@ -1,6 +1,5 @@
 ---
 title: "Correlaion Matrix"
-author: "Kanthanawit Jaisong"
 date: "2021-11-30"
 categories: [R, Statistics]
 draft: false

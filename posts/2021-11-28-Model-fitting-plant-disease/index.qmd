@@ -1,6 +1,5 @@
 ---
 title: "Model fitting for Plant Disease"
-author: "Sith Jaisong"
 date: '2021-11-28'
 categories: [R, PDE]
 draft: false

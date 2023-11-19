@@ -1,6 +1,5 @@
 ---
 title: "Package for accessing Web Interface"
-author: "Sith Jaisong"
 date: "2021-12-07"
 categories: [R, Data mining, R package]
 draft: false

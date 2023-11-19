@@ -1,0 +1,18 @@
+---
+title: "วันนี้รู้อะไร"
+subtitle: "คงเป็นเหมือนบันทึกทั่ว ๆ ไปไม่จำกัดนิยาที่สั้น ๆ ของตัวเอง ที่ได้เรียนรู้อะไรในวันนี้ และอยากจะบันทึกอะไรให้ตัวเองอ่านต่อ ๆ ไปในอนาคต"
+listing:
+  contents: ilts
+  sort: "date desc"
+  type: table
+  date-format: medium
+  categories: true
+  sort-ui: false
+  filter-ui: false
+  image-height: 170px
+  fields: [title]
+page-layout: full
+title-block-banner: true
+comments: false
+code-tools: false
+---

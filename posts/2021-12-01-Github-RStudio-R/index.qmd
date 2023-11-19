@@ -1,6 +1,5 @@
 ---
 title: "Github, R and RStudio"
-author: "Kanth JS"
 date: '2021-12-01'
 categories: [R, Github]
 ---
