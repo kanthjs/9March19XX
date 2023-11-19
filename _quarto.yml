@@ -19,11 +19,11 @@ website:
     right:
       - text: "บล๊อก"
         href: posts.qmd
-      - text: "อาร์อยู่นี่"
+      - text: "R here"
         href: resources.qmd
       - text: "หนังสือ"
         href: tsl-book.qmd       
-      - text: "วันนี้รู้อะไร"
+      - text: "ILTs"
         href: ilts.qmd 
 
 format:
