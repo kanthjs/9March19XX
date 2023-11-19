@@ -1,0 +1,17 @@
+---
+title: "Moving to Quarto"
+date: "2022-19-11"
+categories: [R, Quarto]
+draft: false
+toc: true 
+---
+
+# try this
+
+อันนี้ ลองทำดู
+
+![](https://mine.quarto.pub/hello-quarto/images/horst_quarto_schematic.png)
+
+credit:<https://mine.quarto.pub/hello-quarto/images/horst_quarto_schematic.png>
+
+![](https://mine.quarto.pub/hello-quarto/images/horst_qmd_render_schema.png)

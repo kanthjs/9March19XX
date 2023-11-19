@@ -2,70 +2,86 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://kanthjs.github.io/9March19XX/ilts.html</loc>
-    <lastmod>2023-11-19T05:02:22.312Z</lastmod>
+    <lastmod>2023-11-19T11:32:47.497Z</lastmod>
   </url>
   <url>
     <loc>https://kanthjs.github.io/9March19XX/posts.html</loc>
-    <lastmod>2023-11-19T05:02:21.239Z</lastmod>
+    <lastmod>2023-11-19T11:32:46.461Z</lastmod>
   </url>
   <url>
-    <loc>https://kanthjs.github.io/9March19XX/tsl-book.html</loc>
-    <lastmod>2023-11-19T05:02:19.743Z</lastmod>
-  </url>
-  <url>
-    <loc>https://kanthjs.github.io/9March19XX/posts/2021-11-19-AUDPC-in-Real-Data/index.html</loc>
-    <lastmod>2023-11-19T05:02:14.776Z</lastmod>
-  </url>
-  <url>
-    <loc>https://kanthjs.github.io/9March19XX/posts/2021-11-22-Linear-Regression-in-plant-disease/index.html</loc>
-    <lastmod>2023-11-19T05:02:11.273Z</lastmod>
-  </url>
-  <url>
-    <loc>https://kanthjs.github.io/9March19XX/posts/2021-11-11-plant-disease-over-times/index.html</loc>
-    <lastmod>2023-11-19T05:02:09.585Z</lastmod>
-  </url>
-  <url>
-    <loc>https://kanthjs.github.io/9March19XX/posts/2021-12-03-Harvest-Data-from-Web-Sources/index.html</loc>
-    <lastmod>2023-11-19T05:02:08.451Z</lastmod>
-  </url>
-  <url>
-    <loc>https://kanthjs.github.io/9March19XX/posts/2021-11-26-Disease-Curve-Model/index.html</loc>
-    <lastmod>2023-11-19T05:01:22.516Z</lastmod>
-  </url>
-  <url>
-    <loc>https://kanthjs.github.io/9March19XX/posts/2021-11-30-Correlaion-matrix/index.html</loc>
-    <lastmod>2023-11-19T05:01:20.318Z</lastmod>
-  </url>
-  <url>
-    <loc>https://kanthjs.github.io/9March19XX/posts/2021-12-07-Package-Access-Web-Service/index.html</loc>
-    <lastmod>2023-11-19T05:01:20.986Z</lastmod>
-  </url>
-  <url>
-    <loc>https://kanthjs.github.io/9March19XX/posts/2021-12-01-Github-RStudio-R/index.html</loc>
-    <lastmod>2023-11-19T05:02:09.028Z</lastmod>
-  </url>
-  <url>
-    <loc>https://kanthjs.github.io/9March19XX/posts/2021-10-01-Homogeneity-test-in-R/index.html</loc>
-    <lastmod>2023-11-19T05:02:10.451Z</lastmod>
-  </url>
-  <url>
-    <loc>https://kanthjs.github.io/9March19XX/posts/2021-11-28-Model-fitting-plant-disease/index.html</loc>
-    <lastmod>2023-11-19T05:02:12.950Z</lastmod>
-  </url>
-  <url>
-    <loc>https://kanthjs.github.io/9March19XX/posts/2021-11-15-Area-under-disease-progress-curve/index.html</loc>
-    <lastmod>2023-11-19T05:02:17.481Z</lastmod>
-  </url>
-  <url>
-    <loc>https://kanthjs.github.io/9March19XX/ilts/2022-11-19-fix-your-fatigue/index.html</loc>
-    <lastmod>2023-11-19T05:02:19.047Z</lastmod>
+    <loc>https://kanthjs.github.io/9March19XX/create-quarto-website/sections/0-using-this-doc.html</loc>
+    <lastmod>2023-11-19T11:32:44.893Z</lastmod>
   </url>
   <url>
     <loc>https://kanthjs.github.io/9March19XX/index.html</loc>
-    <lastmod>2023-11-19T05:02:20.309Z</lastmod>
+    <lastmod>2023-11-19T11:32:43.712Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kanthjs.github.io/9March19XX/ilts/2022-11-19-fix-your-fatigue/index.html</loc>
+    <lastmod>2023-11-19T11:32:42.859Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kanthjs.github.io/9March19XX/posts/2021-11-15-Area-under-disease-progress-curve/index.html</loc>
+    <lastmod>2023-11-19T11:32:41.786Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kanthjs.github.io/9March19XX/posts/2021-11-28-Model-fitting-plant-disease/index.html</loc>
+    <lastmod>2023-11-19T11:32:38.941Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kanthjs.github.io/9March19XX/posts/2021-10-01-Homogeneity-test-in-R/index.html</loc>
+    <lastmod>2023-11-19T11:32:36.565Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kanthjs.github.io/9March19XX/posts/2021-19-11-Quarto-website/index.html</loc>
+    <lastmod>2023-11-19T11:32:34.946Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kanthjs.github.io/9March19XX/posts/2021-12-03-Harvest-Data-from-Web-Sources/index.html</loc>
+    <lastmod>2023-11-19T11:32:33.751Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kanthjs.github.io/9March19XX/posts/2021-11-26-Disease-Curve-Model/index.html</loc>
+    <lastmod>2023-11-19T11:31:44.717Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kanthjs.github.io/9March19XX/posts/2021-11-30-Correlaion-matrix/index.html</loc>
+    <lastmod>2023-11-19T11:31:42.610Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kanthjs.github.io/9March19XX/posts/2021-12-07-Package-Access-Web-Service/index.html</loc>
+    <lastmod>2023-11-19T11:31:43.331Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kanthjs.github.io/9March19XX/posts/2021-12-01-Github-RStudio-R/index.html</loc>
+    <lastmod>2023-11-19T11:32:34.539Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kanthjs.github.io/9March19XX/posts/2021-11-11-plant-disease-over-times/index.html</loc>
+    <lastmod>2023-11-19T11:32:35.611Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kanthjs.github.io/9March19XX/posts/2021-11-22-Linear-Regression-in-plant-disease/index.html</loc>
+    <lastmod>2023-11-19T11:32:37.422Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kanthjs.github.io/9March19XX/posts/2021-11-19-AUDPC-in-Real-Data/index.html</loc>
+    <lastmod>2023-11-19T11:32:40.034Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kanthjs.github.io/9March19XX/tsl-book.html</loc>
+    <lastmod>2023-11-19T11:32:43.251Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kanthjs.github.io/9March19XX/create-quarto-website/sections/1-what-is-quarto.html</loc>
+    <lastmod>2023-11-19T11:32:44.298Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kanthjs.github.io/9March19XX/create-quarto-website/index.html</loc>
+    <lastmod>2023-11-19T11:32:45.679Z</lastmod>
   </url>
   <url>
     <loc>https://kanthjs.github.io/9March19XX/resources.html</loc>
-    <lastmod>2023-11-19T05:02:21.828Z</lastmod>
+    <lastmod>2023-11-19T11:32:46.955Z</lastmod>
   </url>
 </urlset>

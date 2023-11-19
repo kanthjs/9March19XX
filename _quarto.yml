@@ -25,6 +25,8 @@ website:
         href: tsl-book.qmd       
       - text: "ILTs"
         href: ilts.qmd 
+      - text: "Quarto"
+        href: create-quarto-website/index.qmd
 
 format:
   html:

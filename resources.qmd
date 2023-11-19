@@ -1,13 +1,13 @@
 ---
-title: "resources"
-subtitle: "a collection of other people's writings, tutorials, etc. that I find particularly helpful"
+title: "R here"
+subtitle: "ที่ที่รวบรวมเวปที่มีประโยชน์เกี่ยวกับอาร์ และอื่น ๆ ที่คิดว่าสำคัญกับการเรียนรู้เกี่ยวกับอาร์ ที่สามารถรวบรวมให้"
 ---
 
-It's finally time for an upgraded notebook! I've been Slacking myself (and subsequently burying) links to resources for far too long, so my favorites will now live here.
+หน้านี้เป็นหน้าที่บันทึก เกี่ยวกับแหล่งข้อมูลเกี่ยวกับอาร์ ที่สำคัญ
 
-## r tools
+## เครื่องมือเกี่ยวกับอาร์
 
--   [free icons from fontawesome](https://fontawesome.com/v5/search?m=free) + the [`{fontawesome}`](https://github.com/rstudio/fontawesome) R package for infusing your slides, website, RMarkdowns/Quarto Markdowns, and more with an extra splash of fun
+-   [fontawesome](https://fontawesome.com/v5/search?m=free) และ [`{fontawesome}`](https://github.com/rstudio/fontawesome) เป็น icon น่ารักที่สามารถใส่ ลงไปใน เอกสารที่ knir แล้ว ออกมาน่าอ่าน น่าสนใจขึ้น และไม่ติดลิขสิทธิ์อีกด้วย เช่น `{{< fa yinyang size=2x >}}` {{< fa yinyang >}} {{< fa yinyang size=2x >}}
 
 ## data viz
 

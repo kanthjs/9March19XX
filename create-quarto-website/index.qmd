@@ -1,0 +1,13 @@
+---
+title: "Creating your personal website using Quarto"
+date: August 5, 2022
+format: 
+  html:
+    toc: true
+    toc-location: left
+    toc-depth: 2
+---
+
+{{< include sections/0-using-this-doc.qmd >}}
+
+{{< include sections/1-what-is-quarto.qmd >}}
