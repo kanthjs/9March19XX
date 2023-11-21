@@ -2,11 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.433">
+<meta name="generator" content="quarto-1.3.450">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2022-08-05">
+<meta name="author" content="Kanth Js">
+<meta name="dcterms.date" content="2022-11-16">
 
 <title>Kanthanawit Js - Creating your personal website using Quarto</title>
 <style>
@@ -20,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -131,8 +166,7 @@ gtag('config', 'G-WY647CK1PJ', { 'anonymize_ip': true});
     <h2 id="toc-title">On this page</h2>
    
   <ul class="collapse">
-  <li><a href="#fa-lightbulb-titlelightbulb-some-tips-on-navigating-this-document" id="toc-fa-lightbulb-titlelightbulb-some-tips-on-navigating-this-document" class="nav-link active" data-scroll-target="#fa-lightbulb-titlelightbulb-some-tips-on-navigating-this-document"><i class="fa-solid fa-lightbulb"></i> Some tips on navigating this document</a></li>
-  <li><a href="#fa-circle-question-titlequestion-mark-what-is-quarto" id="toc-fa-circle-question-titlequestion-mark-what-is-quarto" class="nav-link" data-scroll-target="#fa-circle-question-titlequestion-mark-what-is-quarto"><i class="fa-solid fa-circle-question"></i> What is Quarto?</a></li>
+  <li><a href="#fa-circle-question-titlequestion-mark-what-is-quarto" id="toc-fa-circle-question-titlequestion-mark-what-is-quarto" class="nav-link active" data-scroll-target="#fa-circle-question-titlequestion-mark-what-is-quarto"><i class="fa-solid fa-circle-question"></i> What is Quarto?</a></li>
   </ul>
 </nav>
 </nav>
@@ -152,11 +186,17 @@ gtag('config', 'G-WY647CK1PJ', { 'anonymize_ip': true});
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Kanth Js </p>
+          </div>
+  </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">August 5, 2022</p>
+      <p class="date">November 16, 2022</p>
     </div>
   </div>
   
@@ -166,12 +206,14 @@ gtag('config', 'G-WY647CK1PJ', { 'anonymize_ip': true});
 
 </header>
 
-<p><em>This document was originally developed as teaching material for UCSB’s <a href="https://bren.ucsb.edu/masters-programs/master-environmental-data-science/academics-meds">Master of Environmental Data Science (MEDS)</a> program.</em></p>
-<section id="fa-lightbulb-titlelightbulb-some-tips-on-navigating-this-document" class="level2">
-<h2 class="anchored" data-anchor-id="fa-lightbulb-titlelightbulb-some-tips-on-navigating-this-document"><i class="fa-solid fa-lightbulb"></i> Some tips on navigating this document</h2>
-<p>If you’ve found your way here, welcome! Maybe you’re excited to start on your website-building journey, or maybe you’re just getting a feel for what Quarto is all about. Regardless, I hope you find these materials helpful. Some notes on what to expect:</p>
-<p>This document is meant to introduce you to Quarto as a tool and framework for building websites, guide you through the process of creating your website (using either RStudio or a command line interface), and deploy it (for free) using GitHub Pages. The content covered here is only an introduction to the wonderful suite of tooling that Quarto provides! I encourage you to also explore <a href="https://posit.co/">Posit</a>’s incredible <a href="https://quarto.org/">Quarto documentation</a>, as well as the seemingly endless list of awesome resources created by other Quarto users. Feel free to check out my follow-up workshop materials, <a href="https://ucsb-meds.github.io/customizing-quarto-websites/#/title-slide">Customizing Quarto Websites using Sass &amp; CSS</a> and <a href="https://samanthacsik.github.io/talks_workshops/2022-10-24-quarto-blogs/">Adding a blog to your existing Quarto website</a>.</p>
-<p>You’ll encounter some callout boxes throughout these materials, which are meant to provide additional tips, considerations, contexts:</p>
+<p>ใครที่เปิดมาเจอ แสดงว่า กำลังสนใจหรืออยากรู้เกี่ยวกับ Quarto และหวังว่าคุณจะได้ประโยชน์ เกี่ยวกับมันไม่มากก็น้อย ผมเองก็เพิ่งจะเริ่มใช้มัน ทำหลายอย่างด้วยกัน อย่างเช่น เวปบล๊อกนี้ และ Ebook อีกด้วย</p>
+<p>บทความนี้แปลมาจากบทความที่เขียนโดย <a href="https://ucsb-meds.github.io/creating-quarto-websites/">Sam clicks</a> อธิบาย Quarto ซึ่งเป็นเครื่องมืออันนึง workflow สำหรับสร้างเวปไซท์ และสร้างเวปไซท์ ได้อย่างละเอียด บทความนี้ นอกจากแปลแล้ว จะอธิบายตามความเข้าใจจากการทำตามจริง</p>
+<p>บทความที่ชวนอ่านเพิ่มเติม เพื่อให้เข้าใจมากขึ้น</p>
+<p>- <a href="https://posit.co/">Posit</a>’s incredible</p>
+<p>- <a href="https://quarto.org/">Quarto documentation</a></p>
+<p>- <a href="https://ucsb-meds.github.io/customizing-quarto-websites/#/title-slide">Customizing Quarto Websites using Sass &amp; CSS</a></p>
+<p>- <a href="https://samanthacsik.github.io/talks_workshops/2022-10-24-quarto-blogs/">Adding a blog to your existing Quarto website</a>.</p>
+<p>เนื้อหาในบทความนี้ จะพบกับ callout boxes ซึ่งจะให้ข้อมูลเพิ่เติมหรือเกร็ดเล็ก เกล็ดน้อย</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -214,12 +256,25 @@ Important
 <p>This is <strong>important text</strong> – be sure to read these carefully as to not miss any important steps!</p>
 </div>
 </div>
-</section>
 <section id="fa-circle-question-titlequestion-mark-what-is-quarto" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="fa-circle-question-titlequestion-mark-what-is-quarto"><i class="fa-solid fa-circle-question"></i> What is Quarto?</h2>
-<!-- <img src="media/quarto.png" alt="A blue circle divided into four quadrants, followed by the name &apos;quarto&apos;." style="display: inline-block; margin: 0; position: relative; top: 0px; width:110px;height:30px;"/> -->
-<p><a href="https://quarto.org/">Quarto</a> is a publishing system built on Pandoc that allows users to create dynamic content using R, Python, Julia, and ObservableJS (with plans to add more languages too!).</p>
-<p>R users have long loved <a href="https://rmarkdown.rstudio.com/">RMarkdown</a> for combining prose, code, and outputs into single “knitted” documents. Quarto extends all of RMarkdown’s best features (plus many more!) to additional languages.</p>
+<p><img src="https://quarto.org/quarto.png" class="img-fluid"></p>
+<p><a href="https://quarto.org/">Quarto</a> คือ publishing system สร้างบน Pandoc ที่ผู้ใช้สามารถสร้างเอกสาร โดยใช้ภาษา R Python Julia และ ObservableJS (และในอนาคต อาจจะรวงรับมากกว่านี้)</p>
+<p><img src="../create-quarto-website/media/quarto_schematic.png" class="img-fluid"></p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p><i class="fa-solid fa-palette"></i> Art by <a href="https://twitter.com/allison_horst">Allison Horst</a>. Be sure to check out the rest of Allison’s seriously cute Quarto penguin art in the #rstudioconf2022 keynote talk, <a href="https://mine.quarto.pub/hello-quarto/#/hello-quarto-title">Hello Quarto</a>, by <a href="https://twitter.com/juliesquid">Julie Lowndes</a> &amp; <a href="https://twitter.com/minebocek">Mine Çetinkaya-Rundel</a>!</p>
+</div></div><p>สำหรับผู้ใช้อาร์รู้จักกับ <a href="https://rmarkdown.rstudio.com/">RMarkdown</a> เพื่อรวบเนื้อหา(ตัวหนังสือ) code และ output และ รวมเรียกว่า “knitted” documents แต่ Quarto ทำได้เหมือน RMarkdown แต่ได้ได้มากกว่า อีกทั้ง ยังใช้ได้กับภาษาอื่น ๆ ได้</p>
+<p>สำหรับคนใช้หรือคุ้นเคยกับ RMarkdown แล้วจะพบว่าไฟล์ RMarkdown (<code>.rmd</code>) และ Quarto Markdown (<code>.qmd</code>) มีส่วนคล้ายกัน:</p>
+<ul>
+<li><p>metadata และ configurations จะอยู่ในไฟล์ YAML (ตาม <code>---</code> ที่อยู่บนบนของเอกสาร)</p></li>
+<li><p>โค้ด จะเขียนอยู่ในส่วนที่เรียกว่า code chunks</p>
+<p>สำหรับ อาร์แล้ว จะอยู่ใน</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">+</span><span class="dv">1</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>ตัวอักษร ที่เป็นส่วนของเนื้อหา นั้น เขียนอยู่ในส่วนของ body</p></li>
+</ul>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -232,34 +287,18 @@ A side-by-side comparison of <code>.rmd</code> vs.&nbsp;<code>.qmd</code> files
 </div>
 <div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>If you’re already an avid RMarkdown user, great news! RMarkdown (<code>.rmd</code>) and Quarto Markdown (<code>.qmd</code>) files look super similar:</p>
-<ul>
-<li>document-level metadata and configurations are included in the document’s YAML (denoted by the <code>---</code> gates at the top of the document)</li>
-<li>code is written inside executable code chunks</li>
-<li>prose is written in the body of the document</li>
-</ul>
-<p>There are some slight differences to be aware of:</p>
-<ul>
-<li>some YAML option names differ between the two document types (e.g.&nbsp;<code>output</code> in <code>.rmd</code> vs.&nbsp;<code>format</code> in <code>.qmd</code>)</li>
-<li>chunk-level execution options are are written within with code block braces (e.g.&nbsp;```<code>{r echo=FALSE}</code>) in <code>.rmd</code> files, and written below code block braces following hash pipes, <code>|#</code> (e.g.&nbsp;<code>|# echo: false</code>) in <code>.qmd</code> files</li>
-<li>booleans are capitalized in YAML and chunk-level metadata in <code>.rmd</code> files (e.g.&nbsp;<code>FALSE</code>) and lowercase in <code>.qmd</code> files (e.g.&nbsp;<code>false</code>)</li>
-<li>you <strong>Knit</strong> <code>.rmd</code> files and <strong>Render</strong> <code>.qmd</code> files to convert your work to your desired output type (e.g.&nbsp;<code>.html</code>)</li>
-</ul>
+<p>They also look pretty similar when knitted/rendered. Below is a side-by-side comparison of a knitted <code>.rmd</code> file and a rendered <code>.qmd</code> file (both as <code>.html</code> files):</p>
+</div>
+</div>
+</div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../create-quarto-website/media/rmd-vs-qmd.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
-<p>They also look pretty similar when knitted/rendered. Below is a side-by-side comparison of a knitted <code>.rmd</code> file and a rendered <code>.qmd</code> file (both as <code>.html</code> files):</p>
-</div>
-</div>
-</div>
+<p>สำหรับ <code>.rmd</code> files <strong>Knit</strong> ส่วน <code>.qmd</code> files <strong>Render</strong> เพื่อแปลงไปเป็นเอกสารที่กำหนดไว้ หรือ output เป็นไฟล์ <code>.html</code> เป็นต้น</p>
 <p><img src="../create-quarto-website/media/rmd-vs-qmd-output.png" class="img-fluid"></p>
-<p><img src="../create-quarto-website/media/quarto_schematic.png" class="img-fluid"></p>
-
-<div class="no-row-height column-margin column-container"><div class="">
-<p><i class="fa-solid fa-palette"></i> Art by <a href="https://twitter.com/allison_horst">Allison Horst</a>. Be sure to check out the rest of Allison’s seriously cute Quarto penguin art in the #rstudioconf2022 keynote talk, <a href="https://mine.quarto.pub/hello-quarto/#/hello-quarto-title">Hello Quarto</a>, by <a href="https://twitter.com/juliesquid">Julie Lowndes</a> &amp; <a href="https://twitter.com/minebocek">Mine Çetinkaya-Rundel</a>!</p>
-</div></div><p>You can explore <a href="https://quarto.org/docs/guide/">Quarto’s documentation</a> to learn more about creating documents, websites, blogs, books, slides, etc.</p>
+<p>อ่านเพิ่มเติมได้ <a href="https://quarto.org/docs/guide/">Quarto’s documentation</a> เพื่อสร้าง document websites blogs books slides และอื่น ๆ</p>
 
 
 </section>

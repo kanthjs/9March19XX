@@ -2,15 +2,21 @@
 format: html
 ---
 
-*This document was originally developed as teaching material for UCSB's [Master of Environmental Data Science (MEDS)](https://bren.ucsb.edu/masters-programs/master-environmental-data-science/academics-meds) program.*
+ใครที่เปิดมาเจอ แสดงว่า กำลังสนใจหรืออยากรู้เกี่ยวกับ Quarto และหวังว่าคุณจะได้ประโยชน์ เกี่ยวกับมันไม่มากก็น้อย ผมเองก็เพิ่งจะเริ่มใช้มัน ทำหลายอย่างด้วยกัน อย่างเช่น เวปบล๊อกนี้ และ Ebook อีกด้วย
 
-## {{< fa lightbulb title="Lightbulb">}} Some tips on navigating this document
+บทความนี้แปลมาจากบทความที่เขียนโดย [Sam clicks](https://ucsb-meds.github.io/creating-quarto-websites/) อธิบาย Quarto ซึ่งเป็นเครื่องมืออันนึง workflow สำหรับสร้างเวปไซท์ และสร้างเวปไซท์ ได้อย่างละเอียด บทความนี้ นอกจากแปลแล้ว จะอธิบายตามความเข้าใจจากการทำตามจริง
 
-If you've found your way here, welcome! Maybe you're excited to start on your website-building journey, or maybe you're just getting a feel for what Quarto is all about. Regardless, I hope you find these materials helpful. Some notes on what to expect:
+บทความที่ชวนอ่านเพิ่มเติม เพื่อให้เข้าใจมากขึ้น
 
-This document is meant to introduce you to Quarto as a tool and framework for building websites, guide you through the process of creating your website (using either RStudio or a command line interface), and deploy it (for free) using GitHub Pages. The content covered here is only an introduction to the wonderful suite of tooling that Quarto provides! I encourage you to also explore [Posit](https://posit.co/)'s incredible [Quarto documentation](https://quarto.org/), as well as the seemingly endless list of awesome resources created by other Quarto users. Feel free to check out my follow-up workshop materials, [Customizing Quarto Websites using Sass & CSS](https://ucsb-meds.github.io/customizing-quarto-websites/#/title-slide) and [Adding a blog to your existing Quarto website](https://samanthacsik.github.io/talks_workshops/2022-10-24-quarto-blogs/).
+\- [Posit](https://posit.co/)'s incredible
 
-You'll encounter some callout boxes throughout these materials, which are meant to provide additional tips, considerations, contexts:
+\- [Quarto documentation](https://quarto.org/)
+
+\- [Customizing Quarto Websites using Sass & CSS](https://ucsb-meds.github.io/customizing-quarto-websites/#/title-slide)
+
+\- [Adding a blog to your existing Quarto website](https://samanthacsik.github.io/talks_workshops/2022-10-24-quarto-blogs/).
+
+เนื้อหาในบทความนี้ จะพบกับ callout boxes ซึ่งจะให้ข้อมูลเพิ่เติมหรือเกร็ดเล็ก เกล็ดน้อย
 
 ::: {.callout-note collapse="true"}
 ## Note (collapsed by default to minimize scrolling; click to expand)

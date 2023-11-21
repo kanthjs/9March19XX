@@ -1,0 +1,14 @@
+{
+  "hash": "6de15af552547716c6407460c75ef478",
+  "result": {
+    "markdown": "---\nformat: html\n---\n\n\n## {{< fa circle-question title=\"Question mark\" >}} What is Quarto?\n\n![](https://quarto.org/quarto.png)\n\n[Quarto](https://quarto.org/) คือ publishing system สร้างบน Pandoc ที่ผู้ใช้สามารถสร้างเอกสาร โดยใช้ภาษา R Python Julia และ ObservableJS (และในอนาคต อาจจะรวงรับมากกว่านี้)\n\n![](/create-quarto-website/media/quarto_schematic.png)\n\n::: column-margin\n{{< fa palette >}} Art by [Allison Horst](https://twitter.com/allison_horst). Be sure to check out the rest of Allison's seriously cute Quarto penguin art in the #rstudioconf2022 keynote talk, [Hello Quarto](https://mine.quarto.pub/hello-quarto/#/hello-quarto-title), by [Julie Lowndes](https://twitter.com/juliesquid) & [Mine Çetinkaya-Rundel](https://twitter.com/minebocek)!\n:::\n\nสำหรับผู้ใช้อาร์รู้จักกับ [RMarkdown](https://rmarkdown.rstudio.com/) เพื่อรวบเนื้อหา(ตัวหนังสือ) code และ output และ รวมเรียกว่า \"knitted\" documents แต่ Quarto ทำได้เหมือน RMarkdown แต่ได้ได้มากกว่า อีกทั้ง ยังใช้ได้กับภาษาอื่น ๆ ได้\n\nสำหรับคนใช้หรือคุ้นเคยกับ RMarkdown แล้วจะพบว่าไฟล์ RMarkdown (`.rmd`) และ Quarto Markdown (`.qmd`) มีส่วนคล้ายกัน:\n\n-   metadata และ configurations จะอยู่ในไฟล์ YAML (ตาม `---` ที่อยู่บนบนของเอกสาร)\n\n-   โค้ด จะเขียนอยู่ใน is ส่วนที่เรียกว่า code chunks\n\n    สำหรับ อาร์แล้ว จะอยู่ใน\n>     ::: {.cell}\n>     \n>     ```{.r .cell-code}\n>     1 + 1 \n>     ```\n>     \n>     ::: {.cell-output .cell-output-stdout}\n>     ```\n>     [1] 2\n>     ```\n>     :::\n>     :::\n\n-   ตัวอักษร ที่เป็นส่วนของเนื้อหา นั้น เขียนอยู่ในส่วนของ body\n\n::: {.callout-note collapse=\"true\"}\n## A side-by-side comparison of `.rmd` vs. `.qmd` files\n\nThey also look pretty similar when knitted/rendered. Below is a side-by-side comparison of a knitted `.rmd` file and a rendered `.qmd` file (both as `.html` files):\n:::\n\n![](/create-quarto-website/media/rmd-vs-qmd.png){fig-align=\"center\"}\n\n สำหรับ `.rmd` files  **Knit** ส่วน `.qmd` files  **Render** เพื่อแปลงไปเป็นเอกสารที่กำหนดไว้ หรือ output เป็นไฟล์ `.html` เป็นต้น\n\n![](/create-quarto-website/media/rmd-vs-qmd-output.png)\n\n\nอ่านเพิ่มเติมได้ [Quarto's documentation](https://quarto.org/docs/guide/) เพื่อสร้าง document websites blogs books slides และอื่น ๆ\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

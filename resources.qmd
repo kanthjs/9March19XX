@@ -7,9 +7,9 @@ subtitle: "ที่ที่รวบรวมเวปที่มีประ
 
 ## เครื่องมือเกี่ยวกับอาร์
 
--   [fontawesome](https://fontawesome.com/v5/search?m=free) และ [`{fontawesome}`](https://github.com/rstudio/fontawesome) เป็น icon น่ารักที่สามารถใส่ ลงไปใน เอกสารที่ knir แล้ว ออกมาน่าอ่าน น่าสนใจขึ้น และไม่ติดลิขสิทธิ์อีกด้วย เช่น `{{< fa yinyang size=2x >}}` {{< fa yinyang >}} {{< fa yinyang size=2x >}}
+-   [fontawesome](https://fontawesome.com/v5/search?m=free) และ [`{fontawesome}`](https://github.com/rstudio/fontawesome) เป็น icon น่ารักที่สามารถใส่ ลงไปใน เอกสารที่ knir แล้ว ออกมาน่าอ่าน น่าสนใจขึ้น และไม่ติดลิขสิทธิ์อีกด้วย เช่น `{{< fa yinyang size=2x >}}` {{< fa yinyang >}} {{< fa yin-yang size=2x >}}
 
-## data viz
+##   data viz
 
 -   [from Data to Viz](https://www.data-to-viz.com/), a choose-your-adventure-type experience for creating your best data visualizations
 
