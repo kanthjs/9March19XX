@@ -2,86 +2,90 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://kanthjs.github.io/9March19XX/ilts.html</loc>
-    <lastmod>2023-11-21T00:40:10.015Z</lastmod>
+    <lastmod>2023-11-21T13:01:01.489Z</lastmod>
   </url>
   <url>
     <loc>https://kanthjs.github.io/9March19XX/posts.html</loc>
-    <lastmod>2023-11-21T00:40:08.905Z</lastmod>
+    <lastmod>2023-11-21T13:01:00.490Z</lastmod>
   </url>
   <url>
     <loc>https://kanthjs.github.io/9March19XX/create-quarto-website/sections/0-using-this-doc.html</loc>
-    <lastmod>2023-11-21T00:40:07.366Z</lastmod>
+    <lastmod>2023-11-21T13:00:58.927Z</lastmod>
   </url>
   <url>
     <loc>https://kanthjs.github.io/9March19XX/index.html</loc>
-    <lastmod>2023-11-21T03:03:44.608Z</lastmod>
+    <lastmod>2023-11-21T13:00:57.675Z</lastmod>
   </url>
   <url>
-    <loc>https://kanthjs.github.io/9March19XX/ilts/2022-11-19-fix-your-fatigue/index.html</loc>
-    <lastmod>2023-11-21T00:40:05.141Z</lastmod>
-  </url>
-  <url>
-    <loc>https://kanthjs.github.io/9March19XX/posts/2021-11-15-Area-under-disease-progress-curve/index.html</loc>
-    <lastmod>2023-11-21T00:40:03.980Z</lastmod>
-  </url>
-  <url>
-    <loc>https://kanthjs.github.io/9March19XX/posts/2021-11-28-Model-fitting-plant-disease/index.html</loc>
-    <lastmod>2023-11-21T00:40:01.129Z</lastmod>
-  </url>
-  <url>
-    <loc>https://kanthjs.github.io/9March19XX/posts/2021-10-01-Homogeneity-test-in-R/index.html</loc>
-    <lastmod>2023-11-21T00:39:58.720Z</lastmod>
-  </url>
-  <url>
-    <loc>https://kanthjs.github.io/9March19XX/posts/2021-19-11-Quarto-website/index.html</loc>
-    <lastmod>2023-11-21T00:39:57.173Z</lastmod>
-  </url>
-  <url>
-    <loc>https://kanthjs.github.io/9March19XX/posts/2021-12-03-Harvest-Data-from-Web-Sources/index.html</loc>
-    <lastmod>2023-11-21T00:39:56.122Z</lastmod>
-  </url>
-  <url>
-    <loc>https://kanthjs.github.io/9March19XX/posts/2021-11-26-Disease-Curve-Model/index.html</loc>
-    <lastmod>2023-11-21T00:39:10.597Z</lastmod>
-  </url>
-  <url>
-    <loc>https://kanthjs.github.io/9March19XX/posts/2021-11-30-Correlaion-matrix/index.html</loc>
-    <lastmod>2023-11-21T00:39:08.684Z</lastmod>
-  </url>
-  <url>
-    <loc>https://kanthjs.github.io/9March19XX/posts/2021-12-07-Package-Access-Web-Service/index.html</loc>
-    <lastmod>2023-11-21T00:39:09.259Z</lastmod>
-  </url>
-  <url>
-    <loc>https://kanthjs.github.io/9March19XX/posts/2021-12-01-Github-RStudio-R/index.html</loc>
-    <lastmod>2023-11-21T00:39:56.758Z</lastmod>
-  </url>
-  <url>
-    <loc>https://kanthjs.github.io/9March19XX/posts/2021-11-11-plant-disease-over-times/index.html</loc>
-    <lastmod>2023-11-21T00:39:57.814Z</lastmod>
-  </url>
-  <url>
-    <loc>https://kanthjs.github.io/9March19XX/posts/2021-11-22-Linear-Regression-in-plant-disease/index.html</loc>
-    <lastmod>2023-11-21T00:39:59.568Z</lastmod>
+    <loc>https://kanthjs.github.io/9March19XX/ilts/2022-11-21-let-it-go/index.html</loc>
+    <lastmod>2023-11-21T13:00:56.812Z</lastmod>
   </url>
   <url>
     <loc>https://kanthjs.github.io/9March19XX/posts/2021-11-19-AUDPC-in-Real-Data/index.html</loc>
-    <lastmod>2023-11-21T00:40:02.351Z</lastmod>
+    <lastmod>2023-11-21T13:00:53.474Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kanthjs.github.io/9March19XX/posts/2021-11-22-Linear-Regression-in-plant-disease/index.html</loc>
+    <lastmod>2023-11-21T13:00:50.784Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kanthjs.github.io/9March19XX/posts/2021-11-11-plant-disease-over-times/index.html</loc>
+    <lastmod>2023-11-21T13:00:48.948Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kanthjs.github.io/9March19XX/posts/2021-12-01-Github-RStudio-R/index.html</loc>
+    <lastmod>2023-11-21T13:00:47.965Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kanthjs.github.io/9March19XX/posts/2021-12-07-Package-Access-Web-Service/index.html</loc>
+    <lastmod>2023-11-21T13:00:00.805Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kanthjs.github.io/9March19XX/posts/2021-11-30-Correlaion-matrix/index.html</loc>
+    <lastmod>2023-11-21T13:00:00.150Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kanthjs.github.io/9March19XX/posts/2021-11-26-Disease-Curve-Model/index.html</loc>
+    <lastmod>2023-11-21T13:00:02.301Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kanthjs.github.io/9March19XX/posts/2021-12-03-Harvest-Data-from-Web-Sources/index.html</loc>
+    <lastmod>2023-11-21T13:00:47.411Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kanthjs.github.io/9March19XX/posts/2021-19-11-Quarto-website/index.html</loc>
+    <lastmod>2023-11-21T13:00:48.388Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kanthjs.github.io/9March19XX/posts/2021-10-01-Homogeneity-test-in-R/index.html</loc>
+    <lastmod>2023-11-21T13:00:49.923Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kanthjs.github.io/9March19XX/posts/2021-11-28-Model-fitting-plant-disease/index.html</loc>
+    <lastmod>2023-11-21T13:00:52.331Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kanthjs.github.io/9March19XX/posts/2021-11-15-Area-under-disease-progress-curve/index.html</loc>
+    <lastmod>2023-11-21T13:00:55.095Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kanthjs.github.io/9March19XX/ilts/2022-11-19-fix-your-fatigue/index.html</loc>
+    <lastmod>2023-11-21T13:00:56.414Z</lastmod>
   </url>
   <url>
     <loc>https://kanthjs.github.io/9March19XX/tsl-book.html</loc>
-    <lastmod>2023-11-21T00:40:05.502Z</lastmod>
+    <lastmod>2023-11-21T13:00:57.243Z</lastmod>
   </url>
   <url>
     <loc>https://kanthjs.github.io/9March19XX/create-quarto-website/sections/1-what-is-quarto.html</loc>
-    <lastmod>2023-11-21T00:40:06.489Z</lastmod>
+    <lastmod>2023-11-21T13:00:58.311Z</lastmod>
   </url>
   <url>
     <loc>https://kanthjs.github.io/9March19XX/create-quarto-website/index.html</loc>
-    <lastmod>2023-11-21T00:40:07.949Z</lastmod>
+    <lastmod>2023-11-21T13:00:59.480Z</lastmod>
   </url>
   <url>
     <loc>https://kanthjs.github.io/9March19XX/resources.html</loc>
-    <lastmod>2023-11-21T02:57:28.042Z</lastmod>
+    <lastmod>2023-11-21T13:01:01.033Z</lastmod>
   </url>
 </urlset>
