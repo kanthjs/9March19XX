@@ -1,0 +1,94 @@
+---
+title: "อ่านไฟล์ในอาร์ด้วย readr package"
+date: "2022-19-11"
+categories: [R]
+draft: false
+toc: true 
+---
+
+# บทนำ
+
+readr package สำหรับผมแล้วถือว่าเป็น package เริ่นต้นที่จะใช้เพื่ออ่านไฟล์ ซึ่ง ที่จริงแล้ว base ในอาร์ ก็มีฟังชัน เช่น `read.csv()` `read.tab()` อ่านไฟล์ *.csv หรือ* .tab อยู่แล้ว แล้ว มันดีอย่างไร กลุ่มผู้พัฒนา พัฒนาแพคเกจนี้มาเพื่อ ให้อาร์อ่านไฟล์ได้อย่างรวดเร็วและเหมาะสมกับข้อมูลภาคตัดขวาง rectangular data เช่น csv tsv และ fwf ที่ออกแบบมาเพื่อแยกวิเคราะห์ข้อมูลหลายประเภท ถ้ารู้ว่ากำลังทำงานกัับไฟล์ที่มีข้อมูลจำนวนนาน หรือขนาดใหญ่ แพคเกจนี้
+
+
+Compared to the corresponding base functions, readr functions:
+
+- Use a consistent naming scheme for the parameters (e.g. col_names and col_types not header and colClasses).
+
+- Are generally much faster (up to 10x-100x) depending on the dataset.
+
+- Leave strings as is by default, and automatically parse common date/time formats.
+
+- Have a helpful progress bar if loading is going to take a while.
+
+- All functions work exactly the same way regardless of the current locale. To override the US-centric defaults, use locale().
+
+# readr 101
+```{r title = open readr package}
+library(readr)
+```
+
+```{r}
+blight_yield <- read_csv(file = "bud-blight-soybean.csv")
+```
+Rows: 64 Columns: 4── Column specification ───────────────────────────────
+Delimiter: ","
+chr (1): treat
+dbl (3): time, block, y
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+
+note that readr prints the column types – the guessed column types, in this case. This is useful because it allows you to check that the columns have been read in as you expect. If they haven’t, that means you need to provide the column specification. This sounds like a lot of trouble, but luckily readr affords a nice workflow for this. Use spec() to retrieve the (guessed) column specification from your initial effort.
+
+## define column
+
+
+```{r}
+spec(blight_yield)
+```
+
+- The available specifications are: (with string abbreviations in brackets)
+
+- col_logical() [l], containing only T, F, TRUE or FALSE.
+
+- col_integer() [i], integers.
+
+- col_double() [d], doubles.
+
+- col_character() [c], everything else.
+
+- col_factor(levels, ordered) [f], a fixed set of values.
+
+- col_date(format = "") [D]: with the locale's date_format.
+
+- col_time(format = "") [t]: with the locale's time_format.
+
+- col_datetime(format = "") [T]: ISO8601 date times
+
+- col_number() [n], numbers containing the grouping_mark
+
+- col_skip() [_, -], don't import this column.
+
+- col_guess() [?], parse using the "best" type based on the input.
+
+```{r}
+bight_yield <- read_csv(
+  file = "bud-blight-soybean.csv",
+  col_types = cols(
+    treat   = col_factor(levels = c("PD1", "PD2", "PD3", "PD4")),
+    time  = col_factor(levels = c("30", "40", "50", "60")),
+    block = col_factor(levels = c("1", "2", "3", "4")),
+    y     = col_double()
+  )
+)
+```
+
+
+# too lazy to read from data data, you want copy and do so.
+
+```{r}
+#clipboard()
+```
+
+## ouptput is tibble
+
