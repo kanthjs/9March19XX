@@ -4,91 +4,108 @@ date: "2022-19-11"
 categories: [R]
 draft: false
 toc: true 
+execute: 
+  eval: true
+  echo: true
+  warning: true
+  message: true
 ---
 
 # บทนำ
 
-readr package สำหรับผมแล้วถือว่าเป็น package เริ่นต้นที่จะใช้เพื่ออ่านไฟล์ ซึ่ง ที่จริงแล้ว base ในอาร์ ก็มีฟังชัน เช่น `read.csv()` `read.tab()` อ่านไฟล์ *.csv หรือ* .tab อยู่แล้ว แล้ว มันดีอย่างไร กลุ่มผู้พัฒนา พัฒนาแพคเกจนี้มาเพื่อ ให้อาร์อ่านไฟล์ได้อย่างรวดเร็วและเหมาะสมกับข้อมูลภาคตัดขวาง rectangular data เช่น csv tsv และ fwf ที่ออกแบบมาเพื่อแยกวิเคราะห์ข้อมูลหลายประเภท ถ้ารู้ว่ากำลังทำงานกัับไฟล์ที่มีข้อมูลจำนวนนาน หรือขนาดใหญ่ แพคเกจนี้
+แพ็คเกจ readr สำหรับผมแล้วถือว่าเป็นแพ็คเกจเริ่นต้นที่จะใช้เพื่ออ่านไฟล์ ซึ่ง ที่จริงแล้ว base ในอาร์ ก็มีฟังชัน เช่น `read.csv()` `read.tab()` อ่านไฟล์ *.csv หรือ* .tab อยู่แล้ว แล้ว มันดีอย่างไร กลุ่มผู้พัฒนา พัฒนาแพคเกจนี้มาเพื่อ ให้อาร์อ่านไฟล์ได้อย่างรวดเร็วและเหมาะสมกับข้อมูลภาคตัดขวาง rectangular data เช่น csv tsv และ fwf ที่ออกแบบมาเพื่อแยกวิเคราะห์ข้อมูลหลายประเภท ถ้ารู้ว่ากำลังทำงานกัับไฟล์ที่มีข้อมูลจำนวนนาน หรือขนาดใหญ่ แพคเกจนี้
 
+แพ็คเกจ readr ได้รับการพัฒนาเมื่อเร็ว ๆ นี้โดย Hadley Wickham เพื่อจัดการกับการอ่านในไฟล์แบนขนาดใหญ่ได้อย่างรวดเร็ว แพ็คเกจนี้มีการแทนที่ฟังก์ชันต่างๆ เช่น `read.table()` และ `read.csv()` ฟังก์ชันใน readr คือ `read_table()` และ `read_csv()` ฟังก์ชันเหล่านี้มักจะเร็วกว่า base R พื้นฐานมากและมีคุณสมบัติที่ดีอื่น ๆ อีก
 
-Compared to the corresponding base functions, readr functions:
+โดยจะใช้ `read_table()` และ `read_csv()` แทน `read.table()` และ `read.csv()` ได้เลย แต่ ถ้าเมื่อพบอะไรแปลก ๆ ของข้อมูลในๆฟล์ที่ใช้งาน จะอ่านและ แจ้งเตือน ซึ่ง ดีต้องที่ สามารถแก้ไขได้ ก่อนเอาข้อมูลไปวิเคราะห์ต่อไป
 
-- Use a consistent naming scheme for the parameters (e.g. col_names and col_types not header and colClasses).
-
-- Are generally much faster (up to 10x-100x) depending on the dataset.
-
-- Leave strings as is by default, and automatically parse common date/time formats.
-
-- Have a helpful progress bar if loading is going to take a while.
-
-- All functions work exactly the same way regardless of the current locale. To override the US-centric defaults, use locale().
+ข้อดีของ `read_csv()` ที่ดีต่อใจกว่า `read.csv()` คืออ่านได้รวดกว่า แล้วก็ยังสามารถระบุ ชนิด ประเภทอของคอลัมน์ได้อย่างไม่เย้นเย้อ ได้เป็นไปได้ ก็อยากจะให้ใช้ `read_csv()` มากกว่าแบบเดิม
 
 # readr 101
-```{r title = open readr package}
+
+```{r title = "open readr package"}
 library(readr)
 ```
+
+ก่อนจะใช้ฟังก์ชัน จะต้องเปิดแพคเกจ `readr` หรือ ถ้าใครใช้ แพคเกจ `tidyverse` ก็ไม่ต้องแล้วเพราะมาชุดแล้ว
 
 ```{r}
 blight_yield <- read_csv(file = "bud-blight-soybean.csv")
 ```
-Rows: 64 Columns: 4── Column specification ───────────────────────────────
-Delimiter: ","
-chr (1): treat
-dbl (3): time, block, y
-ℹ Use `spec()` to retrieve the full column specification for this data.
-ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 
-note that readr prints the column types – the guessed column types, in this case. This is useful because it allows you to check that the columns have been read in as you expect. If they haven’t, that means you need to provide the column specification. This sounds like a lot of trouble, but luckily readr affords a nice workflow for this. Use spec() to retrieve the (guessed) column specification from your initial effort.
+::: callout-note
+`readr` แสดงประเภทคอลัมน์ที่คาดเดาว่าน่าจะเป็นอะไร ซึ่ง ค่าเริ่มต้นขณะที่เรายังไม่ระบุว่าคอลัมน์แต่ละอันเป็นประเภทอะไร ซึ่ง มีประโยชน์ ช่วยตรวจสอบว่าคอลัมน์ถูกอ่านตามคิดไว้หรือไม่ ถ้าไม่ต้องระบุ คราวๆ เราอาจจะดูก่อนว่า มันกดหนดไว้เป็นอย่างไรบ้าง โดยใช้ฟังก์ชัน `spec()` เพื่อดึงข้อมูลประเภท คอลัมน์ที่คาดการณ์ไว้ (เดา)
+:::
 
-## define column
-
+## ระบุ ชนิดของ column
 
 ```{r}
 spec(blight_yield)
 ```
 
-- The available specifications are: (with string abbreviations in brackets)
+ลองมาดูกันก่อนว่า จะมี argument อะไรบ้างที่ใช้ระบุคอลัม - The available specifications are: (with string abbreviations in brackets)
 
-- col_logical() [l], containing only T, F, TRUE or FALSE.
+-   `col_logical()` สำหรับคอลัมตัวแปรที่เก็บค่าเป็น T, F, TRUE or FALSE.
 
-- col_integer() [i], integers.
+-   `col_integer()` สำหรับคอลัมตัวแปรที่เก็บค่าเป็น integers.
 
-- col_double() [d], doubles.
+-   `col_double()` สำหรับคอลัมตัวแปรที่เก็บค่าเป็น doubles.
 
-- col_character() [c], everything else.
+-   `col_character()` สำหรับคอลัมตัวแปรที่เก็บค่าเป็น ตัวอักษร หรือ คำ
 
-- col_factor(levels, ordered) [f], a fixed set of values.
+-   `col_factor(levels, ordered)` สำหรับคอลัมตัวแปรที่เก็บค่าเป็น factor
 
-- col_date(format = "") [D]: with the locale's date_format.
+-   `col_date(format = "")` สำหรับคอลัมตัวแปรที่เก็บค่าเป็น date format.
 
-- col_time(format = "") [t]: with the locale's time_format.
+-   `col_time(format = "")` สำหรับคอลัมตัวแปรที่เก็บค่าเป็น time format.
 
-- col_datetime(format = "") [T]: ISO8601 date times
+-   `col_datetime(format = "")` \[T\]: ISO8601 date times
 
-- col_number() [n], numbers containing the grouping_mark
+-   `col_number()` สำหรับคอลัมตัวแปรที่เก็บค่าเป็นตัวเลข grouping_mark
 
-- col_skip() [_, -], don't import this column.
+-   `col_skip()` สำหรับข้าม(ไม่อ่าน)คอลัมตัวแปรนี้
 
-- col_guess() [?], parse using the "best" type based on the input.
+-   `col_guess()` กดหนดให้เดาประเภทของตัวแปร
 
-```{r}
-bight_yield <- read_csv(
-  file = "bud-blight-soybean.csv",
-  col_types = cols(
-    treat   = col_factor(levels = c("PD1", "PD2", "PD3", "PD4")),
-    time  = col_factor(levels = c("30", "40", "50", "60")),
-    block = col_factor(levels = c("1", "2", "3", "4")),
-    y     = col_double()
-  )
+ก็กอปปี้มา
+
+```         
+cols(
+treat = col_character(), 
+time = col_double(), 
+block = col_double(), 
+y = col_double() 
 )
 ```
 
-
-# too lazy to read from data data, you want copy and do so.
+มาใส่ต่อถ้าเลย แล้วก็แก้ ตามความต้องการ จึงได้มาเป็น
 
 ```{r}
-#clipboard()
+blight_yield <- read_csv(
+  file = "bud-blight-soybean.csv",
+  col_types = cols(
+              treat = col_factor(levels = c("PD1", "PD2", "PD3", "PD4")),
+              time  = col_factor(levels = c("30", "40", "50", "60")),
+              block = col_factor(levels = c("1", "2", "3", "4")),
+              y     = col_double()
+              )
+)
 ```
 
-## ouptput is tibble
+หรือ จะสั้น ๆ แบบนี้ก็ได้ แต่ก็ไม่ค่อยดีกับประเภทที่เป็น factor ซึ่ง จะจะเรียงลำดับค่า factor ไม่ตรงกับที่เราต้องการได้ ก็ได้ แล้ว จะต้องมาแก้ไข
 
+```{r}
+#| echo: true
+blight_yield <- read_csv(
+  file = "bud-blight-soybean.csv",
+  col_types = "fffd"
+  )
+```
+
+```{r}
+blight_yield |> dplyr::glimpse()
+```
+
+::: callout-note
+ไฟล์ที่อ่าน โดย `read_*` จาก แพคเกจ `readr` จะเป็นข้อมูลประเภท tibble 
+:::
