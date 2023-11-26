@@ -11,7 +11,7 @@
     "href": "posts.html",
     "title": "บล๊อก",
     "section": "",
-    "text": "อ่านไฟล์ในอาร์ด้วย readr package\n\n\n\n\n\n\n\n\n\n\n\nPackage for accessing Web Interface\n\n\n\n\n\n\n\n\n\n\n\nดึงข้อมูล xml จาก The Thai Astonomical society\n\n\n\n\n\n\n\n\n\n\n\nGithub, R and RStudio\n\n\n\n\n\n\n\n\n\n\n\nCorrelaion Matrix\n\n\n\n\n\n\n\n\n\n\n\nModel fitting for Plant Disease\n\n\n\n\n\n\n\n\n\n\n\nepifitter for Plant Disease Curve Model\n\n\n\n\n\n\n\n\n\n\n\nLinear Regression in plant disease\n\n\n\n\n\n\n\n\n\n\n\nAUDPC in Real Data\n\n\n\n\n\n\n\n\n\n\n\nArea Under Disease progress Curve\n\n\n\n\n\n\n\n\n\n\n\nPlant disease over time\n\n\n\n\n\n\n\n\n\n\n\nHomogeneity test in R\n\n\n\n\n\n\n\nNo matching items"
+    "text": "อ่านไฟล์ในอาร์ด้วย readr package\n\n\n\n\n\n\n\n \n\n\n\n\n  \n\n\n\n\nPackage for accessing Web Interface\n\n\n\n\n\n\n\n \n\n\n\n\n  \n\n\n\n\nดึงข้อมูล xml จาก The Thai Astonomical society\n\n\n\n\n\n\n\n \n\n\n\n\n  \n\n\n\n\nGithub, R and RStudio\n\n\n\n\n\n\n\n \n\n\n\n\n  \n\n\n\n\nCorrelaion Matrix\n\n\n\n\n\n\n\n \n\n\n\n\n  \n\n\n\n\nModel fitting for Plant Disease\n\n\n\n\n\n\n\n \n\n\n\n\n  \n\n\n\n\nepifitter for Plant Disease Curve Model\n\n\n\n\n\n\n\n \n\n\n\n\n  \n\n\n\n\nLinear Regression in plant disease\n\n\n\n\n\n\n\n \n\n\n\n\n  \n\n\n\n\nAUDPC in Real Data\n\n\n\n\n\n\n\n \n\n\n\n\n  \n\n\n\n\nArea Under Disease progress Curve\n\n\n\n\n\n\n\n \n\n\n\n\n  \n\n\n\n\nPlant disease over time\n\n\n\n\n\n\n\n \n\n\n\n\n  \n\n\n\n\nHomogeneity test in R\n\n\n\n\n\n\n\n \n\n\n\n\nNo matching items"
   },
   {
     "objectID": "create-quarto-website/sections/0-using-this-doc.html",
@@ -215,13 +215,6 @@
     "title": "Plant disease over time",
     "section": "พลวัติประชากรใส้เดือนไส้เดือนฝอย",
     "text": "พลวัติประชากรใส้เดือนไส้เดือนฝอย\nตอนนี้ จะแสดงแนวโน้มประชากรของใส้เดือนฝอยกับอุณหภูมิของดิน ในลักษณะ climatograph การทำใน R นั้น อาจจะมีความซับซ้อน นิดหน่อย อาจจะศึกษาเพิ่มจาก ref:line-chart-dual-Y-axis-ggplot2 ได้\nโดยทำขอให้ลองวาด โดยเฉพาะแกน ว่า scale เท่าไหร่ ที่จะสร้าง"
-  },
-  {
-    "objectID": "posts/2021-19-11-readr-package/index.html",
-    "href": "posts/2021-19-11-readr-package/index.html",
-    "title": "อ่านไฟล์ในอาร์ด้วย readr package",
-    "section": "",
-    "text": "แพ็คเกจ readr สำหรับผมแล้วถือว่าเป็นแพ็คเกจเริ่นต้นที่จะใช้เพื่ออ่านไฟล์ ซึ่ง ที่จริงแล้ว base ในอาร์ ก็มีฟังชัน เช่น read.csv() read.tab() อ่านไฟล์ .csv หรือ .tab อยู่แล้ว แล้ว มันดีอย่างไร กลุ่มผู้พัฒนา พัฒนาแพคเกจนี้มาเพื่อ ให้อาร์อ่านไฟล์ได้อย่างรวดเร็วและเหมาะสมกับข้อมูลภาคตัดขวาง rectangular data เช่น csv tsv และ fwf ที่ออกแบบมาเพื่อแยกวิเคราะห์ข้อมูลหลายประเภท ถ้ารู้ว่ากำลังทำงานกัับไฟล์ที่มีข้อมูลจำนวนนาน หรือขนาดใหญ่ แพคเกจนี้\nแพ็คเกจ readr ได้รับการพัฒนาเมื่อเร็ว ๆ นี้โดย Hadley Wickham เพื่อจัดการกับการอ่านในไฟล์แบนขนาดใหญ่ได้อย่างรวดเร็ว แพ็คเกจนี้มีการแทนที่ฟังก์ชันต่างๆ เช่น read.table() และ read.csv() ฟังก์ชันใน readr คือ read_table() และ read_csv() ฟังก์ชันเหล่านี้มักจะเร็วกว่า base R พื้นฐานมากและมีคุณสมบัติที่ดีอื่น ๆ อีก\nโดยจะใช้ read_table() และ read_csv() แทน read.table() และ read.csv() ได้เลย แต่ ถ้าเมื่อพบอะไรแปลก ๆ ของข้อมูลในๆฟล์ที่ใช้งาน จะอ่านและ แจ้งเตือน ซึ่ง ดีต้องที่ สามารถแก้ไขได้ ก่อนเอาข้อมูลไปวิเคราะห์ต่อไป\nข้อดีของ read_csv() ที่ดีต่อใจกว่า read.csv() คืออ่านได้รวดกว่า แล้วก็ยังสามารถระบุ ชนิด ประเภทอของคอลัมน์ได้อย่างไม่เย้นเย้อ ได้เป็นไปได้ ก็อยากจะให้ใช้ read_csv() มากกว่าแบบเดิม"
   },
   {
     "objectID": "posts/2021-19-11-readr-package/index.html#ระบ-ชนดของ-column",
