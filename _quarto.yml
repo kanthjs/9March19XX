@@ -19,14 +19,6 @@ website:
     right:
       - text: "บล๊อก"
         href: posts.qmd
-      - text: "R here"
-        href: resources.qmd
-      - text: "หนังสือ"
-        href: tsl-book.qmd       
-      - text: "ILTs"
-        href: ilts.qmd 
-      - text: "Quarto"
-        href: create-quarto-website/index.qmd
 
 format:
   html:
@@ -34,12 +26,12 @@ format:
       light: [flatly, scss/light.scss]
     css: scss/styles.css
     highlight-style: gruvbox
-    mainfont: "Krub"
+    mainfont: "K2D"
     monofont: "Fira Code"
     df-print: kable
     code-copy: true
     code-overflow: wrap
-    toc: true
+    toc: false
     toc_depth: 3
     toc_float: true
     toc_smooth_scroll: true
@@ -48,4 +40,3 @@ format:
 
 editor: visual
 freeze: auto
-

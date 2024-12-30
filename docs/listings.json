@@ -1,26 +1,15 @@
 [
   {
+    "listing": "/posts.html",
+    "items": [
+      "/posts/2022-12-08-DMRT/index.html"
+    ]
+  },
+  {
     "listing": "/ilts.html",
     "items": [
       "/ilts/2022-11-21-let-it-go/index.html",
       "/ilts/2022-11-19-fix-your-fatigue/index.html"
-    ]
-  },
-  {
-    "listing": "/posts.html",
-    "items": [
-      "/posts/2021-19-11-readr-package/index.html",
-      "/posts/2021-12-07-Package-Access-Web-Service/index.html",
-      "/posts/2021-12-03-Harvest-Data-from-Web-Sources/index.html",
-      "/posts/2021-12-01-Github-RStudio-R/index.html",
-      "/posts/2021-11-30-Correlaion-matrix/index.html",
-      "/posts/2021-11-28-Model-fitting-plant-disease/index.html",
-      "/posts/2021-11-26-Disease-Curve-Model/index.html",
-      "/posts/2021-11-22-Linear-Regression-in-plant-disease/index.html",
-      "/posts/2021-11-19-AUDPC-in-Real-Data/index.html",
-      "/posts/2021-11-15-Area-under-disease-progress-curve/index.html",
-      "/posts/2021-11-11-plant-disease-over-times/index.html",
-      "/posts/2021-10-01-Homogeneity-test-in-R/index.html"
     ]
   }
 ]

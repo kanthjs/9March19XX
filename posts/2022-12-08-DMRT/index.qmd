@@ -1,0 +1,143 @@
+---
+title: "ใช้ DMRT อย่างถูกต้อง"
+date: '2022-12-08'
+categories: [R]
+---
+
+# Duncan (DMRT): เมื่อไหร่ควรใช้ เมื่อไหร่ไม่ควรใช้?
+
+Duncan's Multiple Range Test: DMRT เป็นวิธีการทางสถิติที่ใช้เปรียบเทียบค่าเฉลี่ยของกลุ่มต่างๆ แบบคู่ต่อคู่ โดยมีวัตถุประสงค์เพื่อระบุว่าคู่ใดมีความแตกต่างกันอย่างมีนัยสำคัญ DMRT เป็นที่นิยมใช้ในงานวิจัยด้านเกษตรศาสตร์ พืชสวน และสาขาอื่นๆ เนื่องจากใช้งานง่ายและตีความผลได้ไม่ยาก อย่างไรก็ตาม การใช้ DMRT อย่างไม่ถูกต้องอาจนำไปสู่ข้อสรุปที่ผิดพลาดได้ บทความนี้จึงมีวัตถุประสงค์เพื่ออธิบายหลักการของ DMRT และให้คำแนะนำเกี่ยวกับการใช้ DMRT อย่างเหมาะสม พร้อมตัวอย่างการใช้งานใน R language
+
+## **DMRT ใช้งานอย่างไร?**
+
+DMRT จะคำนวณค่า Least Significant Range (LSR) สำหรับแต่ละคู่ของค่าเฉลี่ย โดย LSR จะขึ้นอยู่กับจำนวนกลุ่มตัวอย่าง ระดับความเชื่อมั่น และค่า Mean Square Error จากการวิเคราะห์ความแปรปรวน (ANOVA) หากผลต่างระหว่างค่าเฉลี่ยของสองกลุ่มมีค่ามากกว่า LSR ก็จะสรุปว่ามีความแตกต่างกันอย่างมีนัยสำคัญ
+
+## **เมื่อไหร่ควรใช้ DMRT?**
+
+DMRT เหมาะสมที่จะใช้ในสถานการณ์ต่อไปนี้
+
+-   **เมื่อเปรียบเทียบค่าเฉลี่ยของกลุ่มที่เป็นอิสระต่อกัน** เช่น การเปรียบเทียบผลผลิตของข้าว 3 สายพันธุ์
+
+ตัวอย่างโค้ด R: ข้อมูลโค้ด
+
+```{r echo=TRUE}
+#สร้างข้อมูลผลผลิตข้าว 3 สายพันธุ์
+yield <- c(10, 12, 11, 13, 14, 12, 15, 16, 14, 17, 18, 16)
+variety <- factor(rep(c("A", "B", "C"), each = 4))
+data <- data.frame(yield, variety)
+# ทำ ANOVA
+model <- aov(yield ~ variety, data = data)
+summary(model)
+
+# ทำ DMRT
+library(agricolae)
+duncan.test(model, "variety", console = TRUE)
+```
+
+## กราฟ
+
+```{r}
+library(ggplot2)
+ggplot(data, aes(x = variety, y = yield)) +
+  geom_boxplot() +
+  stat_summary(
+    fun = mean,
+    geom = "point",
+    shape = 20,
+    size = 5,
+    color = "red"
+  ) + annotate("text",
+               x = 1,
+               y = 15,
+               label = "a") + annotate("text",
+                                       x = 2,
+                                       y = 17,
+                                       label = "b") + annotate("text",
+                                                               x = 3,
+                                                               y = 16,
+                                                               label = "ab") +    labs(title = "DMRT for Comparing Yield of Rice Varieties", x = "Variety", y = "Yield")
+```
+
+-   **เมื่อตัวแปรที่ศึกษาเป็นตัวแปรเชิงคุณภาพ** เช่น การเปรียบเทียบความสูงของต้นไม้ที่ปลูกในดิน 3 ชนิด
+
+-   **เมื่อต้องการทดสอบความแตกต่างระหว่างคู่ของค่าเฉลี่ย**
+
+-   **เมื่อข้อมูลมีการกระจายแบบปกติและมีความแปรปรวนเท่ากัน**
+
+## **เมื่อไหร่ไม่ควรใช้ DMRT?**
+
+DMRT ไม่เหมาะสมที่จะใช้ในสถานการณ์ต่อไปนี้
+
+**การทดลองแบบแฟกทอเรียล** การทดลองแบบแฟกทอเรียล คือ การทดลองที่ศึกษาผลของปัจจัยตั้งแต่ 2 ปัจจัยขึ้นไปพร้อมกัน DMRT ไม่สามารถวิเคราะห์ Interaction effect หรือผลร่วมกันของปัจจัยได้ ควรใช้วิธีการวิเคราะห์ความแปรปรวน (ANOVA) ร่วมกับการทดสอบอื่นๆ ที่เหมาะสม เช่น Tukey's HSD
+
+*ตัวอย่างโค้ด R:*
+
+ข้อมูลโค้ด
+
+```{r echo=TRUE}
+# สร้างข้อมูลผลผลิตข้าวจากการทดลองแบบแฟกทอเรียล (ปุ๋ย 2 ชนิด, ระดับน้ำ 2 ระดับ) 
+yield <- c(10, 12, 14, 16, 12, 14, 16, 18) 
+fertilizer <- factor(rep(c("A", "B"), each = 4)) 
+water <- factor(rep(c("Low", "High"), times = 2)) 
+data <- data.frame(yield, fertilizer, water)  
+# ทำ Two-Way ANOVA 
+model <- aov(yield ~ fertilizer * water, data = data) 
+summary(model)  
+# หากพบ Interaction effect  ควรใช้ Tukey's HSD   
+library(agricolae) 
+# หากพบ Interaction effect ควรใช้ TukeyHSD()
+TukeyHSD(model) 
+```
+
+# กราฟที่ 2
+
+```{r}
+with(
+  data,
+  interaction.plot(
+    fertilizer,
+    water,
+    yield,
+    main = "Interaction Plot for Fertilizer and Water",
+    xlab = "Fertilizer",
+    ylab = "Yield",
+    trace.label = "Water"
+  )
+)
+```
+
+### **ตัวแปรเชิงปริมาณ**
+
+ตัวแปรเชิงปริมาณ คือ ตัวแปรที่สามารถวัดค่าได้ เช่น ความสูง น้ำหนัก อุณหภูมิ DMRT ไม่เหมาะสมกับตัวแปรเชิงปริมาณ เพราะไม่ได้พิจารณาความสัมพันธ์ระหว่างระดับของตัวแปร ควรใช้วิธีการวิเคราะห์การถดถอย (Regression Analysis)
+
+*ตัวอย่างโค้ด R:* ข้อมูลโค้ด
+
+```{r echo=TRUE}
+# สร้างข้อมูลผลผลิตข้าวกับปริมาณปุ๋ย 
+yield <- c(10, 12, 15, 18, 20) 
+fertilizer <- c(10, 20, 30, 40, 50) 
+data <- data.frame(yield, fertilizer)  
+# ทำ Regression Analysis
+model <- lm(yield ~ fertilizer, data = data) 
+summary(model) 
+```
+
+```{r}
+ggplot(data, aes(x = fertilizer, y = yield)) +
+  geom_point() +
+  geom_smooth(aes(group = 1),
+              method = "lm",
+              se = FALSE,
+              position = "identity",
+              color = "blue") +
+  labs(title = "Regression Analysis for Yield and Fertilizer", 
+       x = "Fertilizer", y = "Yield")
+```
+
+### **จำนวนกลุ่มตัวอย่างมาก**
+
+หากมีจำนวนกลุ่มตัวอย่างมาก (โดยทั่วไปมากกว่า 6 กลุ่ม) DMRT อาจมีโอกาสเกิดความผิดพลาดแบบ Type I สูง ควรพิจารณาใช้ Tukey's HSD ซึ่งควบคุมอัตราความผิดพลาดแบบ Type I ได้ดีกว่า
+
+## **ข้อสรุป**
+
+DMRT เป็นวิธีการทดสอบที่มีประโยชน์ แต่ควรเลือกใช้ให้เหมาะสมกับลักษณะของข้อมูลและการทดลอง การใช้ DMRT อย่างไม่ถูกต้องอาจนำไปสู่ข้อสรุปที่ผิดพลาดได้ ดังนั้น ก่อนที่จะใช้ DMRT ควรพิจารณาข้อจำกัดของ DMRT และศึกษาทางเลือกอื่นๆ เช่น Tukey's HSD หรือ Regression Analysis เพื่อให้ได้ผลการวิเคราะห์ที่ถูกต้องและน่าเชื่อถือ
