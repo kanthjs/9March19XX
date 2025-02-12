@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Kanth JS">
+<meta name="dcterms.date" content="2022-12-09">
 
-<title>Kanthanawit Js – what-is-quarto</title>
+<title>Kanthanawit Js - Introduction to Bayesian Statistics in R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,40 +21,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -74,7 +42,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -105,6 +72,8 @@ gtag('js', new Date());
 gtag('config', 'G-WY647CK1PJ', { 'anonymize_ip': true});
 </script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="../../scss/styles.css">
 </head>
@@ -145,60 +114,135 @@ gtag('config', 'G-WY647CK1PJ', { 'anonymize_ip': true});
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">สารบัญ</h2>
+   
+  <ul>
+  <li><a href="#บทนำ" id="toc-บทนำ" class="nav-link active" data-scroll-target="#บทนำ">บทนำ</a></li>
+  <li><a href="#เปรยบเทยบ-bayesian-กบ-frequentist" id="toc-เปรยบเทยบ-bayesian-กบ-frequentist" class="nav-link" data-scroll-target="#เปรยบเทยบ-bayesian-กบ-frequentist">เปรียบเทียบ Bayesian กับ Frequentist</a></li>
+  <li><a href="#ทฤษฎบทของเบย-bayes-theorem" id="toc-ทฤษฎบทของเบย-bayes-theorem" class="nav-link" data-scroll-target="#ทฤษฎบทของเบย-bayes-theorem">ทฤษฎีบทของเบย์ (Bayes’ Theorem)</a></li>
+  <li><a href="#ตวอยางการคำนวณ-bayes-theorem-ใน-r" id="toc-ตวอยางการคำนวณ-bayes-theorem-ใน-r" class="nav-link" data-scroll-target="#ตวอยางการคำนวณ-bayes-theorem-ใน-r">ตัวอย่างการคำนวณ Bayes’ Theorem ใน R</a></li>
+  <li><a href="#บทสรป" id="toc-บทสรป" class="nav-link" data-scroll-target="#บทสรป">บทสรุป</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content page-columns page-full" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Introduction to Bayesian Statistics in R</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">R</div>
+  </div>
+  </div>
 
 
 
-<section id="fa-circle-question-titlequestion-mark-what-is-quarto" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="fa-circle-question-titlequestion-mark-what-is-quarto"><i class="fa-solid fa-circle-question"></i> What is Quarto?</h2>
-<p><img src="https://quarto.org/quarto.png" class="img-fluid"></p>
-<p><a href="https://quarto.org/">Quarto</a> คือ publishing system สร้างบน Pandoc ที่ผู้ใช้สามารถสร้างเอกสาร โดยใช้ภาษา R Python Julia และ ObservableJS (และในอนาคต อาจจะรวงรับมากกว่านี้)</p>
-<p><img src="../..\create-quarto-website/media/quarto_schematic.png" class="img-fluid"></p>
+<div class="quarto-title-meta">
 
-<div class="no-row-height column-margin column-container"><div class="">
-<p><i class="fa-solid fa-palette"></i> Art by <a href="https://twitter.com/allison_horst">Allison Horst</a>. Be sure to check out the rest of Allison’s seriously cute Quarto penguin art in the #rstudioconf2022 keynote talk, <a href="https://mine.quarto.pub/hello-quarto/#/hello-quarto-title">Hello Quarto</a>, by <a href="https://twitter.com/juliesquid">Julie Lowndes</a> &amp; <a href="https://twitter.com/minebocek">Mine Çetinkaya-Rundel</a>!</p>
-</div></div><p>สำหรับผู้ใช้อาร์รู้จักกับ <a href="https://rmarkdown.rstudio.com/">RMarkdown</a> เพื่อรวบเนื้อหา(ตัวหนังสือ) code และ output และ รวมเรียกว่า “knitted” documents แต่ Quarto ทำได้เหมือน RMarkdown แต่ได้ได้มากกว่า อีกทั้ง ยังใช้ได้กับภาษาอื่น ๆ ได้</p>
-<p>สำหรับคนใช้หรือคุ้นเคยกับ RMarkdown แล้วจะพบว่าไฟล์ RMarkdown (<code>.rmd</code>) และ Quarto Markdown (<code>.qmd</code>) มีส่วนคล้ายกัน:</p>
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Kanth JS </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">December 9, 2022</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="บทนำ" class="level1">
+<h1>บทนำ</h1>
+<p>Bayesian Statistics เป็นแนวทางทางสถิติที่ได้รับความนิยมมากขึ้นในปัจจุบัน โดยใช้แนวคิดของ <strong>ทฤษฎีบทของเบย์ (Bayes’ Theorem)</strong> เป็นแกนหลัก</p>
+<p>ลองนึกภาพง่ายๆ เช่น การทำนายว่าพรุ่งนี้ฝนจะตกหรือไม่:</p>
 <ul>
-<li><p>metadata และ configurations จะอยู่ในไฟล์ YAML (ตาม <code>---</code> ที่อยู่บนบนของเอกสาร)</p></li>
-<li><p>โค้ด จะเขียนอยู่ในส่วนที่เรียกว่า code chunks</p>
-<p>สำหรับ อาร์แล้ว จะอยู่ใน</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">+</span><span class="dv">1</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p>ตัวอักษร ที่เป็นส่วนของเนื้อหา นั้น เขียนอยู่ในส่วนของ body</p></li>
+<li><p>นักสถิติแบบดั้งเดิม (Frequentist) จะดูว่าในอดีต วันที่มีสภาพอากาศแบบนี้ฝนตกกี่ครั้งจากร้อยครั้ง แต่</p></li>
+<li><p>นักสถิติแบบ Bayesian จะเริ่มจากความเชื่อเดิม (เช่น เป็นหน้าฝน น่าจะตก 70%) แล้วปรับความเชื่อตามข้อมูลใหม่ที่ได้ (เช่น เมฆครึ้ม ความกดอากาศต่ำ)</p></li>
 </ul>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<p>ในบทความนี้ เราจะมาทำความเข้าใจพื้นฐานของสถิติแบบเบย์ เปรียบเทียบกับ Frequentist และดูตัวอย่างง่ายๆ ใน R เพื่อให้เห็นภาพที่ชัดเจนขึ้น</p>
+</section>
+<section id="เปรยบเทยบ-bayesian-กบ-frequentist" class="level1">
+<h1>เปรียบเทียบ Bayesian กับ Frequentist</h1>
+<table class="table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>ประเด็น</th>
+<th>Frequentist</th>
+<th>Bayesian</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>แนวคิดเกี่ยวกับความน่าจะเป็น</td>
+<td><strong>“มองจากความถี่ที่เกิดขึ้น”</strong> เช่น ถ้าปลูกข้าว 100 แปลง พบโรคไหม้ 30 แปลง = โอกาสเป็นโรค 30%</td>
+<td><strong>“มองจากความเชื่อที่ปรับได้”</strong> เช่น เริ่มจากพื้นที่นี้เคยพบโรค 30% + ปีนี้ฝนชุก = อาจปรับความเชื่อเป็น 45%</td>
+</tr>
+<tr class="even">
+<td>การอนุมานพารามิเตอร์</td>
+<td><strong>“หาค่าที่เป็นไปได้มากที่สุด”</strong> เช่น จากข้อมูลการทดลองพบว่า ยาฆ่าเชื้อมีประสิทธิภาพ 75%</td>
+<td><strong>“รวมความรู้เดิมกับข้อมูลใหม่”</strong> เช่น จากประสบการณ์เดิม 70% + ผลทดลองใหม่ 75% = ปรับเป็น 73%</td>
+</tr>
+<tr class="odd">
+<td>การตีความค่า p-value</td>
+<td><strong>“ถ้าสมมติว่ายาไม่ได้ผล โอกาสที่จะเห็นผลการทดลองแบบนี้มีแค่ 5%”</strong></td>
+<td><strong>“จากข้อมูลที่มี โอกาสที่ยาจะได้ผลคือ 95%”</strong></td>
+</tr>
+<tr class="even">
+<td>ความยืดหยุ่น</td>
+<td>จำกัดด้วยข้อมูลที่มีอยู่เท่านั้น</td>
+<td>สามารถนำความรู้และประสบการณ์เดิมมาใช้ประกอบการวิเคราะห์</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="ทฤษฎบทของเบย-bayes-theorem" class="level1">
+<h1>ทฤษฎีบทของเบย์ (Bayes’ Theorem)</h1>
+<p>สมการพื้นฐานของ Bayes’ Theorem คือ:</p>
+<p><span class="math inline">\(P(θ|D) = \frac{P(D|θ)P(θ)}{P(D)}\)</span></p>
+<p>ลองยกตัวอย่างในการวินิจฉัยโรคใบไหม้ในนาข้าว:</p>
+<ul>
+<li><strong>Prior (P(θ))</strong>: จากประสบการณ์ในพื้นที่นี้ พบโรคใบไหม้ 30% ของแปลงทั้งหมด</li>
+<li><strong>Likelihood (P(D|θ))</strong>: การตรวจด้วยชุดตรวจโรคให้ผลบวก 90% ในแปลงที่เป็นโรคจริง</li>
+<li><strong>Evidence (P(D))</strong>: โอกาสที่จะพบผลบวกในทุกกรณี</li>
+<li><strong>Posterior (</strong>P(θ|D)<strong>)</strong>: ความเชื่อใหม่ว่าแปลงนี้เป็นโรคหลังจากพบผลตรวจเป็นบวก</li>
+</ul>
+</section>
+<section id="ตวอยางการคำนวณ-bayes-theorem-ใน-r" class="level1">
+<h1>ตัวอย่างการคำนวณ Bayes’ Theorem ใน R</h1>
+<p>ลองมาคำนวณโอกาสที่แปลงข้าวจะเป็นโรคใบไหม้เมื่อผลตรวจเป็นบวก:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "โอกาสที่แปลงนี้จะเป็นโรคเมื่อผลตรวจเป็นบวก: 72 %"</code></pre>
 </div>
-<div class="callout-title-container flex-fill">
-A side-by-side comparison of <code>.rmd</code> vs.&nbsp;<code>.qmd</code> files
 </div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>They also look pretty similar when knitted/rendered. Below is a side-by-side comparison of a knitted <code>.rmd</code> file and a rendered <code>.qmd</code> file (both as <code>.html</code> files):</p>
-</div>
-</div>
-</div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../..\create-quarto-website/media/rmd-vs-qmd.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-<p>สำหรับ <code>.rmd</code> files <strong>Knit</strong> ส่วน <code>.qmd</code> files <strong>Render</strong> เพื่อแปลงไปเป็นเอกสารที่กำหนดไว้ หรือ output เป็นไฟล์ <code>.html</code> เป็นต้น</p>
-<p><img src="../..\create-quarto-website/media/rmd-vs-qmd-output.png" class="img-fluid"></p>
-<p>อ่านเพิ่มเติมได้ <a href="https://quarto.org/docs/guide/">Quarto’s documentation</a> เพื่อสร้าง document websites blogs books slides และอื่น ๆ</p>
+</section>
+<section id="บทสรป" class="level1">
+<h1>บทสรุป</h1>
+<p>การใช้ Bayesian Statistics ในงานวิจัยโรคพืชมีประโยชน์หลายด้าน:</p>
+<p>1. สามารถนำความรู้และประสบการณ์เดิมมาใช้ในการวิเคราะห์</p>
+<p>2. ให้ผลลัพธ์ที่เข้าใจง่ายในรูปของความน่าจะเป็น</p>
+<p>3. สามารถปรับปรุงการประเมินได้เมื่อมีข้อมูลใหม่</p>
+<p>4. เหมาะสำหรับการประเมินความเสี่ยงและการพยากรณ์การระบาด</p>
 
 
 </section>
 
-</main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div id="quarto-reuse" class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

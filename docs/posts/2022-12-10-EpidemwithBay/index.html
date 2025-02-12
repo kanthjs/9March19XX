@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.433">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Kanth JS">
+<meta name="dcterms.date" content="2022-12-09">
+
+<title>Kanthanawit Js - Implementing Bayesian Models in R for Plant Disease Epidemiology with R</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../images/pi.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-WY647CK1PJ"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-WY647CK1PJ', { 'anonymize_ip': true});
+</script>
+
+
+<link rel="stylesheet" href="../../scss/styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../images/pi.png" alt="It's Pi" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">อาร์ ไร ไม่ รู้</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../posts.html" rel="" target="">
+ <span class="menu-text">บล๊อก</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">สารบัญ</h2>
+   
+  <ul>
+  <li><a href="#บทนำ" id="toc-บทนำ" class="nav-link active" data-scroll-target="#บทนำ">1. บทนำ</a></li>
+  <li><a href="#การเตรยมความพรอม" id="toc-การเตรยมความพรอม" class="nav-link" data-scroll-target="#การเตรยมความพรอม">2. การเตรียมความพร้อม</a>
+  <ul class="collapse">
+  <li><a href="#การตดตงและโหลดแพกเกจ" id="toc-การตดตงและโหลดแพกเกจ" class="nav-link" data-scroll-target="#การตดตงและโหลดแพกเกจ">2.1 การติดตั้งและโหลดแพ็กเกจ</a></li>
+  <li><a href="#การเตรยมขอมล" id="toc-การเตรยมขอมล" class="nav-link" data-scroll-target="#การเตรยมขอมล">2.2 การเตรียมข้อมูล</a></li>
+  </ul></li>
+  <li><a href="#การสรางโมเดล-bayesian" id="toc-การสรางโมเดล-bayesian" class="nav-link" data-scroll-target="#การสรางโมเดล-bayesian">3. การสร้างโมเดล Bayesian</a>
+  <ul class="collapse">
+  <li><a href="#การกำหนด-prior" id="toc-การกำหนด-prior" class="nav-link" data-scroll-target="#การกำหนด-prior">3.1 การกำหนด Prior</a></li>
+  <li><a href="#การตรวจสอบ-model-convergence" id="toc-การตรวจสอบ-model-convergence" class="nav-link" data-scroll-target="#การตรวจสอบ-model-convergence">3.2 การตรวจสอบ Model Convergence</a></li>
+  </ul></li>
+  <li><a href="#การวเคราะหผลลพธ" id="toc-การวเคราะหผลลพธ" class="nav-link" data-scroll-target="#การวเคราะหผลลพธ">4. การวิเคราะห์ผลลัพธ์</a>
+  <ul class="collapse">
+  <li><a href="#การแปลผลโมเดล" id="toc-การแปลผลโมเดล" class="nav-link" data-scroll-target="#การแปลผลโมเดล">4.1 การแปลผลโมเดล</a></li>
+  <li><a href="#การเปรยบเทยบโมเดล" id="toc-การเปรยบเทยบโมเดล" class="nav-link" data-scroll-target="#การเปรยบเทยบโมเดล">4.2 การเปรียบเทียบโมเดล</a></li>
+  </ul></li>
+  <li><a href="#การประยกตใชในงานระบาดวทยาโรคพช" id="toc-การประยกตใชในงานระบาดวทยาโรคพช" class="nav-link" data-scroll-target="#การประยกตใชในงานระบาดวทยาโรคพช">5. การประยุกต์ใช้ในงานระบาดวิทยาโรคพืช</a>
+  <ul class="collapse">
+  <li><a href="#การประเมนความเสยงการระบาด" id="toc-การประเมนความเสยงการระบาด" class="nav-link" data-scroll-target="#การประเมนความเสยงการระบาด">5.1 การประเมินความเสี่ยงการระบาด</a></li>
+  <li><a href="#การพยากรณการแพรระบาด" id="toc-การพยากรณการแพรระบาด" class="nav-link" data-scroll-target="#การพยากรณการแพรระบาด">5.2 การพยากรณ์การแพร่ระบาด</a></li>
+  </ul></li>
+  <li><a href="#ขอควรระวงและขอเสนอแนะ" id="toc-ขอควรระวงและขอเสนอแนะ" class="nav-link" data-scroll-target="#ขอควรระวงและขอเสนอแนะ">6. ข้อควรระวังและข้อเสนอแนะ</a></li>
+  <li><a href="#สรป" id="toc-สรป" class="nav-link" data-scroll-target="#สรป">7. สรุป</a></li>
+  <li><a href="#เอกสารอางอง" id="toc-เอกสารอางอง" class="nav-link" data-scroll-target="#เอกสารอางอง">เอกสารอ้างอิง</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Implementing Bayesian Models in R for Plant Disease Epidemiology with R</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">R</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Kanth JS </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">December 9, 2022</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="บทนำ" class="level2">
+<h2 class="anchored" data-anchor-id="บทนำ">1. บทนำ</h2>
+<p>การวิเคราะห์ข้อมูลทางระบาดวิทยาโรคพืชในปัจจุบันต้องเผชิญกับความท้าทายหลายประการ ทั้งความไม่แน่นอนของการระบาด ความซับซ้อนของปัจจัยที่เกี่ยวข้อง และข้อจำกัดของขนาดตัวอย่าง การวิเคราะห์แบบ Bayesian จึงเป็นทางเลือกที่น่าสนใจ เนื่องจากมีข้อได้เปรียบหลายประการเมื่อเทียบกับวิธี Frequentist ดั้งเดิม:</p>
+<ol type="1">
+<li>สามารถผสมผสานความรู้เดิม (Prior Knowledge) จากผู้เชี่ยวชาญหรือการศึกษาก่อนหน้าเข้ากับข้อมูลปัจจุบัน</li>
+<li>ให้การประมาณค่าความไม่แน่นอนที่สมจริงมากกว่า ผ่าน Credible Intervals</li>
+<li>รองรับการวิเคราะห์ข้อมูลที่มีขนาดตัวอย่างน้อยได้ดี</li>
+<li>เหมาะสำหรับการสร้างแบบจำลองที่ซับซ้อนและมีลำดับชั้น</li>
+</ol>
+<p>ใน R มีแพ็กเกจที่ช่วยให้การวิเคราะห์แบบ Bayesian ทำได้สะดวกขึ้น โดยเฉพาะ {brms} และ {rstanarm} ซึ่งช่วยลดความซับซ้อนในการเขียนโค้ด Stan</p>
+</section>
+<section id="การเตรยมความพรอม" class="level2">
+<h2 class="anchored" data-anchor-id="การเตรยมความพรอม">2. การเตรียมความพร้อม</h2>
+<section id="การตดตงและโหลดแพกเกจ" class="level3">
+<h3 class="anchored" data-anchor-id="การตดตงและโหลดแพกเกจ">2.1 การติดตั้งและโหลดแพ็กเกจ</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ติดตั้งแพ็กเกจที่จำเป็น</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(c("brms", "rstanarm", "tidyverse", "bayesplot"))</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># โหลดแพ็กเกจ</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(brms)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rstanarm)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bayesplot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="การเตรยมขอมล" class="level3">
+<h3 class="anchored" data-anchor-id="การเตรยมขอมล">2.2 การเตรียมข้อมูล</h3>
+<p>การเตรียมข้อมูลที่ดีเป็นพื้นฐานสำคัญของการวิเคราะห์ ควรทำตามขั้นตอนต่อไปนี้:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># สร้างข้อมูลจำลองสำหรับการระบาดของโรคไหม้ในข้าว</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>) <span class="co"># กำหนดเพื่อให้ผลลัพธ์คงที่</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># กำหนดจำนวนตัวอย่าง</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">200</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># สร้างตัวแปรสภาพแวดล้อม</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>temperature <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">28</span>, <span class="at">sd =</span> <span class="dv">3</span>)  <span class="co"># อุณหภูมิ (°C)</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>humidity <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">85</span>, <span class="at">sd =</span> <span class="dv">8</span>)     <span class="co"># ความชื้นสัมพัทธ์ (%)</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>rainfall <span class="ot">&lt;-</span> <span class="fu">rgamma</span>(n, <span class="at">shape =</span> <span class="dv">2</span>, <span class="at">scale =</span> <span class="dv">10</span>) <span class="co"># ปริมาณน้ำฝน (มม./วัน)</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>wind_speed <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">5</span>, <span class="at">sd =</span> <span class="dv">2</span>)    <span class="co"># ความเร็วลม (กม./ชม.)</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># สร้างตัวแปรการจัดการ</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>variety <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"สุพรรณบุรี 1"</span>, <span class="st">"ปทุมธานี 1"</span>, <span class="st">"กข49"</span>, <span class="st">"กข61"</span>), n, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>planting_density <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">25</span>, <span class="at">sd =</span> <span class="dv">3</span>) <span class="co"># ระยะปลูก (ซม.)</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>nitrogen_rate <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">100</span>, <span class="at">sd =</span> <span class="dv">20</span>)  <span class="co"># อัตราปุ๋ยไนโตรเจน (กก./ไร่)</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co"># สร้างความสัมพันธ์ที่ซับซ้อนสำหรับความรุนแรงของโรค</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co"># โดยคำนึงถึงปัจจัยหลักที่มีผลต่อการระบาด</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>logit_severity <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">2</span> <span class="sc">+</span> </span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>                  <span class="fl">0.3</span> <span class="sc">*</span> <span class="fu">scale</span>(temperature) <span class="sc">+</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>                  <span class="fl">0.4</span> <span class="sc">*</span> <span class="fu">scale</span>(humidity) <span class="sc">+</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>                  <span class="fl">0.2</span> <span class="sc">*</span> <span class="fu">scale</span>(rainfall) <span class="sc">+</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>                  <span class="fl">0.1</span> <span class="sc">*</span> <span class="fu">scale</span>(wind_speed) <span class="sc">+</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>                  <span class="fu">rnorm</span>(n, <span class="dv">0</span>, <span class="fl">0.5</span>)  <span class="co"># ความแปรปรวนที่ไม่สามารถอธิบายได้</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="co"># แปลงเป็นเปอร์เซ็นต์ความรุนแรงของโรค</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>disease_severity <span class="ot">&lt;-</span> <span class="fu">plogis</span>(logit_severity) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="co"># สร้าง data frame</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>rice_blast_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>  <span class="at">date =</span> <span class="fu">seq</span>(<span class="fu">as.Date</span>(<span class="st">"2024-01-01"</span>), <span class="at">by =</span> <span class="st">"day"</span>, <span class="at">length.out =</span> n),</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>  <span class="at">plot_id =</span> <span class="dv">1</span><span class="sc">:</span>n,</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>  <span class="at">temperature =</span> temperature,</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>  <span class="at">humidity =</span> humidity,</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>  <span class="at">rainfall =</span> rainfall,</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>  <span class="at">wind_speed =</span> wind_speed,</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>  <span class="at">variety =</span> variety,</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>  <span class="at">planting_density =</span> planting_density,</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>  <span class="at">nitrogen_rate =</span> nitrogen_rate,</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>  <span class="at">disease_severity =</span> disease_severity</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a><span class="co"># เพิ่ม missing values เพื่อให้เหมือนข้อมูลจริง</span></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">456</span>)</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>missing_indices <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span>n, <span class="at">size =</span> n <span class="sc">*</span> <span class="fl">0.1</span>)  <span class="co"># 10% missing values</span></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>rice_blast_data<span class="sc">$</span>disease_severity[missing_indices] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a><span class="co"># เพิ่มคอลัมน์สำหรับระยะการเจริญเติบโต</span></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>rice_blast_data<span class="sc">$</span>growth_stage <span class="ot">&lt;-</span> <span class="fu">cut</span>(</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.numeric</span>(rice_blast_data<span class="sc">$</span>date <span class="sc">-</span> <span class="fu">min</span>(rice_blast_data<span class="sc">$</span>date)),</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>  <span class="at">breaks =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="cn">Inf</span>, <span class="dv">30</span>, <span class="dv">60</span>, <span class="dv">90</span>, <span class="cn">Inf</span>),</span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>  <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Vegetative"</span>, <span class="st">"Tillering"</span>, <span class="st">"Booting"</span>, <span class="st">"Heading"</span>)</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a><span class="co"># แสดงตัวอย่างข้อมูล</span></span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(rice_blast_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="kable-table">
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 8%">
+<col style="width: 6%">
+<col style="width: 9%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 8%">
+<col style="width: 7%">
+<col style="width: 12%">
+<col style="width: 10%">
+<col style="width: 12%">
+<col style="width: 9%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">date</th>
+<th style="text-align: right;">plot_id</th>
+<th style="text-align: right;">temperature</th>
+<th style="text-align: right;">humidity</th>
+<th style="text-align: right;">rainfall</th>
+<th style="text-align: right;">wind_speed</th>
+<th style="text-align: left;">variety</th>
+<th style="text-align: right;">planting_density</th>
+<th style="text-align: right;">nitrogen_rate</th>
+<th style="text-align: right;">disease_severity</th>
+<th style="text-align: left;">growth_stage</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">2024-01-01</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">26.31857</td>
+<td style="text-align: right;">102.59048</td>
+<td style="text-align: right;">14.112653</td>
+<td style="text-align: right;">5.081870</td>
+<td style="text-align: left;">กข49</td>
+<td style="text-align: right;">26.97498</td>
+<td style="text-align: right;">116.69064</td>
+<td style="text-align: right;">29.502238</td>
+<td style="text-align: left;">Vegetative</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2024-01-02</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">27.30947</td>
+<td style="text-align: right;">95.49930</td>
+<td style="text-align: right;">1.500635</td>
+<td style="text-align: right;">5.573071</td>
+<td style="text-align: left;">สุพรรณบุรี 1</td>
+<td style="text-align: right;">22.19361</td>
+<td style="text-align: right;">86.14552</td>
+<td style="text-align: right;">12.415558</td>
+<td style="text-align: left;">Vegetative</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2024-01-03</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">32.67612</td>
+<td style="text-align: right;">82.87884</td>
+<td style="text-align: right;">14.648844</td>
+<td style="text-align: right;">4.991773</td>
+<td style="text-align: left;">ปทุมธานี 1</td>
+<td style="text-align: right;">27.14270</td>
+<td style="text-align: right;">68.56425</td>
+<td style="text-align: right;">19.836898</td>
+<td style="text-align: left;">Vegetative</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2024-01-04</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">28.21153</td>
+<td style="text-align: right;">89.34555</td>
+<td style="text-align: right;">20.777725</td>
+<td style="text-align: right;">6.373626</td>
+<td style="text-align: left;">กข49</td>
+<td style="text-align: right;">28.96207</td>
+<td style="text-align: right;">119.35015</td>
+<td style="text-align: right;">19.581910</td>
+<td style="text-align: left;">Vegetative</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2024-01-05</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">28.38786</td>
+<td style="text-align: right;">81.68528</td>
+<td style="text-align: right;">21.901982</td>
+<td style="text-align: right;">4.710641</td>
+<td style="text-align: left;">ปทุมธานี 1</td>
+<td style="text-align: right;">22.47249</td>
+<td style="text-align: right;">68.11050</td>
+<td style="text-align: right;">8.171854</td>
+<td style="text-align: left;">Vegetative</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2024-01-06</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">33.14520</td>
+<td style="text-align: right;">81.19002</td>
+<td style="text-align: right;">33.222297</td>
+<td style="text-align: right;">3.775844</td>
+<td style="text-align: left;">สุพรรณบุรี 1</td>
+<td style="text-align: right;">24.84162</td>
+<td style="text-align: right;">104.04905</td>
+<td style="text-align: right;">13.119328</td>
+<td style="text-align: left;">Vegetative</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># สรุปข้อมูลเบื้องต้น</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(rice_blast_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      date               plot_id        temperature       humidity     
+ Min.   :2024-01-01   Min.   :  1.00   Min.   :21.07   Min.   : 65.27  
+ 1st Qu.:2024-02-19   1st Qu.: 50.75   1st Qu.:26.12   1st Qu.: 80.27  
+ Median :2024-04-09   Median :100.50   Median :27.82   Median : 85.18  
+ Mean   :2024-04-09   Mean   :100.50   Mean   :27.97   Mean   : 85.34  
+ 3rd Qu.:2024-05-29   3rd Qu.:150.25   3rd Qu.:29.71   3rd Qu.: 90.72  
+ Max.   :2024-07-18   Max.   :200.00   Max.   :37.72   Max.   :105.57  
+                                                                       
+    rainfall        wind_speed        variety          planting_density
+ Min.   : 1.501   Min.   :-0.2077   Length:200         Min.   :17.27   
+ 1st Qu.:10.724   1st Qu.: 3.7564   Class :character   1st Qu.:22.76   
+ Median :17.027   Median : 4.9846   Mode  :character   Median :24.96   
+ Mean   :18.861   Mean   : 4.9995                      Mean   :24.96   
+ 3rd Qu.:25.526   3rd Qu.: 6.4826                      3rd Qu.:27.14   
+ Max.   :69.841   Max.   :11.6087                      Max.   :33.10   
+                                                                       
+ nitrogen_rate    disease_severity     growth_stage
+ Min.   : 52.97   Min.   : 2.305   Vegetative: 31  
+ 1st Qu.: 86.61   1st Qu.: 7.691   Tillering : 30  
+ Median : 99.07   Median :11.653   Booting   : 30  
+ Mean   :100.23   Mean   :13.994   Heading   :109  
+ 3rd Qu.:115.08   3rd Qu.:18.573                   
+ Max.   :153.33   Max.   :62.341                   
+                  NA's   :20                       </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ตรวจสอบความสัมพันธ์ระหว่างตัวแปร</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(rice_blast_data[, <span class="fu">c</span>(<span class="st">"temperature"</span>, <span class="st">"humidity"</span>, <span class="st">"rainfall"</span>, </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                        <span class="st">"wind_speed"</span>, <span class="st">"disease_severity"</span>)], </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">use =</span> <span class="st">"complete.obs"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                 temperature    humidity   rainfall  wind_speed
+temperature       1.00000000 -0.01555054 0.12355449  0.03511394
+humidity         -0.01555054  1.00000000 0.05300847 -0.01096358
+rainfall          0.12355449  0.05300847 1.00000000  0.04084439
+wind_speed        0.03511394 -0.01096358 0.04084439  1.00000000
+disease_severity  0.44343645  0.48504365 0.35534763  0.21109177
+                 disease_severity
+temperature             0.4434365
+humidity                0.4850437
+rainfall                0.3553476
+wind_speed              0.2110918
+disease_severity        1.0000000</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-3-2.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="การสรางโมเดล-bayesian" class="level2">
+<h2 class="anchored" data-anchor-id="การสรางโมเดล-bayesian">3. การสร้างโมเดล Bayesian</h2>
+<section id="การกำหนด-prior" class="level3">
+<h3 class="anchored" data-anchor-id="การกำหนด-prior">3.1 การกำหนด Prior</h3>
+<p>การเลือก prior ที่เหมาะสมเป็นขั้นตอนสำคัญในการวิเคราะห์แบบ Bayesian:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># กำหนด prior สำหรับ regression coefficients</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>priors <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">0</span>, <span class="dv">2</span>), <span class="at">class =</span> <span class="st">"Intercept"</span>),</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">class =</span> <span class="st">"b"</span>),</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">prior</span>(<span class="fu">student_t</span>(<span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">2</span>), <span class="at">class =</span> <span class="st">"sigma"</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co"># สร้างโมเดลพื้นฐาน</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>model_disease <span class="ot">&lt;-</span> <span class="fu">brm</span>(</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>disease_severity <span class="sc">~</span> temperature <span class="sc">+</span> humidity <span class="sc">+</span> rainfall,</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="at">data =</span> rice_blast_data,</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="at">family =</span> <span class="fu">gaussian</span>(),</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="at">prior =</span> priors,</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="at">chains =</span> <span class="dv">4</span>,</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="at">iter =</span> <span class="dv">4000</span>,</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="at">warmup =</span> <span class="dv">1000</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+SAMPLING FOR MODEL 'anon_model' NOW (CHAIN 1).
+Chain 1: 
+Chain 1: Gradient evaluation took 3.5e-05 seconds
+Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.35 seconds.
+Chain 1: Adjust your expectations accordingly!
+Chain 1: 
+Chain 1: 
+Chain 1: Iteration:    1 / 4000 [  0%]  (Warmup)
+Chain 1: Iteration:  400 / 4000 [ 10%]  (Warmup)
+Chain 1: Iteration:  800 / 4000 [ 20%]  (Warmup)
+Chain 1: Iteration: 1001 / 4000 [ 25%]  (Sampling)
+Chain 1: Iteration: 1400 / 4000 [ 35%]  (Sampling)
+Chain 1: Iteration: 1800 / 4000 [ 45%]  (Sampling)
+Chain 1: Iteration: 2200 / 4000 [ 55%]  (Sampling)
+Chain 1: Iteration: 2600 / 4000 [ 65%]  (Sampling)
+Chain 1: Iteration: 3000 / 4000 [ 75%]  (Sampling)
+Chain 1: Iteration: 3400 / 4000 [ 85%]  (Sampling)
+Chain 1: Iteration: 3800 / 4000 [ 95%]  (Sampling)
+Chain 1: Iteration: 4000 / 4000 [100%]  (Sampling)
+Chain 1: 
+Chain 1:  Elapsed Time: 0.028 seconds (Warm-up)
+Chain 1:                0.071 seconds (Sampling)
+Chain 1:                0.099 seconds (Total)
+Chain 1: 
+
+SAMPLING FOR MODEL 'anon_model' NOW (CHAIN 2).
+Chain 2: 
+Chain 2: Gradient evaluation took 7e-06 seconds
+Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.07 seconds.
+Chain 2: Adjust your expectations accordingly!
+Chain 2: 
+Chain 2: 
+Chain 2: Iteration:    1 / 4000 [  0%]  (Warmup)
+Chain 2: Iteration:  400 / 4000 [ 10%]  (Warmup)
+Chain 2: Iteration:  800 / 4000 [ 20%]  (Warmup)
+Chain 2: Iteration: 1001 / 4000 [ 25%]  (Sampling)
+Chain 2: Iteration: 1400 / 4000 [ 35%]  (Sampling)
+Chain 2: Iteration: 1800 / 4000 [ 45%]  (Sampling)
+Chain 2: Iteration: 2200 / 4000 [ 55%]  (Sampling)
+Chain 2: Iteration: 2600 / 4000 [ 65%]  (Sampling)
+Chain 2: Iteration: 3000 / 4000 [ 75%]  (Sampling)
+Chain 2: Iteration: 3400 / 4000 [ 85%]  (Sampling)
+Chain 2: Iteration: 3800 / 4000 [ 95%]  (Sampling)
+Chain 2: Iteration: 4000 / 4000 [100%]  (Sampling)
+Chain 2: 
+Chain 2:  Elapsed Time: 0.027 seconds (Warm-up)
+Chain 2:                0.063 seconds (Sampling)
+Chain 2:                0.09 seconds (Total)
+Chain 2: 
+
+SAMPLING FOR MODEL 'anon_model' NOW (CHAIN 3).
+Chain 3: 
+Chain 3: Gradient evaluation took 7e-06 seconds
+Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.07 seconds.
+Chain 3: Adjust your expectations accordingly!
+Chain 3: 
+Chain 3: 
+Chain 3: Iteration:    1 / 4000 [  0%]  (Warmup)
+Chain 3: Iteration:  400 / 4000 [ 10%]  (Warmup)
+Chain 3: Iteration:  800 / 4000 [ 20%]  (Warmup)
+Chain 3: Iteration: 1001 / 4000 [ 25%]  (Sampling)
+Chain 3: Iteration: 1400 / 4000 [ 35%]  (Sampling)
+Chain 3: Iteration: 1800 / 4000 [ 45%]  (Sampling)
+Chain 3: Iteration: 2200 / 4000 [ 55%]  (Sampling)
+Chain 3: Iteration: 2600 / 4000 [ 65%]  (Sampling)
+Chain 3: Iteration: 3000 / 4000 [ 75%]  (Sampling)
+Chain 3: Iteration: 3400 / 4000 [ 85%]  (Sampling)
+Chain 3: Iteration: 3800 / 4000 [ 95%]  (Sampling)
+Chain 3: Iteration: 4000 / 4000 [100%]  (Sampling)
+Chain 3: 
+Chain 3:  Elapsed Time: 0.027 seconds (Warm-up)
+Chain 3:                0.062 seconds (Sampling)
+Chain 3:                0.089 seconds (Total)
+Chain 3: 
+
+SAMPLING FOR MODEL 'anon_model' NOW (CHAIN 4).
+Chain 4: 
+Chain 4: Gradient evaluation took 8e-06 seconds
+Chain 4: 1000 transitions using 10 leapfrog steps per transition would take 0.08 seconds.
+Chain 4: Adjust your expectations accordingly!
+Chain 4: 
+Chain 4: 
+Chain 4: Iteration:    1 / 4000 [  0%]  (Warmup)
+Chain 4: Iteration:  400 / 4000 [ 10%]  (Warmup)
+Chain 4: Iteration:  800 / 4000 [ 20%]  (Warmup)
+Chain 4: Iteration: 1001 / 4000 [ 25%]  (Sampling)
+Chain 4: Iteration: 1400 / 4000 [ 35%]  (Sampling)
+Chain 4: Iteration: 1800 / 4000 [ 45%]  (Sampling)
+Chain 4: Iteration: 2200 / 4000 [ 55%]  (Sampling)
+Chain 4: Iteration: 2600 / 4000 [ 65%]  (Sampling)
+Chain 4: Iteration: 3000 / 4000 [ 75%]  (Sampling)
+Chain 4: Iteration: 3400 / 4000 [ 85%]  (Sampling)
+Chain 4: Iteration: 3800 / 4000 [ 95%]  (Sampling)
+Chain 4: Iteration: 4000 / 4000 [100%]  (Sampling)
+Chain 4: 
+Chain 4:  Elapsed Time: 0.025 seconds (Warm-up)
+Chain 4:                0.071 seconds (Sampling)
+Chain 4:                0.096 seconds (Total)
+Chain 4: </code></pre>
+</div>
+</div>
+</section>
+<section id="การตรวจสอบ-model-convergence" class="level3">
+<h3 class="anchored" data-anchor-id="การตรวจสอบ-model-convergence">3.2 การตรวจสอบ Model Convergence</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ตรวจสอบ MCMC chains</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model_disease)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Trace plots</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mcmc_trace</span>(model_disease)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-5-2.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="การวเคราะหผลลพธ" class="level2">
+<h2 class="anchored" data-anchor-id="การวเคราะหผลลพธ">4. การวิเคราะห์ผลลัพธ์</h2>
+<section id="การแปลผลโมเดล" class="level3">
+<h3 class="anchored" data-anchor-id="การแปลผลโมเดล">4.1 การแปลผลโมเดล</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># สรุปผลโมเดล</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_disease)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> Family: gaussian 
+  Links: mu = identity; sigma = identity 
+Formula: disease_severity ~ temperature + humidity + rainfall 
+   Data: rice_blast_data (Number of observations: 180) 
+  Draws: 4 chains, each with iter = 4000; warmup = 1000; thin = 1;
+         total post-warmup draws = 12000
+
+Regression Coefficients:
+            Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+Intercept     -75.94      7.15   -90.02   -61.87 1.00    13839     9487
+temperature     1.31      0.17     0.98     1.64 1.00    13972     9348
+humidity        0.56      0.06     0.44     0.69 1.00    14057     9062
+rainfall        0.22      0.04     0.14     0.31 1.00    13011     9232
+
+Further Distributional Parameters:
+      Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+sigma     6.57      0.36     5.91     7.31 1.00    13482     9350
+
+Draws were sampled using sampling(NUTS). For each parameter, Bulk_ESS
+and Tail_ESS are effective sample size measures, and Rhat is the potential
+scale reduction factor on split chains (at convergence, Rhat = 1).</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Posterior intervals</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">posterior_interval</span>(model_disease, <span class="at">prob =</span> <span class="fl">0.95</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                      2.5%       97.5%
+b_Intercept    -90.0159398  -61.870208
+b_temperature    0.9772238    1.637497
+b_humidity       0.4427657    0.686660
+b_rainfall       0.1396287    0.307954
+sigma            5.9118005    7.309563
+Intercept       12.2576677   14.122301
+lprior         -34.4011964  -28.266729
+lp__          -628.1997676 -622.216970</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Posterior predictive checks</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pp_check</span>(model_disease)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="การเปรยบเทยบโมเดล" class="level3">
+<h3 class="anchored" data-anchor-id="การเปรยบเทยบโมเดล">4.2 การเปรียบเทียบโมเดล</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># สร้างโมเดลทางเลือก</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>model_alt <span class="ot">&lt;-</span> <span class="fu">brm</span>(</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  disease_severity <span class="sc">~</span> temperature <span class="sc">*</span> humidity <span class="sc">+</span> rainfall,</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> rice_blast_data,</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> <span class="fu">gaussian</span>(),</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">prior =</span> priors</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+SAMPLING FOR MODEL 'anon_model' NOW (CHAIN 1).
+Chain 1: 
+Chain 1: Gradient evaluation took 3.8e-05 seconds
+Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.38 seconds.
+Chain 1: Adjust your expectations accordingly!
+Chain 1: 
+Chain 1: 
+Chain 1: Iteration:    1 / 2000 [  0%]  (Warmup)
+Chain 1: Iteration:  200 / 2000 [ 10%]  (Warmup)
+Chain 1: Iteration:  400 / 2000 [ 20%]  (Warmup)
+Chain 1: Iteration:  600 / 2000 [ 30%]  (Warmup)
+Chain 1: Iteration:  800 / 2000 [ 40%]  (Warmup)
+Chain 1: Iteration: 1000 / 2000 [ 50%]  (Warmup)
+Chain 1: Iteration: 1001 / 2000 [ 50%]  (Sampling)
+Chain 1: Iteration: 1200 / 2000 [ 60%]  (Sampling)
+Chain 1: Iteration: 1400 / 2000 [ 70%]  (Sampling)
+Chain 1: Iteration: 1600 / 2000 [ 80%]  (Sampling)
+Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)
+Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)
+Chain 1: 
+Chain 1:  Elapsed Time: 0.201 seconds (Warm-up)
+Chain 1:                0.143 seconds (Sampling)
+Chain 1:                0.344 seconds (Total)
+Chain 1: 
+
+SAMPLING FOR MODEL 'anon_model' NOW (CHAIN 2).
+Chain 2: 
+Chain 2: Gradient evaluation took 7e-06 seconds
+Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.07 seconds.
+Chain 2: Adjust your expectations accordingly!
+Chain 2: 
+Chain 2: 
+Chain 2: Iteration:    1 / 2000 [  0%]  (Warmup)
+Chain 2: Iteration:  200 / 2000 [ 10%]  (Warmup)
+Chain 2: Iteration:  400 / 2000 [ 20%]  (Warmup)
+Chain 2: Iteration:  600 / 2000 [ 30%]  (Warmup)
+Chain 2: Iteration:  800 / 2000 [ 40%]  (Warmup)
+Chain 2: Iteration: 1000 / 2000 [ 50%]  (Warmup)
+Chain 2: Iteration: 1001 / 2000 [ 50%]  (Sampling)
+Chain 2: Iteration: 1200 / 2000 [ 60%]  (Sampling)
+Chain 2: Iteration: 1400 / 2000 [ 70%]  (Sampling)
+Chain 2: Iteration: 1600 / 2000 [ 80%]  (Sampling)
+Chain 2: Iteration: 1800 / 2000 [ 90%]  (Sampling)
+Chain 2: Iteration: 2000 / 2000 [100%]  (Sampling)
+Chain 2: 
+Chain 2:  Elapsed Time: 0.175 seconds (Warm-up)
+Chain 2:                0.097 seconds (Sampling)
+Chain 2:                0.272 seconds (Total)
+Chain 2: 
+
+SAMPLING FOR MODEL 'anon_model' NOW (CHAIN 3).
+Chain 3: 
+Chain 3: Gradient evaluation took 7e-06 seconds
+Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.07 seconds.
+Chain 3: Adjust your expectations accordingly!
+Chain 3: 
+Chain 3: 
+Chain 3: Iteration:    1 / 2000 [  0%]  (Warmup)
+Chain 3: Iteration:  200 / 2000 [ 10%]  (Warmup)
+Chain 3: Iteration:  400 / 2000 [ 20%]  (Warmup)
+Chain 3: Iteration:  600 / 2000 [ 30%]  (Warmup)
+Chain 3: Iteration:  800 / 2000 [ 40%]  (Warmup)
+Chain 3: Iteration: 1000 / 2000 [ 50%]  (Warmup)
+Chain 3: Iteration: 1001 / 2000 [ 50%]  (Sampling)
+Chain 3: Iteration: 1200 / 2000 [ 60%]  (Sampling)
+Chain 3: Iteration: 1400 / 2000 [ 70%]  (Sampling)
+Chain 3: Iteration: 1600 / 2000 [ 80%]  (Sampling)
+Chain 3: Iteration: 1800 / 2000 [ 90%]  (Sampling)
+Chain 3: Iteration: 2000 / 2000 [100%]  (Sampling)
+Chain 3: 
+Chain 3:  Elapsed Time: 0.12 seconds (Warm-up)
+Chain 3:                0.108 seconds (Sampling)
+Chain 3:                0.228 seconds (Total)
+Chain 3: 
+
+SAMPLING FOR MODEL 'anon_model' NOW (CHAIN 4).
+Chain 4: 
+Chain 4: Gradient evaluation took 7e-06 seconds
+Chain 4: 1000 transitions using 10 leapfrog steps per transition would take 0.07 seconds.
+Chain 4: Adjust your expectations accordingly!
+Chain 4: 
+Chain 4: 
+Chain 4: Iteration:    1 / 2000 [  0%]  (Warmup)
+Chain 4: Iteration:  200 / 2000 [ 10%]  (Warmup)
+Chain 4: Iteration:  400 / 2000 [ 20%]  (Warmup)
+Chain 4: Iteration:  600 / 2000 [ 30%]  (Warmup)
+Chain 4: Iteration:  800 / 2000 [ 40%]  (Warmup)
+Chain 4: Iteration: 1000 / 2000 [ 50%]  (Warmup)
+Chain 4: Iteration: 1001 / 2000 [ 50%]  (Sampling)
+Chain 4: Iteration: 1200 / 2000 [ 60%]  (Sampling)
+Chain 4: Iteration: 1400 / 2000 [ 70%]  (Sampling)
+Chain 4: Iteration: 1600 / 2000 [ 80%]  (Sampling)
+Chain 4: Iteration: 1800 / 2000 [ 90%]  (Sampling)
+Chain 4: Iteration: 2000 / 2000 [100%]  (Sampling)
+Chain 4: 
+Chain 4:  Elapsed Time: 0.11 seconds (Warm-up)
+Chain 4:                0.096 seconds (Sampling)
+Chain 4:                0.206 seconds (Total)
+Chain 4: </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># เปรียบเทียบโมเดลด้วย WAIC</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">waic</span>(model_disease, model_alt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Output of model 'model_disease':
+
+Computed from 12000 by 180 log-likelihood matrix.
+
+          Estimate   SE
+elpd_waic   -599.3 17.5
+p_waic         8.2  3.0
+waic        1198.6 35.1
+
+4 (2.2%) p_waic estimates greater than 0.4. We recommend trying loo instead. 
+
+Output of model 'model_alt':
+
+Computed from 4000 by 180 log-likelihood matrix.
+
+          Estimate   SE
+elpd_waic   -594.6 17.0
+p_waic         8.0  2.8
+waic        1189.2 34.1
+
+4 (2.2%) p_waic estimates greater than 0.4. We recommend trying loo instead. 
+
+Model comparisons:
+              elpd_diff se_diff
+model_alt      0.0       0.0   
+model_disease -4.7       1.9   </code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="การประยกตใชในงานระบาดวทยาโรคพช" class="level2">
+<h2 class="anchored" data-anchor-id="การประยกตใชในงานระบาดวทยาโรคพช">5. การประยุกต์ใช้ในงานระบาดวิทยาโรคพืช</h2>
+<section id="การประเมนความเสยงการระบาด" class="level3">
+<h3 class="anchored" data-anchor-id="การประเมนความเสยงการระบาด">5.1 การประเมินความเสี่ยงการระบาด</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># สร้างฟังก์ชันคำนวณความน่าจะเป็นของการระบาด</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>predict_outbreak <span class="ot">&lt;-</span> <span class="cf">function</span>(model, new_data) {</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  predictions <span class="ot">&lt;-</span> <span class="fu">posterior_predict</span>(model, <span class="at">newdata =</span> new_data)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  prob_outbreak <span class="ot">&lt;-</span> <span class="fu">mean</span>(predictions <span class="sc">&gt;</span> threshold)</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(prob_outbreak)</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="การพยากรณการแพรระบาด" class="level3">
+<h3 class="anchored" data-anchor-id="การพยากรณการแพรระบาด">5.2 การพยากรณ์การแพร่ระบาด</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div class="kable-table">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: right;">temperature</th>
+<th style="text-align: right;">humidity</th>
+<th style="text-align: right;">rainfall</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">21.07249</td>
+<td style="text-align: right;">85.18263</td>
+<td style="text-align: right;">17.02681</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">21.24068</td>
+<td style="text-align: right;">85.18263</td>
+<td style="text-align: right;">17.02681</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">21.40887</td>
+<td style="text-align: right;">85.18263</td>
+<td style="text-align: right;">17.02681</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">21.57706</td>
+<td style="text-align: right;">85.18263</td>
+<td style="text-align: right;">17.02681</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">21.74525</td>
+<td style="text-align: right;">85.18263</td>
+<td style="text-align: right;">17.02681</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">21.91343</td>
+<td style="text-align: right;">85.18263</td>
+<td style="text-align: right;">17.02681</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="ขอควรระวงและขอเสนอแนะ" class="level2">
+<h2 class="anchored" data-anchor-id="ขอควรระวงและขอเสนอแนะ">6. ข้อควรระวังและข้อเสนอแนะ</h2>
+<ol type="1">
+<li>การเลือก prior ควรอ้างอิงจากความรู้เชิงประจักษ์หรือการศึกษาก่อนหน้า</li>
+<li>ตรวจสอบ convergence ของ MCMC chains อย่างละเอียด</li>
+<li>พิจารณาความเหมาะสมของการแจกแจงข้อมูล</li>
+<li>ระวังปัญหา multicollinearity ระหว่างตัวแปรทำนาย</li>
+</ol>
+</section>
+<section id="สรป" class="level2">
+<h2 class="anchored" data-anchor-id="สรป">7. สรุป</h2>
+<p>การวิเคราะห์แบบ Bayesian ใน R เป็นเครื่องมือที่มีประสิทธิภาพสำหรับงานระบาดวิทยาโรคพืช โดยเฉพาะในสถานการณ์ที่มีความไม่แน่นอนสูงหรือข้อมูลจำกัด การเลือกใช้แพ็กเกจที่เหมาะสมและการระมัดระวังในขั้นตอนต่างๆ จะช่วยให้ได้ผลการวิเคราะห์ที่น่าเชื่อถือและนำไปใช้ประโยชน์ได้จริง</p>
+</section>
+<section id="เอกสารอางอง" class="level2">
+<h2 class="anchored" data-anchor-id="เอกสารอางอง">เอกสารอ้างอิง</h2>
+<ol type="1">
+<li>Bürkner, P. C. (2017). brms: An R package for Bayesian multilevel models using Stan. Journal of Statistical Software, 80(1), 1-28.</li>
+<li>Gelman, A., et al.&nbsp;(2013). Bayesian Data Analysis, Third Edition. CRC Press.</li>
+<li>McElreath, R. (2020). Statistical Rethinking: A Bayesian Course with Examples in R and Stan. CRC Press.</li>
+</ol>
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div id="quarto-reuse" class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></div></div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

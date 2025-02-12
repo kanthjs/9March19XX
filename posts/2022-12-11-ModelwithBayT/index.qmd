@@ -1,0 +1,168 @@
+---
+title: "Introduction to Bayesian Statistics in R"
+date: '2022-12-11'
+categories: [R]
+---
+
+## 1. บทนำ
+
+ในการสร้างโมเดล Bayesian ใน R มีหลายแพ็กเกจที่ช่วยให้เราสามารถวิเคราะห์ข้อมูลได้ง่ายขึ้น โดยสองแพ็กเกจยอดนิยม ได้แก่ `{brms}` และ `{rstanarm}` ซึ่งทำให้สามารถสร้างโมเดล Bayesian Regression ได้โดยไม่ต้องเขียนโค้ด Stan เอง
+
+## 2. ติดตั้งและตั้งค่าแพ็กเกจ
+
+ก่อนอื่นต้องติดตั้งและโหลดแพ็กเกจที่จำเป็น:
+
+```{r}
+#| echo: true
+#install.packages("brms")
+#install.packages("rstanarm")
+
+library(brms)
+library(rstanarm)
+```
+
+## 3. ตัวอย่างโมเดล Bayesian Linear Regression ด้วย {brms}
+
+เราจะลองสร้างโมเดล Bayesian Linear Regression โดยใช้ชุดข้อมูล `mtcars` เพื่อพยากรณ์ **mpg** (อัตราสิ้นเปลืองเชื้อเพลิง) จาก **hp** (แรงม้า)
+
+```{r}
+#| echo: true
+# โมเดลเบื้องต้น
+bayes_model <- brm(
+  mpg ~ hp,
+  data = mtcars,
+  family = gaussian(),
+  prior = set_prior("normal(0, 10)", class = "b"),
+  chains = 4,
+  iter = 2000,
+  warmup = 1000,
+  seed = 1234
+)
+
+# สรุปผลโมเดล
+summary(bayes_model)
+```
+
+### การแปลผลลัพธ์ของโมเดล
+
+เมื่อเรียก `summary(bayes_model)` เราจะเห็นค่าประมาณของสัมประสิทธิ์ (Estimate) และค่าความไม่แน่นอน (Credible Interval) ซึ่งแตกต่างจากโมเดล Frequentist ที่ใช้ค่า p-value
+
+```{r}
+#| echo: true
+# ตรวจสอบการแจกแจงพารามิเตอร์
+plot(bayes_model)
+```
+
+การพล็อตผลลัพธ์จะช่วยให้เราเห็นการกระจายตัวของพารามิเตอร์ รวมถึงตรวจสอบว่ามีความไม่แน่นอนมากน้อยเพียงใด
+
+ฟังก์ชัน `brm()` มาจากแพ็กเกจ `{brms}` ใน R ซึ่งใช้สำหรับสร้างโมเดล Bayesian Generalized (Non-)Linear Models โดยทำให้เราสามารถใช้วิธี Bayesian Inference ได้ง่ายขึ้นผ่านการเขียนโค้ดคล้ายกับ `lm()` และ `glm()` ของ Frequentist
+
+## **โครงสร้างของฟังก์ชัน `brm()`**
+
+```{r}
+#| eval: false
+#| include: false
+brm(
+  formula,
+  data,
+  family = gaussian(),
+  prior = NULL,
+  iter = 2000,
+  chains = 4,
+  cores = parallel::detectCores(),
+  control = list(adapt_delta = 0.8)
+)
+```
+
+### **อธิบายอาร์กิวเมนต์หลัก**
+
+1.  **`formula`** – กำหนดสมการโมเดล เช่น `mpg ~ hp + wt`
+
+2.  **`data`** – ชุดข้อมูลที่ใช้สร้างโมเดล
+
+3.  **`family`** – กำหนดรูปแบบการแจกแจง เช่น
+
+    -   `gaussian()` (สำหรับข้อมูลต่อเนื่อง, เทียบเท่า Linear Regression)
+
+    -   `bernoulli()` (สำหรับข้อมูล binary, เทียบเท่า Logistic Regression)
+
+    -   `poisson()` (สำหรับข้อมูลนับ)
+
+4.  **`prior`** – กำหนด Prior Distribution ของพารามิเตอร์ เช่น
+
+    `prior = set_prior("normal(0, 10)", class = "b")`
+
+    หากไม่กำหนด ค่า Prior จะถูกตั้งค่าเป็นค่าเริ่มต้นที่เหมาะสม
+
+5.  **`iter`** – จำนวน iteration ใน MCMC (ค่าเริ่มต้นคือ 2000)
+
+6.  **`chains`** – จำนวน Markov chains (ค่าเริ่มต้นคือ 4)
+
+7.  **`cores`** – จำนวนคอร์ของ CPU ที่ใช้ประมวลผล (ควรตั้งให้เท่ากับจำนวน chains เพื่อเพิ่มความเร็ว)
+
+8.  **`control`** – ปรับค่า parameter ของ NUTS sampler เช่น
+
+    -   `adapt_delta`: ค่าต่ำไปอาจทำให้เกิด divergent transitions (ค่าเริ่มต้น 0.8)
+
+## **ตัวอย่างการใช้งาน**
+
+### **1. โมเดล Bayesian Linear Regression**
+
+```{r}
+#| echo: true
+library(brms)  
+# โหลดข้อมูล mtca
+data(mtcars) 
+# โมเดล: mpg~ hp 
+bayes_model <- brm(
+  mpg ~ hp,
+  data = mtcars,
+  family = gaussian(),
+  prior = set_prior("normal(0, 10)", class = "b"),
+  iter = 4000,
+  chains = 4,
+  cores = 4
+) 
+```
+
+### **2. ตรวจสอบผลลัพธ์โมเดล**
+
+```{r}
+#| echo: true
+summary(bayes_model)
+# ตรวจสอบค่า Prior และ Posterior
+prior_summary(bayes_model)
+# ดูผลลัพธ์สรุปค่าประมาณของพารามิเตอร์
+summary(bayes_model)
+# พล็อตการแจกแจงของพารามิเตอร์ 
+plot(bayes_model)
+# ตรวจสอบการรวมตัวของ Markov Chains 
+mcmc_plot(bayes_model)
+```
+
+### **3. โมเดล Logistic Regression**
+
+ถ้าเรามีตัวแปรเป้าหมายเป็นค่าทางเลือก (เช่น 0/1) เราสามารถใช้โมเดลโลจิสติกได้:
+
+```{r}
+bayes_logit <- brm(
+  am ~ hp + wt,
+  data = mtcars,
+  family = bernoulli(),
+  prior = set_prior("normal(0, 2)", class = "b"),
+  iter = 4000,
+  chains = 4,
+  cores = 4
+)  
+summary(bayes_logit)
+```
+
+## **ข้อดีของ `brm()`**
+
+-   ใช้งานง่าย คล้ายกับ `lm()` และ `glm()`
+
+-   รองรับการใช้ Prior ทำให้สามารถควบคุมโมเดล Bayesian ได้
+
+-   ใช้ Stan เป็น backend ทำให้มีความยืดหยุ่นสูงและประสิทธิภาพดี
+
+-   รองรับโมเดลที่ซับซ้อน เช่น hierarchical models และ mixed-effects models

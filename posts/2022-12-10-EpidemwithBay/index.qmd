@@ -1,0 +1,235 @@
+---
+title: "Implementing Bayesian Models in R for Plant Disease Epidemiology with R"
+date: '2022-12-09'
+categories: [R]
+---
+
+## 1. บทนำ
+
+การวิเคราะห์ข้อมูลทางระบาดวิทยาโรคพืชในปัจจุบันต้องเผชิญกับความท้าทายหลายประการ ทั้งความไม่แน่นอนของการระบาด ความซับซ้อนของปัจจัยที่เกี่ยวข้อง และข้อจำกัดของขนาดตัวอย่าง การวิเคราะห์แบบ Bayesian จึงเป็นทางเลือกที่น่าสนใจ เนื่องจากมีข้อได้เปรียบหลายประการเมื่อเทียบกับวิธี Frequentist ดั้งเดิม:
+
+1.  สามารถผสมผสานความรู้เดิม (Prior Knowledge) จากผู้เชี่ยวชาญหรือการศึกษาก่อนหน้าเข้ากับข้อมูลปัจจุบัน
+2.  ให้การประมาณค่าความไม่แน่นอนที่สมจริงมากกว่า ผ่าน Credible Intervals
+3.  รองรับการวิเคราะห์ข้อมูลที่มีขนาดตัวอย่างน้อยได้ดี
+4.  เหมาะสำหรับการสร้างแบบจำลองที่ซับซ้อนและมีลำดับชั้น
+
+ใน R มีแพ็กเกจที่ช่วยให้การวิเคราะห์แบบ Bayesian ทำได้สะดวกขึ้น โดยเฉพาะ {brms} และ {rstanarm} ซึ่งช่วยลดความซับซ้อนในการเขียนโค้ด Stan
+
+## 2. การเตรียมความพร้อม
+
+### 2.1 การติดตั้งและโหลดแพ็กเกจ
+
+```{r}
+#| echo: true
+# ติดตั้งแพ็กเกจที่จำเป็น
+# install.packages(c("brms", "rstanarm", "tidyverse", "bayesplot"))
+
+# โหลดแพ็กเกจ
+library(brms)
+library(rstanarm)
+library(tidyverse)
+library(bayesplot)
+```
+
+### 2.2 การเตรียมข้อมูล
+
+การเตรียมข้อมูลที่ดีเป็นพื้นฐานสำคัญของการวิเคราะห์ ควรทำตามขั้นตอนต่อไปนี้:
+
+```{r}
+#| echo: true
+# สร้างข้อมูลจำลองสำหรับการระบาดของโรคไหม้ในข้าว
+set.seed(123) # กำหนดเพื่อให้ผลลัพธ์คงที่
+
+# กำหนดจำนวนตัวอย่าง
+n <- 200
+
+# สร้างตัวแปรสภาพแวดล้อม
+temperature <- rnorm(n, mean = 28, sd = 3)  # อุณหภูมิ (°C)
+humidity <- rnorm(n, mean = 85, sd = 8)     # ความชื้นสัมพัทธ์ (%)
+rainfall <- rgamma(n, shape = 2, scale = 10) # ปริมาณน้ำฝน (มม./วัน)
+wind_speed <- rnorm(n, mean = 5, sd = 2)    # ความเร็วลม (กม./ชม.)
+
+# สร้างตัวแปรการจัดการ
+variety <- sample(c("สุพรรณบุรี 1", "ปทุมธานี 1", "กข49", "กข61"), n, replace = TRUE)
+planting_density <- rnorm(n, mean = 25, sd = 3) # ระยะปลูก (ซม.)
+nitrogen_rate <- rnorm(n, mean = 100, sd = 20)  # อัตราปุ๋ยไนโตรเจน (กก./ไร่)
+
+# สร้างความสัมพันธ์ที่ซับซ้อนสำหรับความรุนแรงของโรค
+# โดยคำนึงถึงปัจจัยหลักที่มีผลต่อการระบาด
+logit_severity <- -2 + 
+                  0.3 * scale(temperature) +
+                  0.4 * scale(humidity) +
+                  0.2 * scale(rainfall) +
+                  0.1 * scale(wind_speed) +
+                  rnorm(n, 0, 0.5)  # ความแปรปรวนที่ไม่สามารถอธิบายได้
+
+# แปลงเป็นเปอร์เซ็นต์ความรุนแรงของโรค
+disease_severity <- plogis(logit_severity) * 100
+
+# สร้าง data frame
+rice_blast_data <- data.frame(
+  date = seq(as.Date("2024-01-01"), by = "day", length.out = n),
+  plot_id = 1:n,
+  temperature = temperature,
+  humidity = humidity,
+  rainfall = rainfall,
+  wind_speed = wind_speed,
+  variety = variety,
+  planting_density = planting_density,
+  nitrogen_rate = nitrogen_rate,
+  disease_severity = disease_severity
+)
+
+# เพิ่ม missing values เพื่อให้เหมือนข้อมูลจริง
+set.seed(456)
+missing_indices <- sample(1:n, size = n * 0.1)  # 10% missing values
+rice_blast_data$disease_severity[missing_indices] <- NA
+
+# เพิ่มคอลัมน์สำหรับระยะการเจริญเติบโต
+rice_blast_data$growth_stage <- cut(
+  as.numeric(rice_blast_data$date - min(rice_blast_data$date)),
+  breaks = c(-Inf, 30, 60, 90, Inf),
+  labels = c("Vegetative", "Tillering", "Booting", "Heading")
+)
+
+# แสดงตัวอย่างข้อมูล
+head(rice_blast_data)
+
+# สรุปข้อมูลเบื้องต้น
+summary(rice_blast_data)
+
+# ตรวจสอบความสัมพันธ์ระหว่างตัวแปร
+cor(rice_blast_data[, c("temperature", "humidity", "rainfall", 
+                        "wind_speed", "disease_severity")], 
+    use = "complete.obs")
+```
+
+```{r}
+# สมมติว่าเรามีข้อมูลโรคพืชในรูปแบบ data frame
+#disease_data <- read.csv("plant_disease_data.csv")
+
+# ตรวจสอบ missing values
+#summary(disease_data)
+#disease_data <- na.omit(disease_data)  # หรือใช้วิธีจัดการ missing values ที่เหมาะสม
+
+# ตรวจสอบการแจกแจงของตัวแปร
+hist(rice_blast_data$disease_severity)
+qqnorm(rice_blast_data$disease_severity)
+```
+
+## 3. การสร้างโมเดล Bayesian
+
+### 3.1 การกำหนด Prior
+
+การเลือก prior ที่เหมาะสมเป็นขั้นตอนสำคัญในการวิเคราะห์แบบ Bayesian:
+
+```{r}
+#| echo: true
+# กำหนด prior สำหรับ regression coefficients
+priors <- c(
+prior(normal(0, 2), class = "Intercept"),
+prior(normal(0, 1), class = "b"),
+prior(student_t(3, 0, 2), class = "sigma")
+)
+
+# สร้างโมเดลพื้นฐาน
+model_disease <- brm(
+disease_severity ~ temperature + humidity + rainfall,
+data = rice_blast_data,
+family = gaussian(),
+prior = priors,
+chains = 4,
+iter = 4000,
+warmup = 1000
+)
+```
+
+### 3.2 การตรวจสอบ Model Convergence
+
+```{r}
+#| echo: true
+# ตรวจสอบ MCMC chains
+plot(model_disease)
+
+# Trace plots
+mcmc_trace(model_disease)
+```
+
+## 4. การวิเคราะห์ผลลัพธ์
+
+### 4.1 การแปลผลโมเดล
+
+```{r}
+#| echo: true
+# สรุปผลโมเดล
+summary(model_disease)
+
+# Posterior intervals
+posterior_interval(model_disease, prob = 0.95)
+
+# Posterior predictive checks
+pp_check(model_disease)
+```
+
+### 4.2 การเปรียบเทียบโมเดล
+
+```{r}
+#| echo: true
+# สร้างโมเดลทางเลือก
+model_alt <- brm(
+  disease_severity ~ temperature * humidity + rainfall,
+  data = rice_blast_data,
+  family = gaussian(),
+  prior = priors
+)
+
+# เปรียบเทียบโมเดลด้วย WAIC
+waic(model_disease, model_alt)
+```
+
+## 5. การประยุกต์ใช้ในงานระบาดวิทยาโรคพืช
+
+### 5.1 การประเมินความเสี่ยงการระบาด
+
+```{r}
+#| echo: true
+# สร้างฟังก์ชันคำนวณความน่าจะเป็นของการระบาด
+predict_outbreak <- function(model, new_data) {
+  predictions <- posterior_predict(model, newdata = new_data)
+  prob_outbreak <- mean(predictions > threshold)
+  return(prob_outbreak)
+}
+```
+
+### 5.2 การพยากรณ์การแพร่ระบาด
+
+```{r}
+# สร้างข้อมูลสำหรับพยากรณ์
+forecast_data <- expand.grid(
+  temperature = seq(min(rice_blast_data$temperature), 
+                    max(rice_blast_data$temperature), length.out = 100),
+  humidity = median(rice_blast_data$humidity),
+  rainfall = median(rice_blast_data$rainfall)
+)
+head(forecast_data)
+# พยากรณ์
+predictions <- posterior_predict(model_disease, newdata = forecast_data)
+hist(predictions)
+```
+
+## 6. ข้อควรระวังและข้อเสนอแนะ
+
+1.  การเลือก prior ควรอ้างอิงจากความรู้เชิงประจักษ์หรือการศึกษาก่อนหน้า
+2.  ตรวจสอบ convergence ของ MCMC chains อย่างละเอียด
+3.  พิจารณาความเหมาะสมของการแจกแจงข้อมูล
+4.  ระวังปัญหา multicollinearity ระหว่างตัวแปรทำนาย
+
+## 7. สรุป
+
+การวิเคราะห์แบบ Bayesian ใน R เป็นเครื่องมือที่มีประสิทธิภาพสำหรับงานระบาดวิทยาโรคพืช โดยเฉพาะในสถานการณ์ที่มีความไม่แน่นอนสูงหรือข้อมูลจำกัด การเลือกใช้แพ็กเกจที่เหมาะสมและการระมัดระวังในขั้นตอนต่างๆ จะช่วยให้ได้ผลการวิเคราะห์ที่น่าเชื่อถือและนำไปใช้ประโยชน์ได้จริง
+
+## เอกสารอ้างอิง
+
+1.  Bürkner, P. C. (2017). brms: An R package for Bayesian multilevel models using Stan. Journal of Statistical Software, 80(1), 1-28.
+2.  Gelman, A., et al. (2013). Bayesian Data Analysis, Third Edition. CRC Press.
+3.  McElreath, R. (2020). Statistical Rethinking: A Bayesian Course with Examples in R and Stan. CRC Press.
