@@ -2,14 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.433">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Kanth JS">
 <meta name="dcterms.date" content="2022-12-12">
 
-<title>Kanthanawit Js - Epi Term</title>
+<title>Epidermiology Terminology – Kanthanawit Js</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -48,7 +48,13 @@ ul.task-list li input[type="checkbox"] {
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -57,6 +63,7 @@ ul.task-list li input[type="checkbox"] {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -72,8 +79,35 @@ gtag('js', new Date());
 gtag('config', 'G-WY647CK1PJ', { 'anonymize_ip': true});
 </script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../scss/styles.css">
 </head>
@@ -82,9 +116,9 @@ gtag('config', 'G-WY647CK1PJ', { 'anonymize_ip': true});
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a href="../../index.html" class="navbar-brand navbar-brand-logo">
     <img src="../../images/pi.png" alt="It's Pi" class="navbar-logo">
     </a>
@@ -93,19 +127,19 @@ gtag('config', 'G-WY647CK1PJ', { 'anonymize_ip': true});
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../posts.html" rel="" target="">
- <span class="menu-text">บล๊อก</span></a>
+    <a class="nav-link" href="../../posts.html"> 
+<span class="menu-text">บล๊อก</span></a>
   </li>  
 </ul>
+          </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
 </div>
-          </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -123,6 +157,7 @@ gtag('config', 'G-WY647CK1PJ', { 'anonymize_ip': true});
   <li><a href="#ตวแปรสำคญในระบาดวทยา" id="toc-ตวแปรสำคญในระบาดวทยา" class="nav-link" data-scroll-target="#ตวแปรสำคญในระบาดวทยา"><strong>ตัวแปรสำคัญในระบาดวิทยา</strong>:</a></li>
   <li><a href="#ประเภทของขอมล" id="toc-ประเภทของขอมล" class="nav-link" data-scroll-target="#ประเภทของขอมล"><strong>ประเภทของข้อมูล</strong>:</a></li>
   <li><a href="#พนฐานของแบบจำลองและการวเคราะห" id="toc-พนฐานของแบบจำลองและการวเคราะห" class="nav-link" data-scroll-target="#พนฐานของแบบจำลองและการวเคราะห"><strong>พื้นฐานของแบบจำลองและการวิเคราะห์</strong></a></li>
+  <li><a href="#การเลอกแบบจำลองทเหมาะสม" id="toc-การเลอกแบบจำลองทเหมาะสม" class="nav-link" data-scroll-target="#การเลอกแบบจำลองทเหมาะสม"><strong>การเลือกแบบจำลองที่เหมาะสม</strong>: 🔍📏✨</a></li>
   <li><a href="#การใชเครองมอทางสถต" id="toc-การใชเครองมอทางสถต" class="nav-link" data-scroll-target="#การใชเครองมอทางสถต"><strong>การใช้เครื่องมือทางสถิติ</strong> 📊🖥️🧠</a></li>
   <li><a href="#ตวอยางการใชงาน" id="toc-ตวอยางการใชงาน" class="nav-link" data-scroll-target="#ตวอยางการใชงาน"><strong>ตัวอย่างการใช้งาน</strong> 🌾📊🔬</a></li>
   </ul></li>
@@ -134,7 +169,7 @@ gtag('config', 'G-WY647CK1PJ', { 'anonymize_ip': true});
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Epi Term</h1>
+<h1 class="title">Epidermiology Terminology</h1>
   <div class="quarto-categories">
     <div class="quarto-category">R</div>
     <div class="quarto-category">Epidem</div>
@@ -163,23 +198,26 @@ gtag('config', 'G-WY647CK1PJ', { 'anonymize_ip': true});
   </div>
   
 
+
 </header>
+
 
 <section id="epidemiological-data-analysis" class="level1">
 <h1><strong>Epidemiological Data Analysis</strong>🌿📊✨</h1>
 <section id="ตวแปรสำคญในระบาดวทยา" class="level2">
 <h2 class="anchored" data-anchor-id="ตวแปรสำคญในระบาดวทยา"><strong>ตัวแปรสำคัญในระบาดวิทยา</strong>:</h2>
 <ul>
-<li><p><strong>Incidence</strong>:</p></li>
+<li><p><strong>Incidence</strong>:</p>
+<ul>
 <li><p>นิยาม: สัดส่วนหรือจำนวนพืชที่มีอาการของโรคเมื่อเปรียบเทียบกับประชากรทั้งหมดในพื้นที่เป้าหมาย</p></li>
 <li><p>ตัวอย่าง: การวัดอัตราส่วน Leaf disease incidence หรือ Fruit disease incidence ที่แสดงเป็นเปอร์เซ็นต์ของการเกิดโรค ซึ่งถือเป็นตัวชี้วัดสำคัญที่ใช้ในการประเมินความแพร่ระบาดและจัดลำดับความสำคัญในการควบคุมโรค</p></li>
-<li><p><strong>Severity</strong>:</p></li>
+</ul></li>
+<li><p><strong>Severity</strong>:</p>
+<ul>
 <li><p>นิยาม: ระดับความเสียหายที่วัดเป็นสัดส่วนหรือพื้นที่สัมพัทธ์ของเนื้อเยื่อพืชที่ได้รับผลกระทบจากโรค</p></li>
 <li><p>การใช้งาน: ใช้ในกรณีที่มีลักษณะอาการเป็นแผล เช่น Foliar fungal infections การวัด Severity มีความสำคัญเนื่องจากเป็นตัวชี้วัดที่สามารถนำมาใช้ในการคำนวณผลกระทบต่อผลผลิตและวางแผนการจัดการโรคอย่างเหมาะสม🌟🌱📈</p>
 <h2 id="บทบาทของแบบจำลอง-models" class="anchored"><strong>บทบาทของแบบจำลอง (Models)</strong>:</h2></li>
-</ul>
-<!-- -->
-<ul>
+</ul></li>
 <li><p>แบบจำลองช่วยลดความซับซ้อนของระบบระบาดในธรรมชาติ เพื่อทำการวิเคราะห์และคาดการณ์ได้อย่างแม่นยำ การใช้แบบจำลองสามารถช่วยในกระบวนการตัดสินใจในเชิงปฏิบัติ เช่น การกำหนดแผนควบคุมโรคและประเมินผลกระทบระยะยาวของมาตรการที่นำมาใช้</p></li>
 <li><p>ประเภทของแบบจำลอง:</p></li>
 <li><p><strong>Deterministic Models</strong>: แบบจำลองที่อธิบายความสัมพันธ์ที่ไม่เปลี่ยนแปลง เช่น Linear regression ซึ่งเหมาะสำหรับการทำนายลักษณะทั่วไปของระบาด.</p></li>
@@ -200,44 +238,54 @@ gtag('config', 'G-WY647CK1PJ', { 'anonymize_ip': true});
 <li><strong>แบบจำลองสำคัญในระบาดวิทยา</strong>:</li>
 </ol>
 <ul>
-<li><p><strong>Exponential Model</strong>:</p></li>
-<li><p>เหมาะสำหรับการระบาดในระยะเริ่มต้น ซึ่งโรคยังแพร่กระจายได้โดยไม่มีข้อจำกัด</p></li>
-<li><p>สมการ: <span class="math inline">\(( dy/dt = rE \cdot y )\)</span>, โดย <span class="math inline">\(rE\)</span> เป็นพารามิเตอร์ที่กำหนดอัตราการเพิ่มขึ้นของโรค การใช้ Exponential model ช่วยให้เราเข้าใจการเพิ่มขึ้นของโรคในช่วงเริ่มต้นของระบาดได้อย่างแม่นยำ.</p></li>
-<li><p><strong>Logistic Model</strong>:</p></li>
-<li><p>ใช้สำหรับการวิเคราะห์การแพร่ระบาดแบบ polycyclic โดยพิจารณาความอิ่มตัวของโฮสต์</p></li>
-<li><p>สมการ: <span class="math inline">\(( dy/dt = rL \cdot y \cdot (1 - y) )\)</span>, โดย <span class="math inline">\(rL\)</span> เป็นอัตราการแพร่กระจายของการติดเชื้อรอง Logistic model ยังเหมาะสำหรับการวางแผนควบคุมโรคในระยะยาว เนื่องจากสามารถแสดงถึงความสัมพันธ์ที่ชัดเจนระหว่างอัตราการแพร่กระจายและข้อจำกัดในทรัพยากรโฮสต์.</p></li>
-<li><p><strong>Power Model</strong>:</p></li>
-<li><p>เหมาะสำหรับการวิเคราะห์การแพร่กระจายในพื้นที่ที่มีขนาดใหญ่</p></li>
-<li><p>สมการ: <span class="math inline">\(( dy/ds = -bP \cdot y / s )\)</span> Power model ถูกใช้อย่างแพร่หลายในการวิเคราะห์ความสัมพันธ์เชิงพื้นที่ เช่น การแพร่กระจายของโรคจากจุดกำเนิดไปยังพื้นที่ไกลๆ. 📐🌍📊</p>
-<h2 id="การเลอกแบบจำลองทเหมาะสม" class="anchored"><strong>การเลือกแบบจำลองที่เหมาะสม</strong>: 🔍📏✨</h2></li>
-</ul>
-<!-- -->
+<li><p><strong>Exponential Model</strong>:</p>
 <ul>
-<li>ใช้ Exponential models สำหรับระยะเริ่มต้นของการระบาดแบบ monocyclic ซึ่งช่วยให้เราคาดการณ์อัตราการเพิ่มขึ้นได้แม่นยำในช่วงต้น.</li>
-<li>ใช้ Logistic models สำหรับการระบาดที่เกี่ยวข้องกับข้อจำกัดในความสามารถของโฮสต์ เช่น การวิเคราะห์การควบคุมโรคในระยะยาว.</li>
-<li>ใช้การแปลงข้อมูล (เช่น logit หรือ logarithm) เพื่อทำให้ความสัมพันธ์ซับซ้อนกลายเป็นเชิงเส้น และเพิ่มประสิทธิภาพในการคำนวณทางสถิติ📋🔬✨</li>
+<li><p>เหมาะสำหรับการระบาดในระยะเริ่มต้น ซึ่งโรคยังแพร่กระจายได้โดยไม่มีข้อจำกัด</p></li>
+<li><p>สมการ: <span class="math inline">\(( dy/dt = rE \cdot y )\)</span>, โดย <span class="math inline">\(rE\)</span> เป็นพารามิเตอร์ที่กำหนดอัตราการเพิ่มขึ้นของโรค การใช้ Exponential model ช่วยให้เราเข้าใจการเพิ่มขึ้นของโรคในช่วงเริ่มต้นของระบาดได้อย่างแม่นยำ</p></li>
+</ul></li>
+<li><p><strong>Logistic Model</strong>:</p>
+<ul>
+<li><p>ใช้สำหรับการวิเคราะห์การแพร่ระบาดแบบ polycyclic โดยพิจารณาความอิ่มตัวของโฮสต์</p></li>
+<li><p>สมการ: <span class="math inline">\(( dy/dt = rL \cdot y \cdot (1 - y) )\)</span>, โดย <span class="math inline">\(rL\)</span> เป็นอัตราการแพร่กระจายของการติดเชื้อรอง Logistic model ยังเหมาะสำหรับการวางแผนควบคุมโรคในระยะยาว เนื่องจากสามารถแสดงถึงความสัมพันธ์ที่ชัดเจนระหว่างอัตราการแพร่กระจายและข้อจำกัดในทรัพยากรโฮสต์</p></li>
+</ul></li>
+<li><p><strong>Power Model</strong>:</p>
+<ul>
+<li><p>เหมาะสำหรับการวิเคราะห์การแพร่กระจายในพื้นที่ที่มีขนาดใหญ่</p></li>
+<li><p>สมการ: <span class="math inline">\(( dy/ds = -bP \cdot y / s )\)</span> Power model ถูกใช้อย่างแพร่หลายในการวิเคราะห์ความสัมพันธ์เชิงพื้นที่ เช่น การแพร่กระจายของโรคจากจุดกำเนิดไปยังพื้นที่ไกลๆ. 📐🌍📊</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="การเลอกแบบจำลองทเหมาะสม" class="level2">
+<h2 class="anchored" data-anchor-id="การเลอกแบบจำลองทเหมาะสม"><strong>การเลือกแบบจำลองที่เหมาะสม</strong>: 🔍📏✨</h2>
+<ul>
+<li><p>ใช้ Exponential models สำหรับระยะเริ่มต้นของการระบาดแบบ monocyclic ซึ่งช่วยให้เราคาดการณ์อัตราการเพิ่มขึ้นได้แม่นยำในช่วงต้น</p></li>
+<li><p>ใช้ Logistic models สำหรับการระบาดที่เกี่ยวข้องกับข้อจำกัดในความสามารถของโฮสต์ เช่น การวิเคราะห์การควบคุมโรคในระยะยาว</p></li>
+<li><p>ใช้การแปลงข้อมูล (เช่น logit หรือ logarithm) เพื่อทำให้ความสัมพันธ์ซับซ้อนกลายเป็นเชิงเส้น และเพิ่มประสิทธิภาพในการคำนวณทางสถิติ📋🔬✨</p></li>
 </ul>
 </section>
 <section id="การใชเครองมอทางสถต" class="level2">
 <h2 class="anchored" data-anchor-id="การใชเครองมอทางสถต"><strong>การใช้เครื่องมือทางสถิติ</strong> 📊🖥️🧠</h2>
-<ol type="1">
-<li><p><strong>ซอฟต์แวร์และเทคนิค</strong>: 💻📉📈</p>
+<p><strong>ซอฟต์แวร์และเทคนิค</strong>: 💻📉📈</p>
 <p><strong>R</strong>:</p>
-<p>ฟังก์ชัน: <code>lm()</code> สำหรับ linear regression และ <code>nls()</code> สำหรับ nonlinear regression.</p>
-<p>แพ็คเกจ: <code>ggplot2</code> สำหรับการแสดงผลข้อมูล และ <code>drc</code> สำหรับ dose-response curves การใช้งาน R ยังสามารถเพิ่มขีดความสามารถด้วยการวิเคราะห์ข้อมูลเชิงลึก เช่น การคำนวณ AUDPC (Area Under the Disease Progress Curve)</p>
+<ul>
+<li><p>ฟังก์ชัน: <code>lm()</code> สำหรับ linear regression และ <code>nls()</code> สำหรับ nonlinear regression</p></li>
+<li><p>แพ็คเกจ: <code>ggplot2</code> สำหรับการแสดงผลข้อมูล และ <code>drc</code> สำหรับ dose-response curves การใช้งาน R ยังสามารถเพิ่มขีดความสามารถด้วยการวิเคราะห์ข้อมูลเชิงลึก เช่น การคำนวณ AUDPC (Area Under the Disease Progress Curve)</p></li>
+</ul>
 <p><strong>SAS</strong>:</p>
-<p>ขั้นตอน: <code>PROC REG</code> สำหรับการวิเคราะห์ regression และ <code>PROC MODEL</code> สำหรับการสร้างแบบจำลองที่ซับซ้อน SAS มีประโยชน์ในการจัดการชุดข้อมูลขนาดใหญ่และวิเคราะห์โมเดลที่มีความซับซ้อนได้อย่างแม่นยำ</p>
-<p>คุณสมบัติ: รองรับการจัดการข้อมูลเชิงเวลาและพื้นที่.</p>
+<ul>
+<li><p>ขั้นตอน: <code>PROC REG</code> สำหรับการวิเคราะห์ regression และ <code>PROC MODEL</code> สำหรับการสร้างแบบจำลองที่ซับซ้อน SAS มีประโยชน์ในการจัดการชุดข้อมูลขนาดใหญ่และวิเคราะห์โมเดลที่มีความซับซ้อนได้อย่างแม่นยำ</p></li>
+<li><p>คุณสมบัติ: รองรับการจัดการข้อมูลเชิงเวลาและพื้นที่</p></li>
+</ul>
 <p><strong>MINITAB</strong>:</p>
-<p>ความโดดเด่น: อินเทอร์เฟซที่ใช้งานง่ายสำหรับ regression modeling และ residual diagnostics ใช้ได้ดีในงานที่ต้องการการวิเคราะห์ข้อมูลเชิงสำรวจและการวางแผนทดลอง. 📚🧮✨</p></li>
-</ol>
-<!-- -->
+<ul>
+<li>ความโดดเด่น: อินเทอร์เฟซที่ใช้งานง่ายสำหรับ regression modeling และ residual diagnostics ใช้ได้ดีในงานที่ต้องการการวิเคราะห์ข้อมูลเชิงสำรวจและการวางแผนทดลอง 📚🧮✨</li>
+</ul>
 <ol start="2" type="1">
 <li><strong>ขั้นตอนในการวิเคราะห์</strong>: 📈🔬📝</li>
 </ol>
 <ul>
-<li><p><strong>กำหนดตัวแปร</strong>: ระบุ Incidence, Severity หรือเมตริกอื่น ๆ ที่สะท้อนระดับความรุนแรงของโรค.</p></li>
-<li><p><strong>การเลือกแบบจำลอง</strong>: ใช้กราฟสำรวจเบื้องต้น (เช่น scatterplots ของ $dy/dt$ เทียบกับ ( <span class="math inline">\(y\)</span> ) เพื่อตรวจสอบรูปแบบข้อมูลและเลือกแบบจำลองที่เหมาะสม.</p></li>
+<li><p><strong>กำหนดตัวแปร</strong>: ระบุ Incidence, Severity หรือเมตริกอื่น ๆ ที่สะท้อนระดับความรุนแรงของโรค</p></li>
+<li><p><strong>การเลือกแบบจำลอง</strong>: ใช้กราฟสำรวจเบื้องต้น (เช่น scatterplots ของ <span class="math inline">\(dy/dt\)</span> เทียบกับ ( <span class="math inline">\(y\)</span> ) เพื่อตรวจสอบรูปแบบข้อมูลและเลือกแบบจำลองที่เหมาะสม</p></li>
 <li><p><strong>การสร้างแบบจำลอง</strong>:</p>
 <ul>
 <li><p>ทำ regression (linear หรือ nonlinear) เพื่อตรวจสอบความสัมพันธ์ระหว่างตัวแปร.</p></li>
@@ -248,39 +296,40 @@ gtag('config', 'G-WY647CK1PJ', { 'anonymize_ip': true});
 </section>
 <section id="ตวอยางการใชงาน" class="level2">
 <h2 class="anchored" data-anchor-id="ตวอยางการใชงาน"><strong>ตัวอย่างการใช้งาน</strong> 🌾📊🔬</h2>
-<ol type="1">
-<li><strong>การวิเคราะห์การดำเนินโรค</strong>:</li>
-</ol>
+<p><strong>การวิเคราะห์การพัฒนาของโรคข้าว</strong>:</p>
 <ul>
-<li>สร้าง Logistic growth models เพื่ออธิบายการแพร่ระบาดของ Late Blight ในแปลงมันฝรั่ง การวิเคราะห์นี้ช่วยให้สามารถกำหนดแผนควบคุมที่มีประสิทธิภาพและประเมินความสำเร็จของมาตรการควบคุมในระยะยาวได้ - วิเคราะห์พารามิเตอร์ เช่น อัตราการติดเชื้อ (( <span class="math inline">\(rL\)</span> )) และระยะเวลาที่โรคเพิ่มขึ้นเป็นสองเท่า การคำนวณนี้สามารถใช้ในการประเมินความรุนแรงของการแพร่ระบาด. 🌟📈🔬</li>
-</ul>
-<ol start="2" type="1">
+<li><p>สร้าง Logistic growth models เพื่ออธิบายการแพร่ระบาดของ Late Blight ในแปลงมันฝรั่ง การวิเคราะห์นี้ช่วยให้สามารถกำหนดแผนควบคุมที่มีประสิทธิภาพและประเมินความสำเร็จของมาตรการควบคุมในระยะยาวได้</p></li>
+<li><p>วิเคราะห์พารามิเตอร์ เช่น อัตราการติดเชื้อ ( <span class="math inline">\(r\)</span> ) และระยะเวลาที่โรคเพิ่มขึ้นเป็นสองเท่า การคำนวณนี้สามารถใช้ในการประเมินความรุนแรงของการแพร่ระบาด. 🌟📈🔬</p></li>
 <li><p><strong>AUDPC (Area Under the Disease Progress Curve)</strong></p>
-<p>คำนวณเพื่อสรุประดับความรุนแรงของโรคตลอดช่วงเวลาการเก็บข้อมูล.</p>
+<p>คำนวณเพื่อสรุประดับความรุนแรงของโรคตลอดช่วงเวลาการเก็บข้อมูล</p>
 <p>ใช้ฟังก์ชัน <code>trapz()</code> ใน R (จากแพ็คเกจ <code>pracma</code>) หรือการคำนวณเชิงตัวเลขด้วยตนเอง เพื่อประเมินประสิทธิภาพของการควบคุมโรคในพื้นที่ต่าง ๆ📏📉✨</p></li>
-<li><p><strong>การวิเคราะห์การแพร่กระจายเชิงพื้นที่</strong>:</p>
-<p>- ใช้ Power-law models เพื่ออธิบายความสัมพันธ์ระหว่างระยะทางจากแหล่งกำเนิดโรคและความรุนแรงของโรค โมเดลนี้เหมาะสำหรับการวิเคราะห์การแพร่กระจายในระดับภูมิภาค</p>
-<p>- ใช้แพ็คเกจ <code>sp</code> และ <code>sf</code> ใน R สำหรับการวิเคราะห์ข้อมูลเชิงพื้นที่ เช่น การกำหนดตำแหน่งแหล่งโรคและคำนวณระยะการแพร่กระจาย. 🌍📐📋</p></li>
-</ol>
+</ul>
+<p><strong>การวิเคราะห์การแพร่กระจายโรคพืชเชิงพื้นที่</strong>:</p>
+<ul>
+<li><p>ใช้ Power-law models เพื่ออธิบายความสัมพันธ์ระหว่างระยะทางจากแหล่งกำเนิดโรคและความรุนแรงของโรค โมเดลนี้เหมาะสำหรับการวิเคราะห์การแพร่กระจายในระดับภูมิภาค</p></li>
+<li><p>ใช้แพ็คเกจ <code>sp</code> และ <code>sf</code> ใน R สำหรับการวิเคราะห์ข้อมูลเชิงพื้นที่ เช่น การกำหนดตำแหน่งแหล่งโรคและคำนวณระยะการแพร่กระจาย. 🌍📐📋</p></li>
+</ul>
 <p><strong>แหล่งข้อมูลเพิ่มเติม</strong> 📚✨🔗</p>
-<p><strong>หนังสือ</strong>:</p>
+<section id="หนงสอ" class="level4">
+<h4 class="anchored" data-anchor-id="หนงสอ"><strong>หนังสือ</strong>:</h4>
 <ul>
-<li>“The Study of Plant Disease Epidemics” โดย L. Madden, G. Hughes, และ F. van den Bosch (2007). - “Plant Pathology” โดย G. Agrios ซึ่งเป็นแหล่งข้อมูลพื้นฐานที่ครอบคลุมสำหรับการศึกษาโรคพืช. 📖📘📗</li>
-<li><strong>วารสาร</strong>:</li>
-<li><em>Phytopathology</em> (เน้นบทความล่าสุดเกี่ยวกับการวิเคราะห์ระบาดวิทยา). - <em>Theoretical and Applied Plant Pathology</em>. 🌟📰✨</li>
-<li><strong>เว็บไซต์</strong>:</li>
-<li>APSnet Education Center: ศูนย์ข้อมูลเพื่อการศึกษาที่ครอบคลุมด้านระบาดวิทยาโรคพืช
+<li><p>“The Study of Plant Disease Epidemics” โดย L. Madden, G. Hughes, และ F. van den Bosch (2007). - “Plant Pathology” โดย G. Agrios ซึ่งเป็นแหล่งข้อมูลพื้นฐานที่ครอบคลุมสำหรับการศึกษาโรคพืช. 📖📘📗</p>
+<h4 id="วารสาร" class="anchored"><strong>วารสาร</strong>:</h4></li>
+<li><p><em>Phytopathology</em> (เน้นบทความล่าสุดเกี่ยวกับการวิเคราะห์ระบาดวิทยา). - <em>Theoretical and Applied Plant Pathology</em>. 🌟📰✨</p>
+<h4 id="เวบไซต" class="anchored"><strong>เว็บไซต์</strong>:</h4></li>
+<li><p>APSnet Education Center: ศูนย์ข้อมูลเพื่อการศึกษาที่ครอบคลุมด้านระบาดวิทยาโรคพืช</p>
 <ul>
-<li><p>เอกสาร R Project: คู่มือเกี่ยวกับการสร้างแบบจำลองทางสถิติและการใช้งานแพ็คเกจ.</p></li>
-<li><p>Phytopathology Visualization Tools: เครื่องมือออนไลน์สำหรับการแสดงภาพอมูลระบาด.</p></li>
+<li><p>เอกสาร R Project: คู่มือเกี่ยวกับการสร้างแบบจำลองทางสถิติและการใช้งานแพ็คเกจ</p></li>
+<li><p>Phytopathology Visualization Tools: เครื่องมือออนไลน์สำหรับการแสดงภาพอมูลระบาด</p></li>
 </ul></li>
 </ul>
 
 
 </section>
 </section>
+</section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div id="quarto-reuse" class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></div></div></section></div></main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -316,18 +365,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -359,11 +397,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/kanthjs\.github\.io\/9March19XX");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -373,8 +450,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -386,7 +472,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -430,6 +639,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -455,6 +665,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -515,6 +751,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+
 
 
 
