@@ -1,35 +1,87 @@
 /*-- scss:defaults --*/
 
-$body-bg:                                 #fdfdfd !default;
-$body-color:                              #313745 !default;
-$headings-color:                          $body-color !default;
-$code-block-bg:                           darken($body-bg, 3%) !default;
-$navbar-bg:                               $body-bg !default;
+$body-bg: #fdfdfd !default;
+$body-color: #313745 !default;
+$headings-color: $body-color !default;
+$code-block-bg: darken($body-bg, 3%) !default;
+$navbar-bg: $body-bg !default;
 
-$link-color:                              lighten($body-color, 30%) !default;
-$link-shade-percentage:                   30% !default;
-$link-hover-color:                        shift-color($link-color, $link-shade-percentage) !default;
+$link-color: lighten($body-color, 30%) !default;
+$link-shade-percentage: 30% !default;
+$link-hover-color: shift-color($link-color, $link-shade-percentage) !default;
 
-$code-color:                              lighten($body-color, 10%) !default;
-$code-bg:                                 darken($body-bg, 10%) !default;
+$code-color: lighten($body-color, 10%) !default;
+$code-bg: darken($body-bg, 10%) !default;
 
-$card-border-color:                       $body-color !default;
-$form-select-border-color:                $body-color !default;
+$card-border-color: $body-color !default;
+$form-select-border-color: $body-color !default;
 
-@import url('https://fonts.googleapis.com/css2?family=Krub&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Fira+Code&display=swap');
+/* โหลดฟอนต์: Noto Sans Thai (เนื้อหา/หัวเรื่อง) + Fira Code (โค้ด) */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fira+Code&display=swap");
 
-
-$headings-font-family:                    "Krub", serif !default;
+/* ตั้งค่าฟอนต์หลัก */
+$font-family-sans-serif: "Noto Sans Thai", "Noto Sans", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif !default;
+$font-family-base: $font-family-sans-serif !default;
+$headings-font-family: $font-family-sans-serif !default;
+$font-family-monospace: "Fira Code", ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace !default;
 
 /*-- scss:rules --*/
 
+/* ให้ body และทุกหัวข้อใช้ Noto Sans Thai */
+body {
+    font-family: $font-family-base;
+    font-weight: 400;
+    line-height: 1.6;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.quarto-title-banner,
+.navbar,
+.navbar-brand,
+.navbar-nav,
+footer {
+    font-family: $headings-font-family;
+    font-weight: 600;
+}
+
+/* ปรับน้ำหนักตามระดับหัวข้อให้ดูสมดุล */
+h1 {
+    font-weight: 700;
+}
+
+h2,
+h3 {
+    font-weight: 600;
+}
+
+h4,
+h5,
+h6 {
+    font-weight: 500;
+}
+
+/* โค้ดให้ใช้ monofont */
+code,
+pre,
+kbd,
+samp,
+.sourceCode {
+    font-family: $font-family-monospace !important;
+}
+
+/* องค์ประกอบอื่น */
 .card-footer {
     color: darken($body-bg, 30%);
     background-color: darken($body-bg, 2%);
 }
 
-.navbar-brand > img {
+.navbar-brand>img {
     max-height: 40px;
 }
 
@@ -37,5 +89,10 @@ $headings-font-family:                    "Krub", serif !default;
     color: #9ea1a8;
 }
 
-.light-mode { display: block; }
-.dark-mode { display: none; }
+.light-mode {
+    display: block;
+}
+
+.dark-mode {
+    display: none;
+}

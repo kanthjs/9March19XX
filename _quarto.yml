@@ -28,13 +28,13 @@ format:
       light: [flatly, scss/light.scss]
     css: scss/styles.css
     highlight-style: gruvbox
-    mainfont: "K2D"
+    mainfont: "Noto Sans Thai"
     monofont: "Fira Code"
     df-print: kable
     code-copy: true
     code-overflow: wrap
-    toc: false
-    toc_depth: 3
+    toc: true
+    toc_depth: 6
     toc_float: true
     toc_smooth_scroll: true
     toc_highlight: true
