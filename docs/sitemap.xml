@@ -2,11 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://kanthjs.github.io/9March19XX/tsl-book.html</loc>
-    <lastmod>2025-02-12T13:43:26.127Z</lastmod>
+    <lastmod>2025-10-03T07:13:08.897Z</lastmod>
   </url>
   <url>
     <loc>https://kanthjs.github.io/9March19XX/posts.html</loc>
-    <lastmod>2025-01-02T02:08:31.165Z</lastmod>
+    <lastmod>2025-10-03T07:19:27.657Z</lastmod>
   </url>
   <url>
     <loc>https://kanthjs.github.io/9March19XX/posts/2022-12-12-EpiTerm/index.html</loc>
@@ -18,7 +18,7 @@
   </url>
   <url>
     <loc>https://kanthjs.github.io/9March19XX/posts/2022-12-08-DMRT/index.html</loc>
-    <lastmod>2025-02-12T13:43:13.418Z</lastmod>
+    <lastmod>2025-10-27T08:01:53.503Z</lastmod>
   </url>
   <url>
     <loc>https://kanthjs.github.io/9March19XX/ilts.html</loc>
@@ -46,11 +46,11 @@
   </url>
   <url>
     <loc>https://kanthjs.github.io/9March19XX/index.html</loc>
-    <lastmod>2025-02-12T13:43:11.593Z</lastmod>
+    <lastmod>2025-10-03T07:13:11.143Z</lastmod>
   </url>
   <url>
     <loc>https://kanthjs.github.io/9March19XX/posts/2022-12-09-BayT/index.html</loc>
-    <lastmod>2025-02-12T13:43:15.042Z</lastmod>
+    <lastmod>2025-10-03T07:13:05.694Z</lastmod>
   </url>
   <url>
     <loc>https://kanthjs.github.io/9March19XX/posts/2022-12-11-ModelwithBayT/index.html</loc>
@@ -62,6 +62,18 @@
   </url>
   <url>
     <loc>https://kanthjs.github.io/9March19XX/resources.html</loc>
-    <lastmod>2025-02-12T13:43:24.915Z</lastmod>
+    <lastmod>2025-10-03T07:13:00.300Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kanthjs.github.io/9March19XX/note-to-me.html</loc>
+    <lastmod>2025-10-03T07:14:09.593Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kanthjs.github.io/9March19XX/note-to-me/2024-10-3-note1/index.html</loc>
+    <lastmod>2025-10-03T07:18:31.488Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kanthjs.github.io/9March19XX/note-to-me/2024-10-2-note0/index.html</loc>
+    <lastmod>2025-10-27T09:33:26.831Z</lastmod>
   </url>
 </urlset>

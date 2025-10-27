@@ -1,0 +1,7 @@
+---
+title: "Note 1"
+date: '2024-10-03'
+categories: [R]
+---
+
+Hi 2

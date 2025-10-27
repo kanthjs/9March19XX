@@ -19,6 +19,8 @@ website:
     right:
       - text: "บล๊อก"
         href: posts.qmd
+      - text: "Note to Me"
+        href: note-to-me.qmd
 
 format:
   html:

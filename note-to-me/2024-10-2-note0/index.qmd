@@ -1,0 +1,60 @@
+---
+title: "โหลดแผนที่ประเทศไทย"
+date: '2024-10-02'
+categories: [R]
+---
+
+## ดาวน์โหลดแผนที่ประเทศไทยที่ขอบเขตเป็นจังหวัดด้วย `geodata`
+
+โค้ดนี้ใช้สำหรับดาวน์โหลดขอบเขตทางภูมิศาสตร์ของประเทศไทยในระดับ “จังหวัด” (Administrative level 1) จากฐานข้อมูล **GADM (Global Administrative Areas)** ซึ่งมีให้บริการผ่านแพ็กเกจ `geodata`
+
+```{r}
+#| eval: false
+#| echo: TRUE
+install.packages("geodata")
+library(geodata)
+# ดาวน์โหลด shapefile ของประเทศไทย ระดับจังหวัด (level = 1)
+thai_prov <- geodata::gadm(country = "THA", level = 1, path = "data")
+# รหัสประเทศ ISO-3: THA (ประเทศไทย)
+# ระดับการปกครอง: 0=ประเทศ, 1=จังหวัด, 2=อำเภอ ฯลฯ
+# path ที่อยู่โฟลเดอร์สำหรับเก็บไฟล์ .rds หรือ .shp เรียกเก็บที่ โฟลเดอร์  ที่ชื่อ data
+```
+
+เมื่อโหลดแล้ว
+
+```{r}
+#| echo: TRUE
+thai_prov <- readRDS("D:/GitHub/9March19XX/data/gadm/gadm41_THA_1_pk.rds")
+class(thai_prov)
+```
+
+หลังจากรันคำสั่งนี้ จะได้ไฟล์ shapefile หรือไฟล์ `.rds` อยู่ในโฟลเดอร์ `data/`\
+
+output ที่ได้มาจะเป็น SpatVector จากแพ็กเกจ `terra` แต่ถ้าอยากใช้กับแพ็กเกจในสาย tidyverse เช่น ggplot2, dplyr, sf จำเป็นต้องแปลงก่อนด้วย `st_as_sf()`
+
+```{r}
+#| echo: TRUE
+library(terra)
+library(sf)
+thai_prov <- terra::unwrap(thai_prov)
+thai_prov_sf <- st_as_sf(thai_prov) # แปลงเป็น sf object
+plot(thai_prov_sf["NAME_1"]) # แสดงชื่อจังหวัด
+```
+
+> *Tip:*\
+> ถ้าโหลดไม่สำเร็จ (เช่น server ช้า หรือเน็ตไม่เสถียร) ลองใช้ mirror ของ GADM โดยโหลดจากเว็บโดยตรง: [GADM](https://gadm.org/download_country.html){.uri}
+
+## ดาวน์โหลดแผนที่ไทย ไฟล์ GeoJSON
+
+```{r}
+#| eval: false
+#| echo: true
+library(sf)
+#โหลดแผนที่ขอบเขตจังหวัด (OpenGISData-Thailand)
+th_prov_geojson <- st_read(
+  "https://raw.githubusercontent.com/chingchai/OpenGISData-Thailand/master/provinces.geojson",
+  quiet = TRUE,
+  options = "ENCODING=UTF-8"
+) |>
+  st_transform(4326)
+```

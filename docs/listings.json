@@ -2,11 +2,6 @@
   {
     "listing": "/posts.html",
     "items": [
-      "/posts/2022-12-12-EpiTerm/index.html",
-      "/posts/2022-12-13-Temp_Analysis/index.html",
-      "/posts/2022-12-11-ModelwithBayT/index.html",
-      "/posts/2022-12-09-BayT/index.html",
-      "/posts/2022-12-10-EpidemwithBay/index.html",
       "/posts/2022-12-08-DMRT/index.html"
     ]
   },
@@ -15,6 +10,12 @@
     "items": [
       "/ilts/2022-11-21-let-it-go/index.html",
       "/ilts/2022-11-19-fix-your-fatigue/index.html"
+    ]
+  },
+  {
+    "listing": "/note-to-me.html",
+    "items": [
+      "/note-to-me/2024-10-2-note0/index.html"
     ]
   }
 ]

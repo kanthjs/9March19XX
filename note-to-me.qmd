@@ -1,0 +1,18 @@
+---
+title: "Note to me"
+subtitle: "บันทึกสั้น ๆ ที่อยากจดจำ"
+listing:
+  contents: note-to-me
+  sort: "date desc"
+  type: default
+  date-format: medium
+  categories: true
+  sort-ui: false
+  filter-ui: false
+  image-height: 170px
+  fields: [image, title]
+page-layout: full
+title-block-banner: true
+comments: false
+code-tools: false
+---

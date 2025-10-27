@@ -28,6 +28,7 @@ comments: false
 -   Plant disease epidemiology
 -   R programming/R shiny
 -   Data Analysis/ Statistics/ Data-Visualization
+-   ตอนนี้กำลังเรียนรู้ Python
 
 ## {{< fa solid graduation-cap >}} จบ
 
