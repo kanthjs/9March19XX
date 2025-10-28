@@ -2,11 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://kanthjs.github.io/9March19XX/tsl-book.html</loc>
-    <lastmod>2025-10-27T13:48:07.508Z</lastmod>
+    <lastmod>2025-10-28T07:45:13.107Z</lastmod>
   </url>
   <url>
     <loc>https://kanthjs.github.io/9March19XX/posts.html</loc>
-    <lastmod>2025-10-27T14:56:12.210Z</lastmod>
+    <lastmod>2025-10-27T09:35:07.356Z</lastmod>
   </url>
   <url>
     <loc>https://kanthjs.github.io/9March19XX/posts/2022-12-12-EpiTerm/index.html</loc>
@@ -18,7 +18,7 @@
   </url>
   <url>
     <loc>https://kanthjs.github.io/9March19XX/posts/2022-12-08-DMRT/index.html</loc>
-    <lastmod>2025-10-27T14:56:11.668Z</lastmod>
+    <lastmod>2025-10-28T07:49:21.171Z</lastmod>
   </url>
   <url>
     <loc>https://kanthjs.github.io/9March19XX/ilts.html</loc>
@@ -62,11 +62,11 @@
   </url>
   <url>
     <loc>https://kanthjs.github.io/9March19XX/resources.html</loc>
-    <lastmod>2025-10-27T13:48:06.461Z</lastmod>
+    <lastmod>2025-10-28T07:45:13.081Z</lastmod>
   </url>
   <url>
     <loc>https://kanthjs.github.io/9March19XX/note-to-me.html</loc>
-    <lastmod>2025-10-27T13:48:03.480Z</lastmod>
+    <lastmod>2025-10-27T09:35:07.356Z</lastmod>
   </url>
   <url>
     <loc>https://kanthjs.github.io/9March19XX/note-to-me/2024-10-3-note1/index.html</loc>
@@ -75,5 +75,9 @@
   <url>
     <loc>https://kanthjs.github.io/9March19XX/note-to-me/2024-10-2-note0/index.html</loc>
     <lastmod>2025-10-27T13:48:01.007Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kanthjs.github.io/9March19XX/note-to-me/2024-10-28-note1/index.html</loc>
+    <lastmod>2025-10-28T10:06:03.978Z</lastmod>
   </url>
 </urlset>

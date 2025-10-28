@@ -4,7 +4,7 @@ date: '2022-12-08'
 categories: [R]
 ---
 
-# Duncan (DMRT) หลีกหนีเถอะ
+# Duncan (DMRT) เลิกเถอะ
 
 | **#TL;DR:**
 |

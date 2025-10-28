@@ -4,14 +4,14 @@
     "href": "tsl-book.html",
     "title": "หนังสือเกี่ยวกับอาร์ที่สนใจแล้วนำมาแปล",
     "section": "",
-    "text": "ระบาดวิทยาโรคพืช (กำลังแปล)\n\n\n\n\n\nอาร์สำหรับวิทยาศาสตร์ข้อมูล (กำลังแปล)"
+    "text": "ระบาดวิทยาโรคพืช (กำลังแปล)\n\nอาร์สำหรับวิทยาศาสตร์ข้อมูล (กำลังแปล)"
   },
   {
     "objectID": "posts.html",
     "href": "posts.html",
     "title": "บล๊อก",
     "section": "",
-    "text": "เลิกใช้ DMRT เถอะ\n\n\n\n\n\n\n\n \n\n\n\n\nNo matching items"
+    "text": "เลิกใช้ DMRT เถอะ\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/2022-12-12-EpiTerm/index.html",
@@ -123,7 +123,7 @@
     "href": "posts/2022-12-08-DMRT/index.html",
     "title": "เลิกใช้ DMRT เถอะ",
     "section": "",
-    "text": "#TL;DR:\n\nDMRT ใช้เปรียบเทียบค่าเฉลี่ยแบบคู่ต่อคู่ เหมาะกับการทดลองง่ายที่มีปัจจัยเดียวและข้อมูลผ่านสมมติฐาน ANOVA แต่ไม่เหมาะกับการทดลองแฟกทอเรียลหรือตัวแปรต่อเนื่อง เพราะไม่รองรับ interaction และแนวโน้มเชิงปริมาณ DMRT เข้าใจง่ายแต่ “ใจดี” ไปหน่อย ควรใช้ Tukey’s HSD เมื่อต้องการคุมความผิดพลาดให้รัดกุมกว่า สรุปคือ DMRT ใช้ได้ ถ้าเราเข้าใจข้อจำกัดของมันดีพอ\n\n\nเวลาเราทำการทดลองที่มีหลายชุด เช่น เปรียบเทียบผลผลิตข้าวหลายพันธุ์ หรือดูผลของปุ๋ยหลายสูตร ขั้นตอนมาตรฐานหลังจาก ANOVA คือ “ถ้ามันแตกต่างกันจริง แล้วคู่ไหนต่างกันบ้าง?” หมาย ๆ หลาย เลือกใช้ DMRT เพื่อช่วยตอบ\nDMRT เป็นการเปรียบเทียบค่าเฉลี่ยแบบ pairwise comparision เพื่อหาว่าคู่ไหนต่างกันอย่างมีนัยสำคัญ โดยใช้ค่า Least Significant Range (LSR) ซึ่งคำนวณจากจำนวนกลุ่ม ระดับความเชื่อมั่น และค่า Mean Square Error (MSE) ที่ได้จาก ANOVA\nถ้าคู่ไหนต่างกันเกิน LSR สรุปว่า “ต่างกันจริง” แต่ ถ้าค่างกันไม่ถึง ก็ “ยังไม่ต่างพอจะบอกว่าต่างกัน”\n\n\nDMRT ใช้ได้ดีในงานทดลองที่มีโครงสร้างเรียบง่าย เช่น - กลุ่มทดลองเป็นอิสระต่อกัน - ตัวแปรอธิบายเป็นตัวแปรเชิงคุณภาพ (เช่น พันธุ์ข้าว, สูตรปุ๋ย, สภาพดิน) - ข้อมูลผ่านการตรวจสอบว่า “กระจายแบบปกติ” และ “มีความแปรปรวนเท่ากัน” DMRT เหมาะสมที่จะใช้ในสถานการณ์ต่อไปนี้\n\n\n\n\nจำลองตัวอย่างข้อมูลผลผลิตข้าว 3 สายพันธุ์\n\n\n\n\n\n\nvariety\nyield\n\n\n\n\nA\n10\n\n\nA\n12\n\n\nA\n11\n\n\nA\n13\n\n\nB\n14\n\n\nB\n12\n\n\nB\n15\n\n\nB\n16\n\n\nC\n14\n\n\nC\n17\n\n\nC\n18\n\n\nC\n16\n\n\n\n\n\n\nวิเคราะห์ ANOVA และ DMRT โดยใช้ duncan.test จาก agricolae package\n\n# วิเคราะห์ ANOVA\nmodel &lt;- aov(yield ~ variety, data = data)\nsummary(model)\n\n            Df Sum Sq Mean Sq F value  Pr(&gt;F)   \nvariety      2   45.5   22.75     9.1 0.00689 **\nResiduals    9   22.5    2.50                   \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n# ทดสอบ DMRT\nduncan.test(model, \"variety\", console = TRUE)\n\n\nStudy: model ~ \"variety\"\n\nDuncan's new multiple range test\nfor yield \n\nMean Square Error:  2.5 \n\nvariety,  means\n\n  yield      std r        se Min Max   Q25  Q50   Q75\nA 11.50 1.290994 4 0.7905694  10  13 10.75 11.5 12.25\nB 14.25 1.707825 4 0.7905694  12  16 13.50 14.5 15.25\nC 16.25 1.707825 4 0.7905694  14  18 15.50 16.5 17.25\n\nAlpha: 0.05 ; DF Error: 9 \n\nCritical Range\n       2        3 \n2.529169 2.639820 \n\nMeans with the same letter are not significantly different.\n\n  yield groups\nC 16.25      a\nB 14.25      a\nA 11.50      b\n\n\n\ndata %&gt;%\n  ggplot(aes(variety, yield)) +\n  geom_boxplot(aes(fill = variety), alpha = 0.6) +\n  stat_summary(fun = mean, geom = \"point\", color = \"red\", size = 4) +\n  labs(\n    title = \"DMRT for Rice Varieties\",\n    x = \"Variety\",\n    y = \"Yield\"\n  ) +\n  theme_minimal()\n\n\n\n\n\n\n\n1. การทดลองแฟกทอเรียล (factorial design)\nถ้ามีมากกว่า 1 ปัจจัย เช่น “ปุ๋ย × ระดับน้ำ” DMRT จะไม่รู้จัก interaction ของปัจจัยเหล่านั้น\n2. ตัวแปรต้นเชิงปริมาณ (quantitative)\n\nถ้าปัจจัยเป็นค่าต่อเนื่อง เช่น “ปริมาณปุ๋ย (กก./ไร่)” การใช้ DMRT จะสูญเสียข้อมูล เพราะมันมองทุกระดับเป็นกลุ่มแยก ๆ กรณีนี้ควรใช้ Regression analysis มากกว่า\n\n\n\nDMRT มีแนวโน้ม “ใจดีเกินไป” คือยอมให้หลายคู่ต่างกันได้ง่าย (Type I error สูงกว่า)\nถ้าเรามีกลุ่มมาก หรืออยากคุมความผิดพลาดให้แน่นหนา และ Tukey’s HSD มักเป็นทางเลือกที่ดีกว่า"
+    "text": "#TL;DR:\n\nDMRT ใช้เปรียบเทียบค่าเฉลี่ยแบบคู่ต่อคู่ เหมาะกับการทดลองง่ายที่มีปัจจัยเดียวและข้อมูลผ่านสมมติฐาน ANOVA แต่ไม่เหมาะกับการทดลองแฟกทอเรียลหรือตัวแปรต่อเนื่อง เพราะไม่รองรับ interaction และแนวโน้มเชิงปริมาณ DMRT เข้าใจง่ายแต่ “ใจดี” ไปหน่อย ควรใช้ Tukey’s HSD เมื่อต้องการคุมความผิดพลาดให้รัดกุมกว่า สรุปคือ DMRT ใช้ได้ ถ้าเราเข้าใจข้อจำกัดของมันดีพอ\n\n\nเวลาเราทำการทดลองที่มีหลายชุด เช่น เปรียบเทียบผลผลิตข้าวหลายพันธุ์ หรือดูผลของปุ๋ยหลายสูตร ขั้นตอนมาตรฐานหลังจาก ANOVA คือ “ถ้ามันแตกต่างกันจริง แล้วคู่ไหนต่างกันบ้าง?” หมาย ๆ หลาย เลือกใช้ DMRT เพื่อช่วยตอบ\nDMRT เป็นการเปรียบเทียบค่าเฉลี่ยแบบ pairwise comparision เพื่อหาว่าคู่ไหนต่างกันอย่างมีนัยสำคัญ โดยใช้ค่า Least Significant Range (LSR) ซึ่งคำนวณจากจำนวนกลุ่ม ระดับความเชื่อมั่น และค่า Mean Square Error (MSE) ที่ได้จาก ANOVA\nถ้าคู่ไหนต่างกันเกิน LSR สรุปว่า “ต่างกันจริง” แต่ ถ้าค่างกันไม่ถึง ก็ “ยังไม่ต่างพอจะบอกว่าต่างกัน”\n\n\n\nกลุ่มทดลองเป็นอิสระต่อกัน\nตัวแปรอธิบายเป็นตัวแปรเชิงคุณภาพ (เช่น พันธุ์ข้าว, สูตรปุ๋ย, สภาพดิน)\nข้อมูลผ่านการตรวจสอบว่า “กระจายแบบปกติ” และ “มีความแปรปรวนเท่ากัน”\n\n\n\n\n\nจำลองตัวอย่างข้อมูลผลผลิตข้าว 3 สายพันธุ์\n\n\n\n\n\n\nvariety\nyield\n\n\n\n\nA\n10\n\n\nA\n12\n\n\nA\n11\n\n\nA\n13\n\n\nB\n14\n\n\nB\n12\n\n\nB\n15\n\n\nB\n16\n\n\nC\n14\n\n\nC\n17\n\n\nC\n18\n\n\nC\n16\n\n\n\n\n\n\nวิเคราะห์ ANOVA และ DMRT โดยใช้ duncan.test จาก agricolae package\n\n# วิเคราะห์ ANOVA\nmodel &lt;- aov(yield ~ variety, data = data)\nsummary(model)\n\n            Df Sum Sq Mean Sq F value  Pr(&gt;F)   \nvariety      2   45.5   22.75     9.1 0.00689 **\nResiduals    9   22.5    2.50                   \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n# ทดสอบ DMRT\nduncan.test(model, \"variety\", console = TRUE)\n\n\nStudy: model ~ \"variety\"\n\nDuncan's new multiple range test\nfor yield \n\nMean Square Error:  2.5 \n\nvariety,  means\n\n  yield      std r        se Min Max   Q25  Q50   Q75\nA 11.50 1.290994 4 0.7905694  10  13 10.75 11.5 12.25\nB 14.25 1.707825 4 0.7905694  12  16 13.50 14.5 15.25\nC 16.25 1.707825 4 0.7905694  14  18 15.50 16.5 17.25\n\nAlpha: 0.05 ; DF Error: 9 \n\nCritical Range\n       2        3 \n2.529169 2.639820 \n\nMeans with the same letter are not significantly different.\n\n  yield groups\nC 16.25      a\nB 14.25      a\nA 11.50      b\n\n\n\ndata %&gt;%\n  ggplot(aes(variety, yield)) +\n  geom_boxplot(aes(fill = variety), alpha = 0.6) +\n  stat_summary(fun = mean, geom = \"point\", color = \"red\", size = 4) +\n  labs(\n    title = \"DMRT for Rice Varieties\",\n    x = \"Variety\",\n    y = \"Yield\"\n  ) +\n  theme_minimal()\n\n\n\n\n\n\n\n\n\n\n\n1. การทดลองแฟกทอเรียล (factorial design)\nถ้ามีมากกว่า 1 ปัจจัย เช่น “ปุ๋ย × ระดับน้ำ” DMRT จะไม่รู้จัก interaction ของปัจจัยเหล่านั้น\n2. ตัวแปรต้นเชิงปริมาณ (quantitative)\n\nถ้าปัจจัยเป็นค่าต่อเนื่อง เช่น “ปริมาณปุ๋ย (กก./ไร่)” การใช้ DMRT จะสูญเสียข้อมูล เพราะมันมองทุกระดับเป็นกลุ่มแยก ๆ กรณีนี้ควรใช้ Regression analysis มากกว่า\n\n\n\nDMRT มีแนวโน้ม “ใจดีเกินไป” คือยอมให้หลายคู่ต่างกันได้ง่าย (Type I error สูงกว่า)\nถ้าเรามีกลุ่มมาก หรืออยากคุมความผิดพลาดให้แน่นหนา และ Tukey’s HSD มักเป็นทางเลือกที่ดีกว่า"
   },
   {
     "objectID": "posts/2022-12-08-DMRT/index.html#dmrt-ใชงานอยางไร",
@@ -445,7 +445,7 @@
     "href": "note-to-me.html",
     "title": "Note to me",
     "section": "",
-    "text": "Note 1\n\n\n\n\n\n\n\n \n\n\n\n\n  \n\n\n\n\nโหลดแผนที่ประเทศไทย\n\n\n\n\n\n\n\n \n\n\n\n\nNo matching items"
+    "text": "โหลดแผนที่ประเทศไทย\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nการควบคุม chunk\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/2022-12-08-DMRT/index.html#ไมควรใช-dmrt-เมอ",
@@ -466,7 +466,7 @@
     "href": "posts/2022-12-08-DMRT/index.html#เกรน",
     "title": "เลิกใช้ DMRT เถอะ",
     "section": "",
-    "text": "เวลาเราทำการทดลองที่มีหลายชุด เช่น เปรียบเทียบผลผลิตข้าวหลายพันธุ์ หรือดูผลของปุ๋ยหลายสูตร ขั้นตอนมาตรฐานหลังจาก ANOVA คือ “ถ้ามันแตกต่างกันจริง แล้วคู่ไหนต่างกันบ้าง?” หมาย ๆ หลาย เลือกใช้ DMRT เพื่อช่วยตอบ\nDMRT เป็นการเปรียบเทียบค่าเฉลี่ยแบบ pairwise comparision เพื่อหาว่าคู่ไหนต่างกันอย่างมีนัยสำคัญ โดยใช้ค่า Least Significant Range (LSR) ซึ่งคำนวณจากจำนวนกลุ่ม ระดับความเชื่อมั่น และค่า Mean Square Error (MSE) ที่ได้จาก ANOVA\nถ้าคู่ไหนต่างกันเกิน LSR สรุปว่า “ต่างกันจริง” แต่ ถ้าค่างกันไม่ถึง ก็ “ยังไม่ต่างพอจะบอกว่าต่างกัน”\n\n\nDMRT ใช้ได้ดีในงานทดลองที่มีโครงสร้างเรียบง่าย เช่น - กลุ่มทดลองเป็นอิสระต่อกัน - ตัวแปรอธิบายเป็นตัวแปรเชิงคุณภาพ (เช่น พันธุ์ข้าว, สูตรปุ๋ย, สภาพดิน) - ข้อมูลผ่านการตรวจสอบว่า “กระจายแบบปกติ” และ “มีความแปรปรวนเท่ากัน” DMRT เหมาะสมที่จะใช้ในสถานการณ์ต่อไปนี้"
+    "text": "เวลาเราทำการทดลองที่มีหลายชุด เช่น เปรียบเทียบผลผลิตข้าวหลายพันธุ์ หรือดูผลของปุ๋ยหลายสูตร ขั้นตอนมาตรฐานหลังจาก ANOVA คือ “ถ้ามันแตกต่างกันจริง แล้วคู่ไหนต่างกันบ้าง?” หมาย ๆ หลาย เลือกใช้ DMRT เพื่อช่วยตอบ\nDMRT เป็นการเปรียบเทียบค่าเฉลี่ยแบบ pairwise comparision เพื่อหาว่าคู่ไหนต่างกันอย่างมีนัยสำคัญ โดยใช้ค่า Least Significant Range (LSR) ซึ่งคำนวณจากจำนวนกลุ่ม ระดับความเชื่อมั่น และค่า Mean Square Error (MSE) ที่ได้จาก ANOVA\nถ้าคู่ไหนต่างกันเกิน LSR สรุปว่า “ต่างกันจริง” แต่ ถ้าค่างกันไม่ถึง ก็ “ยังไม่ต่างพอจะบอกว่าต่างกัน”\n\n\n\nกลุ่มทดลองเป็นอิสระต่อกัน\nตัวแปรอธิบายเป็นตัวแปรเชิงคุณภาพ (เช่น พันธุ์ข้าว, สูตรปุ๋ย, สภาพดิน)\nข้อมูลผ่านการตรวจสอบว่า “กระจายแบบปกติ” และ “มีความแปรปรวนเท่ากัน”"
   },
   {
     "objectID": "posts/2022-12-08-DMRT/index.html#r-example",
@@ -509,5 +509,12 @@
     "title": "โหลดแผนที่ประเทศไทย",
     "section": "ดาวน์โหลดแผนที่ไทย ไฟล์ GeoJSON",
     "text": "ดาวน์โหลดแผนที่ไทย ไฟล์ GeoJSON\n\nlibrary(sf)\n#โหลดแผนที่ขอบเขตจังหวัด (OpenGISData-Thailand)\nth_prov_geojson &lt;- st_read(\n  \"https://raw.githubusercontent.com/chingchai/OpenGISData-Thailand/master/provinces.geojson\",\n  quiet = TRUE,\n  options = \"ENCODING=UTF-8\"\n) |&gt;\n  st_transform(4326)"
+  },
+  {
+    "objectID": "note-to-me/2024-10-28-note1/index.html",
+    "href": "note-to-me/2024-10-28-note1/index.html",
+    "title": "การควบคุม chunk",
+    "section": "",
+    "text": "TL;DR\nตัวอย่าง สิ่งที่อยากควบคุม\n- ซ่อนโค้ด echo=FALSE\n- ซ่อนผลลัพธ์ results='hide'\n- ไม่รันโค้ด eval=FALSE\n- ซ่อนทุกอย่าง (แต่รันอยู่เบื้องหลัง) include=FALSE\n- ซ่อนข้อความเตือน warning=FALSE, message=FALSE\n- ตั้งค่าทั้งไฟล์ execute: ใน YAML หรือ knitr::opts_chunk$set()\n\n\nตัวอย่าง\n1 ไม่รัน โชว์แต่โค้ด #| eval: false เป็นแบบนี้\n\nplot(1:10)\n\n2 รัน และ โชว์โค้ด #| eval: true เป็นแบบนี้\n\nplot(1:10)\n\n\n\n\n\n\n\n\n3 โชว์โค้ด #| echo: true เป็นแบบนี้\n\nplot(1:10)\n\n\n\n\n\n\n\n\n4 ไม่โชว์โค้ด #| echo: false เป็นแบบนี้\n\n\n\n\n\n\n\n\n\n5 ไม่โชว์ผลลัพธ์ include=FALSE รันโค้ดเบื้อหลัง\nจริง ๆ รัน\n\nnumber &lt;- 1:10\n\nอยู่เบื้องหลัง\n\nnumber\n\n [1]  1  2  3  4  5  6  7  8  9 10\n\n\n6 ใส่ชื่อ chunck #| label: fig-mtcars และ ใส่ caption รูป #| fig-cap: \"Scatterplot of mpg vs wt\"\n\nplot(mtcars$wt, mtcars$mpg)\n\n\n\n\n\n\n\nFigure 1: Scatterplot of mpg vs wt\n\n\n\n\n\n\nรูป2 ใส่ #| label: fig-mtcars2 วางไว้ตรงกลาง #| fig.align: \"center\" และ กว้าง หก นิ้ว #| fig.width: 6 และ อัตราส่วน สูงต่อกว้าง #| fig.asp: 0.6 และ โชว์ 50% ของรูป out.width: \"50%\" และ และ ใส่ caption รูป #| fig-cap: \"Scatterplot of mpg vs wt\"\n\n\nplot(mtcars$wt, mtcars$mpg)\n\n\n\n\n\n\n\nFigure 2: Scatterplot of mpg vs wt"
   }
 ]
