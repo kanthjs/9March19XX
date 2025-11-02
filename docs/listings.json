@@ -2,6 +2,7 @@
   {
     "listing": "/posts.html",
     "items": [
+      "/posts/2025-11-02-CRD_RCBD/index.html",
       "/posts/2022-12-08-DMRT/index.html"
     ]
   },
@@ -16,7 +17,8 @@
     "listing": "/note-to-me.html",
     "items": [
       "/note-to-me/2024-10-2-note0/index.html",
-      "/note-to-me/2024-10-28-note1/index.html"
+      "/note-to-me/2024-10-28-note1/index.html",
+      "/note-to-me/2024-10-28-note2/index.html"
     ]
   }
 ]

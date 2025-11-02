@@ -5,7 +5,6 @@ categories: [R]
 ---
 
 # TL;DR
-
 | ตัวอย่าง สิ่งที่อยากควบคุม
 | - ซ่อนโค้ด `echo=FALSE`
 | - ซ่อนผลลัพธ์ `results='hide'`
@@ -30,7 +29,7 @@ plot(1:10)
 plot(1:10)
 ```
 
-3 โชว์โค้ด `#| echo: true` เป็นแบบนี้
+3 โชว์โค้ด  `#| echo: true` เป็นแบบนี้
 
 ```{r}
 #| echo: true
@@ -47,13 +46,12 @@ plot(1:10)
 5 ไม่โชว์ผลลัพธ์ `include=FALSE` รันโค้ดเบื้อหลัง
 
 ```{r}
-#| include : FALSE
+#| include=FALSE
 number <- 1:10
 ```
-
 จริง ๆ รัน
 
-> number \<- 1:10
+> number <- 1:10
 
 อยู่เบื้องหลัง
 
@@ -71,7 +69,7 @@ number
 plot(mtcars$wt, mtcars$mpg)
 ```
 
-7.  รูป2 ใส่ `#| label: fig-mtcars2` วางไว้ตรงกลาง `#| fig.align: "center"` และ กว้าง หก นิ้ว `#| fig.width: 6` และ อัตราส่วน สูงต่อกว้าง `#| fig.asp: 0.6` และ โชว์ 50% ของรูป `out.width: "50%"` และ และ ใส่ caption รูป `#| fig-cap: "Scatterplot of mpg vs wt"`
+7. รูป2  ใส่ `#| label: fig-mtcars2` วางไว้ตรงกลาง `#| fig.align: "center"` และ กว้าง หก นิ้ว `#| fig.width: 6` และ อัตราส่วน สูงต่อกว้าง `#| fig.asp: 0.6` และ โชว์ 50% ของรูป `out.width: "50%"` และ และ ใส่ caption รูป `#| fig-cap: "Scatterplot of mpg vs wt"`
 
 ```{r}
 #| label: fig-mtcars2

@@ -6,10 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Kanth JS">
-<meta name="dcterms.date" content="2022-12-08">
+<meta name="dcterms.date" content="2024-10-02">
 
-<title>Kanthanawit Js - เลิกใช้ DMRT เถอะ</title>
+<title>Kanthanawit Js - การควบคุม chunk</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -151,19 +150,11 @@ gtag('config', 'G-WY647CK1PJ', { 'anonymize_ip': true});
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">สารบัญ</h2>
+    <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#duncan-dmrt-เลกเถอะ" id="toc-duncan-dmrt-เลกเถอะ" class="nav-link active" data-scroll-target="#duncan-dmrt-เลกเถอะ">Duncan (DMRT) เลิกเถอะ</a>
-  <ul class="collapse">
-  <li><a href="#เกรน" id="toc-เกรน" class="nav-link" data-scroll-target="#เกรน">เกริ่น</a>
-  <ul class="collapse">
-  <li><a href="#เมอไหรควรใช-dmrt" id="toc-เมอไหรควรใช-dmrt" class="nav-link" data-scroll-target="#เมอไหรควรใช-dmrt"><strong>เมื่อไหร่ควรใช้ DMRT?</strong></a></li>
-  </ul></li>
-  <li><a href="#r-example" id="toc-r-example" class="nav-link" data-scroll-target="#r-example">R example</a></li>
-  <li><a href="#ไมควรใช-dmrt-เมอ" id="toc-ไมควรใช-dmrt-เมอ" class="nav-link" data-scroll-target="#ไมควรใช-dmrt-เมอ"><strong>ไม่ควรใช้ DMRT เมื่อ</strong></a></li>
-  <li><a href="#dmrt-vs-tukeys-hsd" id="toc-dmrt-vs-tukeys-hsd" class="nav-link" data-scroll-target="#dmrt-vs-tukeys-hsd"><strong>DMRT vs Tukey’s HSD</strong></a></li>
-  </ul></li>
+  <li><a href="#tldr" id="toc-tldr" class="nav-link active" data-scroll-target="#tldr">TL;DR</a></li>
+  <li><a href="#ตวอยาง" id="toc-ตวอยาง" class="nav-link" data-scroll-target="#ตวอยาง">ตัวอย่าง</a></li>
   </ul>
 </nav>
     </div>
@@ -172,7 +163,7 @@ gtag('config', 'G-WY647CK1PJ', { 'anonymize_ip': true});
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">เลิกใช้ DMRT เถอะ</h1>
+<h1 class="title">การควบคุม chunk</h1>
   <div class="quarto-categories">
     <div class="quarto-category">R</div>
   </div>
@@ -182,17 +173,11 @@ gtag('config', 'G-WY647CK1PJ', { 'anonymize_ip': true});
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Kanth JS </p>
-          </div>
-  </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">December 8, 2022</p>
+      <p class="date">October 2, 2024</p>
     </div>
   </div>
   
@@ -202,170 +187,85 @@ gtag('config', 'G-WY647CK1PJ', { 'anonymize_ip': true});
 
 </header>
 
-<section id="duncan-dmrt-เลกเถอะ" class="level1">
-<h1>Duncan (DMRT) เลิกเถอะ</h1>
-<p><strong>#TL;DR:</strong><br>
-<br>
-DMRT ใช้เปรียบเทียบค่าเฉลี่ยแบบคู่ต่อคู่ เหมาะกับการทดลองง่ายที่มีปัจจัยเดียวและข้อมูลผ่านสมมติฐาน ANOVA แต่ไม่เหมาะกับการทดลองแฟกทอเรียลหรือตัวแปรต่อเนื่อง เพราะไม่รองรับ interaction และแนวโน้มเชิงปริมาณ DMRT เข้าใจง่ายแต่ “ใจดี” ไปหน่อย ควรใช้ Tukey’s HSD เมื่อต้องการคุมความผิดพลาดให้รัดกุมกว่า สรุปคือ DMRT ใช้ได้ ถ้าเราเข้าใจข้อจำกัดของมันดีพอ</p>
-<section id="เกรน" class="level2">
-<h2 class="anchored" data-anchor-id="เกรน">เกริ่น</h2>
-<p>เวลาเราทำการทดลองที่มีหลายชุด เช่น เปรียบเทียบผลผลิตข้าวหลายพันธุ์ หรือดูผลของปุ๋ยหลายสูตร ขั้นตอนมาตรฐานหลังจาก ANOVA คือ “ถ้ามันแตกต่างกันจริง แล้วคู่ไหนต่างกันบ้าง?” หมาย ๆ หลาย เลือกใช้ DMRT เพื่อช่วยตอบ</p>
-<p>DMRT เป็นการเปรียบเทียบค่าเฉลี่ยแบบ pairwise comparision เพื่อหาว่าคู่ไหนต่างกันอย่างมีนัยสำคัญ โดยใช้ค่า Least Significant Range (LSR) ซึ่งคำนวณจากจำนวนกลุ่ม ระดับความเชื่อมั่น และค่า Mean Square Error (MSE) ที่ได้จาก ANOVA</p>
-<p>ถ้าคู่ไหนต่างกันเกิน LSR สรุปว่า “ต่างกันจริง” แต่ ถ้าค่างกันไม่ถึง ก็ “ยังไม่ต่างพอจะบอกว่าต่างกัน”</p>
-<section id="เมอไหรควรใช-dmrt" class="level3">
-<h3 class="anchored" data-anchor-id="เมอไหรควรใช-dmrt"><strong>เมื่อไหร่ควรใช้ DMRT?</strong></h3>
-<ul>
-<li><p>กลุ่มทดลองเป็นอิสระต่อกัน</p></li>
-<li><p>ตัวแปรอธิบายเป็นตัวแปรเชิงคุณภาพ (เช่น พันธุ์ข้าว, สูตรปุ๋ย, สภาพดิน)</p></li>
-<li><p>ข้อมูลผ่านการตรวจสอบว่า “กระจายแบบปกติ” และ “มีความแปรปรวนเท่ากัน”</p></li>
-</ul>
+<section id="tldr" class="level1">
+<h1>TL;DR</h1>
+<p>ตัวอย่าง สิ่งที่อยากควบคุม<br>
+- ซ่อนโค้ด <code>echo=FALSE</code><br>
+- ซ่อนผลลัพธ์ <code>results='hide'</code><br>
+- ไม่รันโค้ด <code>eval=FALSE</code><br>
+- ซ่อนทุกอย่าง (แต่รันอยู่เบื้องหลัง) <code>include=FALSE</code><br>
+- ซ่อนข้อความเตือน <code>warning=FALSE</code>, <code>message=FALSE</code><br>
+- ตั้งค่าทั้งไฟล์ <code>execute:</code> ใน YAML หรือ <code>knitr::opts_chunk$set()</code></p>
 </section>
-</section>
-<section id="r-example" class="level2">
-<h2 class="anchored" data-anchor-id="r-example">R example</h2>
-<p>จำลองตัวอย่างข้อมูลผลผลิตข้าว 3 สายพันธุ์</p>
+<section id="ตวอยาง" class="level1">
+<h1>ตัวอย่าง</h1>
+<p>1 ไม่รัน โชว์แต่โค้ด <code>#| eval: false</code> เป็นแบบนี้</p>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>2 รัน และ โชว์โค้ด <code>#| eval: true</code> เป็นแบบนี้</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="kable-table">
-<table class="table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th style="text-align: left;">variety</th>
-<th style="text-align: right;">yield</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">A</td>
-<td style="text-align: right;">10</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">A</td>
-<td style="text-align: right;">12</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">A</td>
-<td style="text-align: right;">11</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">A</td>
-<td style="text-align: right;">13</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">B</td>
-<td style="text-align: right;">14</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">B</td>
-<td style="text-align: right;">12</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">B</td>
-<td style="text-align: right;">15</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">B</td>
-<td style="text-align: right;">16</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">C</td>
-<td style="text-align: right;">14</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">C</td>
-<td style="text-align: right;">17</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">C</td>
-<td style="text-align: right;">18</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">C</td>
-<td style="text-align: right;">16</td>
-</tr>
-</tbody>
-</table>
+<p><img src="index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-</div>
-<p>วิเคราะห์ ANOVA และ DMRT โดยใช้ <code>duncan.test</code> จาก <code>agricolae</code> package</p>
+<p>3 โชว์โค้ด <code>#| echo: true</code> เป็นแบบนี้</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># วิเคราะห์ ANOVA</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">aov</span>(yield <span class="sc">~</span> variety, <span class="at">data =</span> data)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>            Df Sum Sq Mean Sq F value  Pr(&gt;F)   
-variety      2   45.5   22.75     9.1 0.00689 **
-Residuals    9   22.5    2.50                   
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ทดสอบ DMRT</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">duncan.test</span>(model, <span class="st">"variety"</span>, <span class="at">console =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Study: model ~ "variety"
-
-Duncan's new multiple range test
-for yield 
-
-Mean Square Error:  2.5 
-
-variety,  means
-
-  yield      std r        se Min Max   Q25  Q50   Q75
-A 11.50 1.290994 4 0.7905694  10  13 10.75 11.5 12.25
-B 14.25 1.707825 4 0.7905694  12  16 13.50 14.5 15.25
-C 16.25 1.707825 4 0.7905694  14  18 15.50 16.5 17.25
-
-Alpha: 0.05 ; DF Error: 9 
-
-Critical Range
-       2        3 
-2.529169 2.639820 
-
-Means with the same letter are not significantly different.
-
-  yield groups
-C 16.25      a
-B 14.25      a
-A 11.50      b</code></pre>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>4 ไม่โชว์โค้ด <code>#| echo: false</code> เป็นแบบนี้</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(variety, yield)) <span class="sc">+</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">fill =</span> variety), <span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">"point"</span>, <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"DMRT for Rice Varieties"</span>,</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Variety"</span>,</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Yield"</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-</section>
-<section id="ไมควรใช-dmrt-เมอ" class="level2">
-<h2 class="anchored" data-anchor-id="ไมควรใช-dmrt-เมอ"><strong>ไม่ควรใช้ DMRT เมื่อ</strong></h2>
-<p><strong>1. การทดลองแฟกทอเรียล (factorial design)</strong><br>
-ถ้ามีมากกว่า 1 ปัจจัย เช่น “ปุ๋ย × ระดับน้ำ” DMRT จะไม่รู้จัก <em>interaction</em> ของปัจจัยเหล่านั้น</p>
-<p><strong>2. ตัวแปรต้นเชิงปริมาณ (quantitative)</strong><br>
-</p>
-<p>ถ้าปัจจัยเป็นค่าต่อเนื่อง เช่น “ปริมาณปุ๋ย (กก./ไร่)” การใช้ DMRT จะสูญเสียข้อมูล เพราะมันมองทุกระดับเป็นกลุ่มแยก ๆ กรณีนี้ควรใช้ <em>Regression analysis</em> มากกว่า</p>
-</section>
-<section id="dmrt-vs-tukeys-hsd" class="level2">
-<h2 class="anchored" data-anchor-id="dmrt-vs-tukeys-hsd"><strong>DMRT vs Tukey’s HSD</strong></h2>
-<p>DMRT มีแนวโน้ม “ใจดีเกินไป” คือยอมให้หลายคู่ต่างกันได้ง่าย (Type I error สูงกว่า)<br>
-ถ้าเรามีกลุ่มมาก หรืออยากคุมความผิดพลาดให้แน่นหนา และ <strong>Tukey’s HSD</strong> มักเป็นทางเลือกที่ดีกว่า</p>
+<p>5 ไม่โชว์ผลลัพธ์ <code>include=FALSE</code> รันโค้ดเบื้อหลัง</p>
+<p>จริง ๆ รัน</p>
+<blockquote class="blockquote">
+<p>number &lt;- 1:10</p>
+</blockquote>
+<p>อยู่เบื้องหลัง</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>number</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+</div>
+</div>
+<p>6 ใส่ชื่อ chunck <code>#| label: fig-mtcars</code> และ ใส่ caption รูป <code>#| fig-cap: "Scatterplot of mpg vs wt"</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mtcars<span class="sc">$</span>wt, mtcars<span class="sc">$</span>mpg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-mtcars" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="index_files/figure-html/fig-mtcars-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Figure&nbsp;1: Scatterplot of mpg vs wt</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<ol start="7" type="1">
+<li>รูป2 ใส่ <code>#| label: fig-mtcars2</code> วางไว้ตรงกลาง <code>#| fig.align: "center"</code> และ กว้าง หก นิ้ว <code>#| fig.width: 6</code> และ อัตราส่วน สูงต่อกว้าง <code>#| fig.asp: 0.6</code> และ โชว์ 50% ของรูป <code>out.width: "50%"</code> และ และ ใส่ caption รูป <code>#| fig-cap: "Scatterplot of mpg vs wt"</code></li>
+</ol>
+<div class="cell" data-layout-align="center" data-fig.asp="0.6">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mtcars<span class="sc">$</span>wt, mtcars<span class="sc">$</span>mpg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-mtcars2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="index_files/figure-html/fig-mtcars2-1.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption class="figure-caption">Figure&nbsp;2: Scatterplot of mpg vs wt</figcaption>
+</figure>
+</div>
+</div>
+</div>
 
 
 </section>
-</section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div id="quarto-reuse" class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></div></div></section></div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
